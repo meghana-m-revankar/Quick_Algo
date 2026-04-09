@@ -1,0 +1,14 @@
+.notification_page {
+  .notification_list {
+    padding: 3px;
+    border-radius: 5px;
+    background: var(--card_box_bg);
+    margin-bottom: 10px;
+    .notification_inner{
+        border: 2px solid var(--body_bg);
+        padding: 7px;
+        border-radius: 5px;
+    
+    }
+  }
+}

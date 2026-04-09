@@ -1,0 +1,302 @@
+.chart-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  pointer-events: none;
+  
+  .chart-popup {
+    position: absolute;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    pointer-events: all;
+    cursor: move;
+    transition: all 0.3s ease;
+    
+    &.minimized {
+      width: 300px !important;
+      height: 60px !important;
+      
+      .popup-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px;
+        
+        .minimized-content {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          
+          span {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+          }
+          
+          button {
+            background: #007bff;
+            border: none;
+            border-radius: 4px;
+            padding: 4px 8px;
+            color: white;
+            font-size: 12px;
+            cursor: pointer;
+            
+            &:hover {
+              background: #0056b3;
+            }
+          }
+        }
+      }
+    }
+    
+    &.maximized {
+      top: 20px !important;
+      left: 20px !important;
+      right: 20px !important;
+      bottom: 20px !important;
+      width: auto !important;
+      height: auto !important;
+      
+      .popup-content {
+        flex: 1;
+      }
+    }
+    
+    .popup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: #f8f9fa;
+      border-bottom: 1px solid #ddd;
+      border-radius: 8px 8px 0 0;
+      cursor: move;
+      
+      .popup-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        color: #333;
+        
+        .popup-icon {
+          font-size: 16px;
+        }
+      }
+      
+      .popup-controls {
+        display: flex;
+        gap: 4px;
+        
+        .popup-control-btn {
+          background: none;
+          border: none;
+          padding: 6px;
+          border-radius: 4px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background-color 0.2s;
+          
+          &:hover {
+            background: #e9ecef;
+          }
+          
+          &.minimize-btn {
+            color: #6c757d;
+          }
+          
+          &.maximize-btn {
+            color: #28a745;
+          }
+          
+          &.close-btn {
+            color: #dc3545;
+            
+            &:hover {
+              background: #f8d7da;
+            }
+          }
+          
+          &.order-btn {
+            color: #007bff;
+            position: relative;
+            
+            &:hover {
+              background: #e7f3ff;
+            }
+            
+            .order-badge {
+              position: absolute;
+              top: -4px;
+              right: -4px;
+              background: #dc3545;
+              color: white;
+              border-radius: 50%;
+              width: 18px;
+              height: 18px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 10px;
+              font-weight: 600;
+              border: 2px solid #ffffff;
+            }
+          }
+          
+          svg {
+            width: 14px;
+            height: 14px;
+          }
+        }
+      }
+    }
+    
+    .popup-content {
+      flex: 1;
+      overflow: hidden;
+      
+      .chart-content {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        
+        .chart-loading {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+          gap: 16px;
+          
+          .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+          }
+          
+          p {
+            margin: 0;
+            color: #6c757d;
+            font-size: 14px;
+          }
+          
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        }
+        
+        .chart-error {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+          gap: 16px;
+          text-align: center;
+          padding: 20px;
+          
+          p {
+            margin: 0;
+            color: #dc3545;
+            font-size: 14px;
+          }
+          
+          button {
+            background: #007bff;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            
+            &:hover {
+              background: #0056b3;
+            }
+          }
+        }
+        
+        .chart-container {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .chart-popup-overlay {
+    .chart-popup {
+      &.maximized {
+        top: 10px !important;
+        left: 10px !important;
+        right: 10px !important;
+        bottom: 10px !important;
+      }
+      
+      .popup-header {
+        padding: 8px 12px;
+        
+        .popup-title {
+          font-size: 14px;
+          
+          .popup-icon {
+            font-size: 14px;
+          }
+        }
+        
+        .popup-controls {
+          .popup-control-btn {
+            padding: 4px;
+            
+            svg {
+              width: 12px;
+              height: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-popup-overlay {
+    .chart-popup {
+      width: calc(100vw - 20px) !important;
+      height: calc(100vh - 40px) !important;
+      top: 10px !important;
+      left: 10px !important;
+      
+      &.minimized {
+        width: calc(100vw - 20px) !important;
+        height: 60px !important;
+      }
+      
+      .popup-header {
+        padding: 6px 8px;
+        
+        .popup-title {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

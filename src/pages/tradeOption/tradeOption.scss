@@ -1,0 +1,369 @@
+@use "../../styles/scss/abstract/mixins" as *;
+
+.trade_option_page {
+  background: #F3F5F7;
+  color: var(--text-color-primary);
+  padding: 25px;
+  margin-top: 10px;
+  .symbol_chart_price {
+    .card-box {
+      background: #E8FAFD;
+      border: 2px solid #E1E7EF;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      
+      &:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        // transform: translateY(-2px);
+      }
+      
+      .dark-theme & {
+        border-color: var(--border-color-dark);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        
+        &:hover {
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+        }
+      }
+      
+      .box-body {
+        // min-height: 240px;
+        // padding: 1.5rem;
+        // background: var(--card_box_bg);
+        // color: var(--text-color-primary);
+
+        // @include media_768 {
+        //   padding: 1rem;
+        //   min-height: auto;
+        // }
+
+        // @include media_480 {
+        //   padding: 0.8rem;
+        // }
+
+        .badge_expire {
+          padding: 2px 12px;
+          border-radius: 1.5rem;
+          font-size: 14px;
+          font-weight: 100;
+          margin-left: 15px;
+          transition: all 0.3s ease;
+              font-weight: 500;
+          
+          &:hover {
+            transform: scale(1.05);
+          }
+
+          @include media_768 {
+            font-size: 12px;
+            padding: 2px 8px;
+            margin-left: 10px;
+            display: inline-block;
+            margin-top: 8px;
+          }
+
+          @include media_480 {
+            font-size: 11px;
+            padding: 2px 6px;
+            margin-left: 8px;
+            margin-top: 6px;
+          }
+        }
+        
+        h5 {
+          font-weight: 500;
+          margin-bottom: 20px;
+          font-size: 1.1428571428571428rem;
+          color: var(--text-color-primary);
+
+          @include media_768 {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+          }
+
+          @include media_480 {
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+          }
+        }
+
+        .chart_box {
+          display: flex;
+          gap: 30px;
+
+          @include media_1200 {
+            flex-direction: column;
+            gap: 20px;
+          }
+
+          @include media_768 {
+            gap: 15px;
+          }
+
+          @include media_480 {
+            gap: 10px;
+          }
+
+          .chart_price {
+            width: 25%;
+
+            @include media_1200 {
+              width: 100%;
+            }
+
+            .box-body {
+              min-height: -webkit-fill-available;
+              padding: 1.5rem;
+              border-radius: 10px;
+              background: var(--card_box_bg);
+              border: 1px solid var(--header-border);
+              transition: all 0.3s ease;
+
+              @include media_1200 {
+                min-height: 0px;
+              }
+
+              @include media_768 {
+                padding: 1rem;
+                min-height: auto;
+              }
+
+              @include media_480 {
+                padding: 0.8rem;
+              }
+              
+              .dark-theme & {
+                border-color: var(--border-color-dark);
+              }
+
+              .main-text {
+                transition: all 0.3s ease;
+                padding: 0px;
+                align-items: baseline;
+                display: flex;
+
+                @include media_768 {
+                  flex-direction: column;
+                  align-items: center;
+                  text-align: center;
+                }
+
+                img {
+                  border-radius: 5px;
+                  width: 50px;
+                  transition: transform 0.3s ease;
+                  
+                  &:hover {
+                    transform: scale(1.1);
+                  }
+
+                  @include media_768 {
+                    width: 40px;
+                    margin-bottom: 10px;
+                  }
+
+                  @include media_480 {
+                    width: 35px;
+                    margin-bottom: 8px;
+                  }
+                }
+                
+                .symbol-text {
+                  margin: 0rem 1rem;
+                  
+                  @include media_768 {
+                    margin: 0;
+                  }
+                  
+                  h3 {
+                    font-weight: 700;
+                    margin: 0px;
+                    color: var(--text-color-primary);
+                    transition: color 0.3s ease;
+
+                    @include media_768 {
+                      font-size: 1.2rem;
+                    }
+
+                    @include media_480 {
+                      font-size: 1.1rem;
+                    }
+                  }
+                  
+                  span {
+                    color: var(--text-color-primary);
+                    font-weight: 600;
+                    transition: color 0.3s ease;
+
+                    @include media_768 {
+                      font-size: 0.9rem;
+                    }
+
+                    @include media_480 {
+                      font-size: 0.8rem;
+                    }
+                  }
+                }
+              }
+              
+              .charte_price_desc {
+                color: #A9A9A9;
+                margin-top: 30px;
+                line-height: 1.6;
+                transition: color 0.3s ease;
+                    font-size: 14px;
+    font-weight: 400;
+                
+                @include media_768 {
+                  margin-top: 20px;
+                  font-size: 0.9rem;
+                  line-height: 1.5;
+                }
+
+                @include media_480 {
+                  margin-top: 15px;
+                  font-size: 0.8rem;
+                  line-height: 1.4;
+                }
+                
+                .dark-theme & {
+                  color: var(--text-color-secondary-dark);
+                }
+              }
+            }
+          }
+          
+          .area_chart {
+            width: 75%;
+            background: var(--card_box_bg);
+            border-radius: 10px;
+            padding: 1rem;
+            border: 1px solid var(--header-border);
+            transition: all 0.3s ease;
+
+            @include media_1200 {
+              width: 100%;
+            }
+
+            @include media_768 {
+              padding: 0.8rem;
+            }
+
+            @include media_480 {
+              padding: 0.6rem;
+            }
+            
+            .dark-theme & {
+              border-color: var(--border-color-dark);
+            }
+          }
+        }
+      }
+
+      // Theme-aware badge styles
+      .bg-danger-light {
+        background: var(--box-pink);
+        border: 1px solid var(--color-danger);
+        color: var(--color-danger);
+        padding: 4px 12px;
+        border-radius: 1.5rem;
+        font-size: 13px;
+        font-weight: 500;
+        
+        .dark-theme & {
+          background: var(--box-pink);
+          border-color: var(--color-danger-dark);
+          color: var(--color-danger-dark);
+        }
+      }
+      
+      .bg-purple-light {
+        background: var(--box-purple);
+        border: 1px solid var(--btn-info);
+        color: var(--btn-info);
+        padding: 4px 12px;
+        border-radius: 1.5rem;
+        font-size: 13px;
+        font-weight: 500;
+        
+        .dark-theme & {
+          background: var(--box-purple);
+          border-color: var(--btn-info);
+          color: var(--btn-info);
+        }
+      }
+      
+      .bg-green-light {
+        background: var(--box-green);
+        border: 1px solid var(--color-success);
+        color: var(--color-success);
+        padding: 4px 12px;
+        border-radius: 1.5rem;
+        font-size: 13px;
+        font-weight: 500;
+        
+        .dark-theme & {
+          background: var(--box-green);
+          border-color: var(--color-success-dark);
+          color: var(--color-success-dark);
+        }
+      }
+    }
+  }
+
+  @include media_768 {
+    padding: 20px 10px;
+  }
+}
+
+// Mobile-specific improvements
+.trade_option_page {
+  @include media_768 {
+    .symbol_chart_price {
+      .card-box {
+        margin-bottom: 1rem;
+        padding: 10px;
+        
+        .box-body {
+          h5 {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            
+            .badge_expire {
+              margin-left: 0;
+              margin-top: 8px;
+              align-self: flex-start;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include media_480 {
+    .symbol_chart_price {
+      .card-box {
+        margin-bottom: 0.8rem;
+        border-radius: 8px;
+        
+        .box-body {
+          h5 {
+            .badge_expire {
+              margin-top: 6px;
+              word-break: break-word;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Smooth transitions for theme changes
+.trade_option_page * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}

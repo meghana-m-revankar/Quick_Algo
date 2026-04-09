@@ -1,0 +1,1 @@
+export { asyncGetDashboardData } from './action';

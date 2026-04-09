@@ -1,0 +1,12 @@
+.main-nav{
+    #main-menu{
+        li{
+            a{
+                &.active{
+                    background: #6993ff;
+                    color: #ffffff !important;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,436 @@
+@use "../../styles/scss/abstract/mixins" as *;
+
+.simplified-option-chain-card {
+  .card-box {
+    background: var(--card-background);
+    border: 1px solid var(--box-border);
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .option-header {
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--box-border);
+    padding-bottom: 16px;
+
+    .symbol-section {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+
+      @include media_768 {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+
+      .symbol-selector {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 200px;
+
+        select {
+          background: var(--input-background);
+          border: 1px solid var(--box-border);
+          border-radius: 6px;
+          padding: 8px 12px;
+          color: var(--text-color-primary);
+          font-size: 14px;
+          font-weight: 500;
+          min-width: 120px;
+
+          &:focus {
+            outline: none;
+            border-color: var(--color-primary);
+          }
+        }
+
+        .current-price {
+          font-size: 16px;
+          font-weight: 600;
+          color: var(--text-color-primary);
+          min-width: 80px;
+          text-align: right;
+        }
+      }
+
+      .expiry-section {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        label {
+          font-size: 14px;
+          font-weight: 500;
+          color: var(--text-color-secondary);
+          white-space: nowrap;
+        }
+
+        select {
+          background: var(--input-background);
+          border: 1px solid var(--box-border);
+          border-radius: 6px;
+          padding: 8px 12px;
+          color: var(--text-color-primary);
+          font-size: 14px;
+          min-width: 120px;
+
+          &:focus {
+            outline: none;
+            border-color: var(--color-primary);
+          }
+
+          &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+          }
+        }
+
+        .refreshing-indicator {
+          font-size: 12px;
+          color: #ff6b6b;
+          font-style: italic;
+        }
+      }
+
+      .chart-section {
+        .chart-button {
+          background: var(--color-primary);
+          border: none;
+          border-radius: 6px;
+          padding: 8px 12px;
+          color: white;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.2s ease;
+
+          &:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-1px);
+          }
+
+          &:active {
+            transform: translateY(0);
+          }
+        }
+      }
+    }
+  }
+
+  .options-table-container {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    .options-table {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
+      .table-header {
+        display: grid;
+        grid-template-columns: 1fr 80px 1fr;
+        gap: 8px;
+        padding: 12px 8px;
+        background: var(--table-header-background);
+        border-radius: 6px 6px 0 0;
+        font-weight: 600;
+        font-size: 14px;
+        text-align: center;
+        border-bottom: 2px solid var(--box-border);
+
+        .calls-header {
+          color: #dc3545;
+          background: rgba(220, 53, 69, 0.1);
+          padding: 8px;
+          border-radius: 4px;
+        }
+
+        .strike-header {
+          color: var(--text-color-primary);
+          background: var(--strike-background);
+          padding: 8px;
+          border-radius: 4px;
+          font-weight: 700;
+        }
+
+        .puts-header {
+          color: #28a745;
+          background: rgba(40, 167, 69, 0.1);
+          padding: 8px;
+          border-radius: 4px;
+        }
+      }
+
+      .table-body {
+        flex: 1;
+        overflow-y: auto;
+        max-height: 400px;
+
+        &::-webkit-scrollbar {
+          width: 6px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: var(--scrollbar-track);
+          border-radius: 3px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: var(--scrollbar-thumb);
+          border-radius: 3px;
+
+          &:hover {
+            background: var(--scrollbar-thumb-hover);
+          }
+        }
+
+        .option-row {
+          display: grid;
+          grid-template-columns: 1fr 80px 1fr;
+          gap: 8px;
+          padding: 8px;
+          border-bottom: 1px solid var(--row-border);
+          transition: background-color 0.2s ease;
+          min-height: 60px;
+          align-items: center;
+
+          &:hover {
+            background: var(--row-hover-background);
+          }
+
+          &.atm-row {
+            background: var(--atm-background);
+            font-weight: 600;
+            border: 2px solid var(--atm-border);
+          }
+
+          .call-option,
+          .put-option {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 8px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+
+            &.itm {
+              background: rgba(255, 239, 219, 0.3);
+            }
+
+            .option-type {
+              font-size: 12px;
+              font-weight: 600;
+              color: var(--text-color-secondary);
+              text-align: center;
+            }
+
+            .price-change {
+              text-align: center;
+              font-size: 12px;
+              font-weight: 500;
+
+              .price-up {
+                color: #28a745;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 2px;
+              }
+
+              .price-down {
+                color: #dc3545;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 2px;
+              }
+            }
+
+            .ltp {
+              font-size: 14px;
+              font-weight: 600;
+              color: var(--text-color-primary);
+              text-align: center;
+            }
+
+            .action-buttons {
+              display: flex;
+              justify-content: center;
+              margin-top: 4px;
+
+              .chart-btn {
+                background: var(--button-secondary);
+                border: 1px solid var(--box-border);
+                border-radius: 4px;
+                padding: 4px 8px;
+                color: var(--text-color-primary);
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &:hover {
+                  background: var(--color-primary);
+                  color: white;
+                  border-color: var(--color-primary);
+                }
+              }
+            }
+          }
+
+          .strike-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-color-primary);
+            text-align: center;
+            background: var(--strike-background);
+            padding: 12px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--strike-border);
+          }
+        }
+      }
+    }
+  }
+
+  // Responsive adjustments
+  @include media_768 {
+    .options-table-container {
+      .options-table {
+        .table-header {
+          font-size: 12px;
+          padding: 8px 4px;
+        }
+
+        .table-body {
+          .option-row {
+            padding: 6px 4px;
+            min-height: 50px;
+
+            .call-option,
+            .put-option {
+              padding: 6px;
+              gap: 2px;
+
+              .option-type {
+                font-size: 11px;
+              }
+
+              .price-change {
+                font-size: 11px;
+              }
+
+              .ltp {
+                font-size: 13px;
+              }
+            }
+
+            .strike-price {
+              font-size: 14px;
+              padding: 8px 4px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include media_480 {
+    .option-header {
+      .symbol-section {
+        .symbol-selector {
+          min-width: auto;
+          width: 100%;
+
+          select {
+            flex: 1;
+            min-width: auto;
+          }
+        }
+
+        .expiry-section {
+          width: 100%;
+          justify-content: space-between;
+
+          select {
+            flex: 1;
+            min-width: auto;
+          }
+        }
+      }
+    }
+
+    .options-table-container {
+      .options-table {
+        .table-header {
+          grid-template-columns: 1fr 60px 1fr;
+          font-size: 11px;
+        }
+
+        .table-body {
+          .option-row {
+            grid-template-columns: 1fr 60px 1fr;
+            min-height: 45px;
+
+            .strike-price {
+              font-size: 12px;
+              padding: 6px 2px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// CSS Variables for theming
+:root {
+  --card-background: #ffffff;
+  --box-border: #e5e7eb;
+  --input-background: #ffffff;
+  --text-color-primary: #1f2937;
+  --text-color-secondary: #6b7280;
+  --color-primary: #3b82f6;
+  --color-primary-dark: #2563eb;
+  --table-header-background: #f9fafb;
+  --strike-background: #f3f4f6;
+  --strike-border: #d1d5db;
+  --row-border: #f3f4f6;
+  --row-hover-background: #f9fafb;
+  --atm-background: #fef3c7;
+  --atm-border: #f59e0b;
+  --button-secondary: #f3f4f6;
+  --scrollbar-track: #f1f5f9;
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-thumb-hover: #94a3b8;
+}
+
+[data-theme="dark"] {
+  --card-background: #1f2937;
+  --box-border: #374151;
+  --input-background: #374151;
+  --text-color-primary: #f9fafb;
+  --text-color-secondary: #9ca3af;
+  --table-header-background: #374151;
+  --strike-background: #4b5563;
+  --strike-border: #6b7280;
+  --row-border: #374151;
+  --row-hover-background: #374151;
+  --atm-background: #451a03;
+  --atm-border: #d97706;
+  --button-secondary: #4b5563;
+  --scrollbar-track: #374151;
+  --scrollbar-thumb: #6b7280;
+  --scrollbar-thumb-hover: #9ca3af;
+}

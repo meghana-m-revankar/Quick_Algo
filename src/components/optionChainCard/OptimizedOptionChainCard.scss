@@ -1,0 +1,339 @@
+// Optimized Option Chain Card Styles
+.option_chain_card {
+  .loading-container {
+    position: relative;
+    
+    .loading-message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 16px 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+      
+      .loading-spinner {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #e2e8f0;
+        border-top: 2px solid #3b82f6;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      span {
+        color: #64748b;
+        font-weight: 500;
+        font-size: 14px;
+      }
+    }
+  }
+  
+  .option-cell {
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+    
+    &:hover {
+      background-color: #f1f5f9;
+      transform: translateY(-1px);
+    }
+    
+    &.selected {
+      background-color: #dbeafe;
+      border: 1px solid #3b82f6;
+    }
+    
+    .product-name {
+      font-weight: 600;
+      font-size: 12px;
+      color: #1e293b;
+    }
+    
+    .ltp {
+      font-weight: 700;
+      font-size: 14px;
+      color: #1e293b;
+    }
+    
+    .ltp-change {
+      font-size: 11px;
+      font-weight: 500;
+      
+      &.positive {
+        color: #059669;
+      }
+      
+      &.negative {
+        color: #dc2626;
+      }
+    }
+  }
+  
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 1px;
+    background-color: #e2e8f0;
+    border-radius: 6px;
+    overflow: hidden;
+    
+    &.hovered {
+      background-color: #f8fafc;
+    }
+    
+    .strike-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      color: #1e293b;
+      background-color: #f8fafc;
+    }
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid #e2e8f0;
+    
+    .symbol-info {
+      h3 {
+        margin: 0 0 4px 0;
+        font-size: 18px;
+        font-weight: 700;
+        color: #1e293b;
+      }
+      
+      .price-info {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        
+        .current-price {
+          font-size: 16px;
+          font-weight: 700;
+          color: #1e293b;
+        }
+        
+        .price-change {
+          font-size: 14px;
+          font-weight: 600;
+          padding: 2px 8px;
+          border-radius: 4px;
+          
+          &.positive {
+            color: #059669;
+            background-color: #d1fae5;
+          }
+          
+          &.negative {
+            color: #dc2626;
+            background-color: #fee2e2;
+          }
+        }
+      }
+    }
+    
+    .chart-button {
+      .chart-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: #f1f5f9;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        
+        &:hover {
+          background-color: #e2e8f0;
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+  
+  .options-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 1px;
+    background-color: #e2e8f0;
+    padding: 12px 0;
+    font-weight: 700;
+    font-size: 12px;
+    text-align: center;
+    
+    .negative {
+      color: #dc2626;
+    }
+    
+    .positive {
+      color: #059669;
+    }
+  }
+  
+  .price_content {
+    max-height: 400px;
+    overflow-y: auto;
+    
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+      
+      &:hover {
+        background: #94a3b8;
+      }
+    }
+  }
+}
+
+// Skeleton styles
+.option-chain-skeleton {
+  .skeleton-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid #e2e8f0;
+    
+    .skeleton-symbol-selector {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      
+      .skeleton-search-icon {
+        width: 20px;
+        height: 20px;
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+        border-radius: 4px;
+      }
+      
+      .skeleton-select {
+        width: 120px;
+        height: 32px;
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+        border-radius: 6px;
+      }
+      
+      .skeleton-price {
+        width: 80px;
+        height: 20px;
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+        border-radius: 4px;
+      }
+      
+      .skeleton-chart-icon {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+        border-radius: 8px;
+      }
+    }
+    
+    .skeleton-expiry-selector {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      
+      .skeleton-label {
+        width: 40px;
+        height: 16px;
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+        border-radius: 4px;
+      }
+      
+      .skeleton-select {
+        width: 100px;
+        height: 32px;
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+        border-radius: 6px;
+      }
+    }
+  }
+  
+  .skeleton-options-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 1px;
+    background-color: #e2e8f0;
+    padding: 12px 0;
+    
+    .skeleton-calls-label,
+    .skeleton-puts-label {
+      height: 16px;
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 4px;
+    }
+    
+    .skeleton-strike-label {
+      height: 16px;
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 4px;
+    }
+  }
+  
+  .skeleton-options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 1px;
+    background-color: #e2e8f0;
+    padding: 8px 0;
+    
+    > div {
+      height: 20px;
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 4px;
+    }
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

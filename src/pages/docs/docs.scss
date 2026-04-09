@@ -1,0 +1,58 @@
+@use "../../styles/scss/abstract/mixins" as *;
+
+/* ========================================
+   DOCS PAGE SPECIFIC STYLES
+   ======================================== */
+.docs_page {
+  // Docs specific styles will go here
+  
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+.card-box {
+  .input-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    .label-style {
+      font-weight: bold;
+    }
+
+    .btn-flex {
+      display: flex;
+      width: 100%;
+      gap: 20px;
+
+      @include media_650 {
+        flex-direction: column;
+      }
+
+      .submit-btn {
+        background: var(--color-primary);
+        color: var(--color-text);
+        border: none;
+        border-radius: 5px;
+        width: 113px;
+        padding: 11px 16px;
+
+        @include media_650 {
+          width: 100%;
+        }
+
+      }
+    }
+  }
+
+  .input-group-flex {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    @include media_650 {
+      grid-template-columns: 1fr
+    }
+  }
+}
+}

@@ -1,0 +1,1011 @@
+// TradingBox Styles
+.trading-box {
+  background: var(--card_box_bg, #1e1e1e);
+  border: 1px solid var(--border-color, #333);
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  width: 320px;
+  max-width: 320px;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--text-color-primary, #fff);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  // Allow header dropdown to overflow
+  .trading-box-header {
+    overflow: visible !important;
+  }
+
+  // Header
+  .trading-box-header {
+    background: var(--card_box_bg, #1e1e1e);
+    border-bottom: 1px solid var(--border-color, #333);
+    padding: 8px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    min-height: 45px;
+    overflow: visible;
+    position: relative;
+    z-index: 1;
+
+    .header-drag-area {
+      flex: 1;
+      cursor: move;
+      user-select: none;
+      overflow: visible;
+      min-width: 0;
+      position: relative;
+
+        .symbol-info {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 8px;
+          flex-wrap: nowrap;
+          overflow: visible;
+          min-width: 0;
+          flex: 1;
+          position: relative;
+
+        .symbol-price {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          flex-shrink: 0;
+          overflow: visible;
+          min-width: 0;
+          position: relative;
+
+            .symbol-dropdown-container {
+            position: relative;
+            flex-shrink: 1;
+            min-width: 0;
+            max-width: 100%;
+            z-index: 1001;
+
+            .symbol-dropdown-btn {
+              background: var(--card_box_bg, #1e1e1e);
+              border: 1px solid var(--border-color, #333);
+              border-radius: 4px;
+              padding: 5px 8px;
+              color: var(--text-color-primary, #fff);
+              font-size: 12px;
+              font-weight: 600;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              gap: 4px;
+              transition: all 0.2s ease;
+              min-width: 90px;
+              max-width: 100%;
+              overflow: hidden;
+
+              &:hover {
+                background: var(--box-hover, #2a2a2a);
+                border-color: var(--color-primary, #667eea);
+              }
+
+              &:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+              }
+
+              .symbol {
+                flex: 1;
+                text-align: left;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                min-width: 0;
+              }
+
+              .dropdown-arrow {
+                width: 12px;
+                height: 12px;
+                transition: transform 0.2s ease;
+              }
+
+              .loading-spinner {
+                width: 14px;
+                height: 14px;
+                border: 2px solid var(--border-color, #333);
+                border-top-color: var(--color-primary, #667eea);
+                border-radius: 50%;
+                animation: spin 0.8s linear infinite;
+              }
+            }
+
+            .symbol-dropdown {
+              position: absolute !important;
+              top: calc(100% + 4px) !important;
+              left: 0 !important;
+              right: 0 !important;
+              background: var(--card_box_bg, #1e1e1e) !important;
+              border: 1px solid var(--border-color, #333) !important;
+              border-radius: 6px !important;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+              z-index: 10001 !important;
+              max-height: 400px !important;
+              min-height: 100px !important;
+              overflow-y: auto !important;
+              overflow-x: hidden !important;
+              animation: fadeInDown 0.2s ease !important;
+              display: flex !important;
+              flex-direction: column !important;
+              visibility: visible !important;
+              opacity: 1 !important;
+              pointer-events: auto !important;
+                 width: max-content !important;
+
+              .dropdown-header {
+                padding: 8px 10px;
+                border-bottom: 1px solid var(--border-color, #333);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 11px;
+                font-weight: 600;
+                color: var(--text-color-primary, #fff);
+                flex-shrink: 0;
+
+                .close-dropdown-btn {
+                  background: none;
+                  border: none;
+                  cursor: pointer;
+                  padding: 4px;
+                  display: flex;
+                  align-items: center;
+                  transition: color 0.2s ease;
+
+                  svg {
+                    color: var(--text-color-secondary, #999);
+                    transition: color 0.2s ease;
+                  }
+
+                  &:hover {
+                    svg {
+                      color: var(--text-color-primary, #fff) !important;
+                    }
+                  }
+                }
+              }
+
+              .symbol-list {
+                padding: 4px 0;
+                overflow-y: auto;
+                overflow-x: hidden;
+                max-height: calc(100vh - 300px);
+                display: flex;
+                flex-direction: column;
+                // Limit to show only visible symbols without scrolling
+                // Show max 6-7 symbols based on viewport
+
+                .loading-symbols {
+                  padding: 16px;
+                  text-align: center;
+                  color: var(--text-color-secondary, #999);
+                  font-size: 12px;
+                  flex-shrink: 0;
+                }
+
+                .symbol-option {
+                  width: 100%;
+                  padding: 8px 10px;
+                  background: none;
+                  border: none;
+                  text-align: left;
+                  cursor: pointer;
+                  transition: background 0.2s ease;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 3px;
+                  flex-shrink: 0;
+
+                  &:hover {
+                    background: var(--box-hover, #2a2a2a);
+                  }
+
+                  .symbol-name {
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: var(--text-color-primary, #fff);
+                  }
+
+                  .symbol-details {
+                    font-size: 10px;
+                    color: var(--text-color-secondary, #999);
+                  }
+                }
+              }
+            }
+          }
+
+          .price {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-color-primary, #fff);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex-shrink: 0;
+            min-width: 0;
+          }
+        }
+
+        .price-change {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          font-size: 11px;
+          flex-shrink: 0;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          min-width: 0;
+
+          .change-arrow {
+            font-size: 10px;
+
+            &.up {
+              color: var(--color-success, #10b981);
+            }
+
+            &.down {
+              color: var(--color-danger, #ef4444);
+            }
+          }
+
+          .change-value {
+            font-weight: 600;
+
+            &.positive {
+              color: var(--color-success, #10b981);
+            }
+
+            &.negative {
+              color: var(--color-danger, #ef4444);
+            }
+          }
+        }
+      }
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      margin-left: 8px;
+
+      .close-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+        min-width: 28px;
+        min-height: 28px;
+
+        svg {
+          color: var(--text-color-secondary, #999);
+          transition: color 0.2s ease;
+          width: 18px;
+          height: 18px;
+        }
+
+        &:hover {
+          background: var(--box-hover, #2a2a2a);
+          
+          svg {
+            color: var(--text-color-primary, #fff) !important;
+          }
+        }
+      }
+    }
+  }
+
+  // Content
+  .trading-box-content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 0;
+
+    .controls-container-vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      overflow: hidden;
+      flex: 1;
+      min-height: 0;
+
+      .control-group-vertical {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        // Order Type Toggle (Buy/Sell)
+        .order-type-toggle {
+          display: flex;
+          gap: 6px;
+
+          .toggle-btn {
+            flex: 1;
+            padding: 6px;
+            border: 1.5px solid var(--border-color, #333);
+            border-radius: 4px;
+            background: var(--card_box_bg, #1e1e1e);
+            color: var(--text-color-primary, #fff);
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            &.buy {
+              &.active {
+                background: var(--color-success, #10b981);
+                border-color: var(--color-success, #10b981);
+                color: white;
+              }
+
+              &:hover:not(.active) {
+                background: rgba(16, 185, 129, 0.1);
+                border-color: var(--color-success, #10b981);
+              }
+            }
+
+            &.sell {
+              &.active {
+                background: var(--color-danger, #ef4444);
+                border-color: var(--color-danger, #ef4444);
+                color: white;
+              }
+
+              &:hover:not(.active) {
+                background: rgba(239, 68, 68, 0.1);
+                border-color: var(--color-danger, #ef4444);
+              }
+            }
+          }
+        }
+
+        // Option Type Controls (CE/PE)
+        .option-type-controls {
+          display: flex;
+          gap: 6px;
+
+          .option-btn {
+            flex: 1;
+            padding: 6px;
+            border: 1.5px solid var(--border-color, #333);
+            border-radius: 4px;
+            background: var(--card_box_bg, #1e1e1e);
+            color: var(--text-color-primary, #fff);
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            &.active {
+              background: var(--color-primary, #667eea);
+              border-color: var(--color-primary, #667eea);
+              color: white;
+            }
+
+            &:hover:not(.active) {
+              background: var(--box-hover, #2a2a2a);
+              border-color: var(--color-primary, #667eea);
+            }
+          }
+        }
+
+        // Strike Price Dropdown
+        .strike-type-dropdown {
+          .strike-select {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1.5px solid var(--border-color, #333);
+            border-radius: 4px;
+            background: var(--card_box_bg, #1e1e1e);
+            color: var(--text-color-primary, #fff);
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            z-index: 10;
+            z-index: 0;
+            
+            // When expanded
+            &[size]:not([size="1"]) {
+              position: absolute;
+              z-index: 1000;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+              border-color: var(--color-primary, #667eea);
+            }
+
+            &:focus {
+              outline: none;
+              border-color: var(--color-primary, #667eea);
+            }
+
+            &:disabled {
+              opacity: 0.6;
+              cursor: not-allowed;
+            }
+
+            option {
+              background: var(--card_box_bg, #1e1e1e);
+              color: var(--text-color-primary, #fff);
+            }
+          }
+        }
+
+        // Quantity Input
+        .quantity-wrapper {
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+
+          .quantity-input {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            .quantity-label-top {
+              font-size: 11px;
+              color: var(--text-color-secondary, #999);
+              font-weight: 600;
+              text-align: center;
+              white-space: nowrap;
+              line-height: 1.4;
+              padding: 2px 0;
+            }
+
+              .quantity-controls {
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              border: 1.5px solid var(--border-color, #333);
+              border-radius: 4px;
+              padding: 4px;
+              background: var(--card_box_bg, #1e1e1e);
+              min-height: 40px;
+
+              .quantity-btn {
+                background: var(--box-hover, #2a2a2a);
+                border: 1px solid var(--border-color, #444);
+                color: var(--text-color-primary, #fff);
+                padding: 6px 10px;
+                border-radius: 4px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.2s ease;
+                min-width: 32px;
+                min-height: 32px;
+                flex-shrink: 0;
+
+                &:hover {
+                  background: var(--color-primary, #667eea);
+                  border-color: var(--color-primary, #667eea);
+                  transform: scale(1.05);
+                }
+
+                &:active {
+                  transform: scale(0.95);
+                }
+
+                svg,
+                .icon-registry {
+                  width: 16px;
+                  height: 16px;
+                  color: var(--text-color-primary, #fff);
+                  display: block;
+                }
+              }
+
+              .quantity-field {
+                flex: 1;
+                background: transparent;
+                border: none;
+                color: var(--text-color-primary, #fff);
+                font-size: 14px;
+                font-weight: 700;
+                text-align: center;
+                padding: 8px 4px;
+                outline: none;
+                min-width: 50px;
+
+              &::-webkit-inner-spin-button,
+              &::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                appearance: none;
+                margin: 0;
+              }
+
+              &[type="number"] {
+                -moz-appearance: textfield;
+                appearance: textfield;
+              }
+              }
+            }
+          }
+
+        }
+
+        // Product Type Controls (CNC/MIS)
+        .product-type-controls {
+          display: flex;
+          gap: 8px;
+
+          .product-btn {
+            flex: 1;
+            padding: 6px;
+            border: 1.5px solid var(--border-color, #333);
+            border-radius: 4px;
+            background: var(--card_box_bg, #1e1e1e);
+            color: var(--text-color-primary, #fff);
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            &.active {
+              background: var(--color-primary, #667eea);
+              border-color: var(--color-primary, #667eea);
+              color: white;
+            }
+
+            &:hover:not(.active) {
+              background: var(--box-hover, #2a2a2a);
+              border-color: var(--color-primary, #667eea);
+            }
+          }
+        }
+
+        // Broker Selection
+        .broker-selection {
+          .broker-select-container {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+
+            .broker-select {
+              flex: 1;
+              padding: 6px 8px;
+              border: 1.5px solid var(--border-color, #333);
+              border-radius: 4px;
+              background: var(--card_box_bg, #1e1e1e);
+              color: var(--text-color-primary, #fff);
+              font-size: 11px;
+              font-weight: 600;
+              cursor: pointer;
+              transition: all 0.2s ease;
+
+              &:focus {
+                outline: none;
+                border-color: var(--color-primary, #667eea);
+              }
+
+              &:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+              }
+
+              option {
+                background: var(--card_box_bg, #1e1e1e);
+                color: var(--text-color-primary, #fff);
+              }
+            }
+
+            .broker-refresh-btn {
+              background: var(--box-hover, #2a2a2a);
+              border: 1.5px solid var(--border-color, #333);
+              border-radius: 4px;
+              color: var(--text-color-primary, #fff);
+              padding: 6px;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              transition: all 0.2s ease;
+              min-width: 32px;
+
+              &:hover:not(:disabled) {
+                background: var(--color-primary, #667eea);
+                border-color: var(--color-primary, #667eea);
+              }
+
+              &:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+              }
+
+              .loading-spinner-small {
+                width: 14px;
+                height: 14px;
+                border: 2px solid var(--border-color, #333);
+                border-top-color: var(--color-primary, #667eea);
+                border-radius: 50%;
+                animation: spin 0.8s linear infinite;
+              }
+
+              svg {
+                width: 16px;
+                height: 16px;
+                color: #dc3545;
+                transition: color 0.2s ease;
+              }
+
+              &:hover:not(:disabled) svg {
+                color: #fff;
+              }
+            }
+          }
+        }
+
+        // Price Input
+        .price-input {
+          .price-field {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1.5px solid var(--border-color, #333);
+            border-radius: 4px;
+            background: var(--card_box_bg, #1e1e1e);
+            color: var(--text-color-primary, #fff);
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.2s ease;
+
+            &.loading {
+              color: var(--text-color-secondary, #999);
+            }
+
+            &:focus {
+              outline: none;
+              border-color: var(--color-primary, #667eea);
+            }
+          }
+        }
+
+        // Stop Loss Display
+        .stop-loss-display {
+          padding: 6px 8px;
+          background: rgba(239, 68, 68, 0.15); // Light red background
+          border-radius: 4px;
+          border: 1px solid rgba(239, 68, 68, 0.4); // Light red border
+
+          .stop-loss-single-line {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+          }
+
+          .stop-loss-label {
+            font-size: 12px;
+            color: rgba(239, 68, 68, 0.9); // Red color
+            font-weight: 600;
+            white-space: nowrap;
+          }
+
+          .stop-loss-value {
+            font-size: 13px;
+            color: rgba(239, 68, 68, 0.9); // Red color
+            font-weight: 700;
+            white-space: nowrap;
+          }
+
+          .stop-loss-separator {
+            font-size: 12px;
+            color: rgba(239, 68, 68, 0.6);
+            margin: 0 2px;
+            white-space: nowrap;
+            flex-shrink: 0;
+          }
+
+          .stop-loss-loss-value {
+            font-size: 13px;
+            color: rgba(239, 68, 68, 0.9); // Red color
+            font-weight: 700;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+
+    // Error Display
+    .error-display {
+      padding: 12px;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid var(--color-danger, #ef4444);
+      border-radius: 6px;
+
+      .error-message {
+        font-size: 12px;
+        color: var(--color-danger, #ef4444);
+        font-weight: 600;
+      }
+    }
+
+    // Action Buttons
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+      margin-top: auto;
+      flex-shrink: 0;
+
+      .buy-btn {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+
+        &.buy {
+          background: var(--color-success, #10b981);
+          color: white;
+
+          &:hover:not(:disabled) {
+            background: #059669;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+          }
+        }
+
+        &.sell {
+          background: var(--color-danger, #ef4444);
+          color: white;
+
+          &:hover:not(:disabled) {
+            background: #dc2626;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+          }
+        }
+
+        &.loading {
+          opacity: 0.7;
+          cursor: not-allowed;
+        }
+
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}
+
+// Trading Boxes Container
+.trading-boxes-container {
+  position: fixed;
+  top: 70px; // Below header
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 70px); // Account for header
+  max-height: calc(100vh - 70px);
+  pointer-events: none;
+  z-index: 10000;
+  overflow: visible;
+
+  > * {
+    pointer-events: auto;
+  }
+}
+
+// Animations
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive adjustments - Portrait Mode
+@media (orientation: portrait) and (max-width: 768px) {
+  .trading-box {
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
+
+    .trading-box-header {
+      padding: 8px 10px;
+      flex-shrink: 0;
+      min-height: 50px;
+    }
+
+    .trading-box-content {
+      padding: 10px;
+      gap: 8px;
+      overflow: visible;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .controls-container-vertical {
+      gap: 8px;
+      overflow: visible;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .control-group-vertical {
+      gap: 6px;
+      flex-shrink: 0;
+    }
+  }
+
+  .trading-boxes-container {
+    top: 40px; // Mobile header
+    height: calc(100vh - 40px - 70px); // Account for header and bottom nav
+    max-height: calc(100vh - 40px - 70px);
+  }
+}
+
+// Responsive adjustments - Landscape Mode
+@media (orientation: landscape) {
+  .trading-box {
+    width: 310px;
+    min-width: 310px;
+    max-width: 310px;
+
+    .trading-box-header {
+      padding: 8px 10px;
+      flex-shrink: 0;
+      min-height: 50px;
+    }
+
+    .trading-box-content {
+      padding: 10px;
+      gap: 8px;
+      overflow: visible;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .controls-container-vertical {
+      gap: 8px;
+      overflow: visible;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .control-group-vertical {
+      gap: 6px;
+      flex-shrink: 0;
+    }
+  }
+}
+
+// Mobile Portrait - Extra Small
+@media (orientation: portrait) and (max-width: 480px) {
+  .trading-box {
+    width: 280px;
+    min-width: 280px;
+    max-width: 280px;
+
+    .trading-box-header {
+      padding: 8px 10px;
+      flex-shrink: 0;
+      min-height: 50px;
+    }
+
+    .trading-box-content {
+      padding: 10px;
+      gap: 8px;
+      overflow: visible;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .controls-container-vertical {
+      gap: 8px;
+      overflow: visible;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .control-group-vertical {
+      gap: 6px;
+      flex-shrink: 0;
+    }
+  }
+}
+
+// Mobile Landscape - Extra Small
+@media (orientation: landscape) and (max-width: 768px) {
+  .trading-box {
+    width: 280px;
+    min-width: 280px;
+    max-width: 280px;
+
+    .trading-box-header {
+      padding: 8px 10px;
+      flex-shrink: 0;
+      min-height: 50px;
+    }
+
+    .trading-box-content {
+      padding: 10px;
+      gap: 8px;
+      overflow: visible;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .controls-container-vertical {
+      gap: 8px;
+      overflow: visible;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .control-group-vertical {
+      gap: 6px;
+      flex-shrink: 0;
+    }
+  }
+
+  .trading-boxes-container {
+    top: 40px;
+    height: calc(100vh - 40px);
+    max-height: calc(100vh - 40px);
+  }
+}
+
+// Tablet adjustments
+@media (min-width: 769px) and (max-width: 1024px) {
+  .trading-box {
+    width: 310px;
+    min-width: 310px;
+    max-width: 310px;
+  }
+}
+
+// Desktop adjustments
+@media (min-width: 1025px) {
+  .trading-box {
+    width: 320px;
+    min-width: 320px;
+    max-width: 320px;
+  }
+}
+

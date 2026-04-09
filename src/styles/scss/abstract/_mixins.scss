@@ -1,0 +1,247 @@
+@use "./breakpoints" as breakpoints; 
+// @use "./fontsize" as fontsize; 
+// @use "./colors" as colors; 
+
+// Button 
+@mixin btn_info($bg-color,$text-color,$padding,$border-radius:100px,$border:none,$font-size:var(--font_18),$font-weight:600){
+  background: $bg-color;
+  color: $text-color;
+  padding: $padding;
+  border-radius: $border-radius;
+  border: $border;
+  font-size:$font-size;
+  font-weight:$font-weight;
+}  
+
+@mixin button(
+  $bg:  var(--color_btn_login_bg),
+  $cr: var(--color_btn_login_text),
+  $fw: 400, 
+  $fz: var(--font_16), 
+  $bs: 0px 6px 16px 2px #f3c61930, 
+  $hover-bg: lighten($LeeryLemon_F3C619, 10%),
+  $hover-cr:var(--color_com_SpanishRoast_131635), 
+  $hover-bs: 0px 6px 16px 2px #f3c61950 
+) {
+  background: $bg;
+  color: $cr;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: $fw;
+  font-size: $fz;
+  transition: .3s;
+  border: none;
+  border-radius: 5px;
+  
+  &:hover:not([disabled]) {
+    background: $hover-bg;
+    color: $hover-cr;
+    box-shadow: $hover-bs;
+  }
+}
+
+// All Heading
+@mixin heading($fz, $cr, $fw, $mr, $tx:left, $lh: normal) {
+  font-size: $fz;
+  color: $cr;
+  font-weight: $fw;
+  margin: $mr;
+  text-align: $tx;
+}
+
+@mixin flexbox($fd: row, $jc: flex-start, $al: flex-start, $gap: 0px) {
+  display: flex;
+  flex-direction: $fd;
+  justify-content: $jc;
+  align-items: $al;
+  gap: $gap;
+}
+
+// All Font
+@mixin font_40($fs ,$fw,$mr){
+  font-size: $fs;
+  font-weight: $fw;
+  margin: $mr;
+}
+
+// Media Breakpoint's All
+@mixin mid_tablet {
+  @media #{breakpoints.$media_768} {
+    @content
+  }
+}
+
+@mixin large {
+  @media #{breakpoints.$media_1024} {
+    @content
+  }
+}
+
+@mixin media_1024 {
+  @media #{breakpoints.$media_1024} {
+    @content
+  }
+}
+
+@mixin big_mob {
+  @media #{breakpoints.$media_650} {
+    @content
+  }
+}
+
+@mixin small_mob {
+  @media #{breakpoints.$media_320} {
+    @content
+  }
+}
+
+// New Media For Theme
+@mixin media_min_1920{
+  @media #{breakpoints.$media_min_1920} {
+    @content
+  }
+}
+
+@mixin media_min_1700{
+  @media #{breakpoints.$media_min_1700} {
+    @content
+  }
+}
+
+@mixin media_2048 {
+  @media #{breakpoints.$media_2048} {
+    @content
+  }
+}
+
+@mixin media_1800 {
+  @media #{breakpoints.$media_1800} {
+    @content
+  }
+}
+
+@mixin media_1600 {
+  @media #{breakpoints.$media_1600} {
+    @content
+  }
+}
+
+@mixin media_1536 {
+  @media #{breakpoints.$media_1536} {
+    @content
+  }
+}
+
+@mixin media_1300 {
+  @media #{breakpoints.$media_1300} {
+    @content
+  }
+}
+
+@mixin media_1365 {
+  @media #{breakpoints.$media_1365} {
+    @content
+  }
+}
+
+@mixin media_1400 {
+  @media #{breakpoints.$media_1400} {
+    @content
+  }
+}
+
+@mixin media_1280 {
+  @media #{breakpoints.$media_1280} {
+    @content
+  }
+}
+
+@mixin media_1200 {
+  @media #{breakpoints.$media_1200} {
+    @content
+  }
+}
+
+@mixin media_1136 {
+  @media #{breakpoints.$media_1136} {
+    @content
+  }
+}
+
+@mixin media_990 {
+  @media #{breakpoints.$media_990} {
+    @content
+  }
+}
+
+@mixin media_968 {
+  @media #{breakpoints.$media_968} {
+    @content
+  }
+}
+
+@mixin media_768 {
+  @media #{breakpoints.$media_768} {
+    @content
+  }
+}
+
+@mixin media_767 {
+  @media #{breakpoints.$media_767} {
+    @content
+  }
+}
+
+@mixin media_650 {
+  @media #{breakpoints.$media_650} {
+    @content
+  }
+}
+
+@mixin media_567 {
+  @media #{breakpoints.$media_567} {
+    @content
+  }
+}
+
+@mixin media_548 {
+  @media #{breakpoints.$media_548} {
+    @content
+  }
+}
+
+@mixin media_480 {
+  @media #{breakpoints.$media_480} {
+    @content
+  }
+}
+
+@mixin media_457 {
+  @media #{breakpoints.$media_457} {
+    @content
+  }
+}
+
+@mixin media_425 {
+  @media #{breakpoints.$media_425} {
+    @content
+  }
+}
+
+@mixin media_375 {
+  @media #{breakpoints.$media_375} {
+    @content
+  }
+}
+
+@mixin media_320 {
+  @media #{breakpoints.$media_320} {
+    @content
+  }
+}
+
+// New Media
+@mixin xl {
+  @media #{breakpoints.$xl} {
+    @content
+  }
+}

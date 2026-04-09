@@ -1,0 +1,210 @@
+@use "../../styles/scss/abstract/mixins" as *;
+
+.api_docs_page {
+  // Using system-wide color variables for consistent theming
+  // These variables are already defined in the main color system
+  // and automatically switch between light and dark modes
+  
+ 
+  .card-box{
+    background: #E1E7EF;
+
+    @include media_768 {
+      padding: 10px;
+    }
+  }
+
+
+  h4, h5 {
+    color: var(--text-color-primary);
+    font-weight: 600;
+  }
+  
+  p {
+    color: var(--text-color-primary);
+  }
+  
+  label {
+    color: var(--text-color-primary);
+    font-weight: 500;
+  }
+  .content-flex {
+    display: flex;
+    gap: 10px;
+    &.mt-3{
+          background: #E8FAFD;
+    padding: 15px;
+    border-radius: 10px;
+
+    @include media_768 {
+       padding: 10px;
+    }
+    }
+
+    @include media_1024{
+      flex-direction: column;
+    }
+
+    .card-box-left {
+      width: 55%;
+      background: #E8FAFD;
+      padding: 10px;
+      border-radius: 10px;
+
+      @include media_1024{
+       width: 100%;
+      }
+
+      .content_inner_data {
+        color: var(--text-color-secondary);
+        font-weight: 500;
+        font-size: 15px;
+        line-height: 1.5;
+        opacity: 0.9;
+      }
+      .form-content {
+        margin-top: 10px;
+        .btn-success{
+          background: #28B4CA;
+          border-radius: 100px;
+          border: none !important;
+          font-size: 12px;
+        }
+        .btn-icon {
+          button {
+            background: none;
+            border: none;
+            padding: 0;
+            position: absolute;
+            right: 11px;
+            top: 40px;
+            z-index: 0;
+
+            svg {
+              fill: var(--color-gray);
+              path{
+              fill: var(--color-gray);
+
+              }
+
+            }
+          }
+        }
+        .second_inner_div {
+          display: flex;
+          justify-content: space-between;
+
+          @include media_375{
+            flex-direction: column;
+           }
+
+          .form-group {
+            width: 49%;
+            .text-input{
+               background-color: #fff !important;
+            }
+
+            @include media_375{
+            width: 100%;
+             }
+
+          }
+        }
+      }
+      .no_permission {
+        margin-top: 10px;
+        background-color: var(--disable-color);
+        padding: 10px;
+        border-radius: 5px;
+        p {
+          font-size: 16px;
+          color: var(--color-danger);
+        }
+      }
+    }
+    .card-box-right {
+      width: 45%;
+
+      @include media_1024{
+        width: 100%;
+       }
+
+      .preview_script_div {
+        padding: 20px;
+        height: 100%;
+        border-radius: 5px;
+        border: 1px solid var(--box-border);
+        background: #E8FAFD;
+        .script-img {
+          text-align: center;
+          img {
+            width: 300px;
+            height: 300px;
+
+            @include media_375{
+              width: 230px;
+             }
+
+          }
+        }
+
+        .script-iner-data{
+          p{
+                word-wrap: break-word;
+          }
+        }
+      }
+    }
+
+    .order_type_table {
+      width: 40%;
+
+      @include media_1024{
+        width: 100%;
+       }
+
+      .table-responsive {
+        padding: 10px;
+        border: 1px solid var(--box-border);
+        border-radius: 10px;
+
+        table > :not(caption) > * > * {
+          color: var(--text-color-primary);
+          background-color: var(--card_box_bg);
+          border-color: var(--header-border);
+          padding: 1rem;
+        }
+        tr {
+          line-height: 20px;
+          td {
+            font-weight: 500;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+    .note_content {
+      width: 60%;
+
+      @include media_1024{
+        width: 100%;
+       }
+
+      .buy_sell {
+        display: flex;
+        gap: 5px;
+
+        @include media_768{
+          flex-direction: column;
+          gap: 0px;
+         }
+      }
+    }
+  }
+}
+
+.btn-success{
+  @include media_768{
+    width: 100%;
+   }
+}

@@ -1,0 +1,446 @@
+.dialog_data {
+  .upgrade_div {
+    .upgrade-img {
+      width: 250px;
+      height: 250px;
+      display: block;
+      margin: 0 auto;
+    }
+    span {
+      color: var(--clock-color);
+      font-weight: 500;
+      font-size: 16px;
+    }
+  }
+
+  // Subscription Upgrade Dialog Styles
+  &.subscription-upgrade-dialog {
+    z-index: 10000 !important;
+    
+    .MuiDialog-root {
+      z-index: 10000 !important;
+      filter: none !important;
+      -webkit-filter: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+    
+    .MuiDialog-container {
+      z-index: 10000 !important;
+      filter: none !important;
+      -webkit-filter: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+    
+    .MuiBackdrop-root {
+      z-index: 9999 !important;
+      backdrop-filter: blur(0px) !important;
+      -webkit-backdrop-filter: blur(0px) !important;
+      filter: none !important;
+      -webkit-filter: none !important;
+      background-color: rgba(0, 0, 0, 0.5) !important;
+    }
+    
+    .MuiDialog-paper {
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      background: var(--card_box_bg);
+      border: 1px solid rgba(40, 180, 202, 0.2);
+      z-index: 10000 !important;
+      filter: none !important;
+      -webkit-filter: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      position: relative !important;
+      
+      * {
+        filter: none !important;
+        -webkit-filter: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
+    }
+
+    .subscription-dialog-title {
+      background: linear-gradient(135deg, rgba(2, 123, 143, 0.95) 0%, rgba(40, 180, 202, 1) 100%);
+      color: white;
+      padding: 20px 24px;
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(40, 180, 202, 0.25);
+
+      .title-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 20px;
+        font-weight: 700;
+
+        .title-icon {
+          font-size: 24px;
+        }
+      }
+
+      .close-button {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: white;
+        transition: all 0.3s ease;
+        padding: 0;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.3);
+          transform: rotate(90deg);
+        }
+      }
+    }
+
+    .upgrade_div {
+      padding: 32px 24px;
+      text-align: center;
+      background: var(--card_box_bg);
+
+      .subscription-upgrade-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+
+        .upgrade-image-wrapper {
+          position: relative;
+
+          .upgrade-img {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+            animation: float 3s ease-in-out infinite;
+          }
+        }
+
+        .upgrade-message-wrapper {
+          max-width: 500px;
+          margin: 0 auto;
+
+          .upgrade-message {
+            color: var(--clock-color);
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0;
+            font-weight: 400;
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    .subscription-dialog-actions {
+      padding: 20px 24px;
+      gap: 12px;
+      border-top: 1px solid rgba(40, 180, 202, 0.15);
+      background: var(--card_box_bg);
+
+      .cancel-button {
+        text-transform: none;
+        font-weight: 500;
+        padding: 10px 24px;
+        border-radius: 8px;
+        min-width: 120px;
+        color: var(--clock-color);
+        border-color: rgba(40, 180, 202, 0.3);
+
+        &:hover {
+          border-color: rgba(40, 180, 202, 0.5);
+          background: rgba(40, 180, 202, 0.05);
+        }
+      }
+
+      .upgrade-button {
+        text-transform: none;
+        font-weight: 600;
+        padding: 10px 24px;
+        border-radius: 8px;
+        min-width: 180px;
+        background: linear-gradient(135deg, rgba(2, 123, 143, 0.95) 0%, rgba(40, 180, 202, 1) 100%);
+        box-shadow: 0 4px 12px rgba(40, 180, 202, 0.35);
+        transition: all 0.3s ease;
+        color: white;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(40, 180, 202, 0.5);
+          background: linear-gradient(135deg, rgba(2, 123, 143, 1) 0%, rgba(40, 180, 202, 1) 100%);
+        }
+
+        svg {
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+
+  .MuiPaper-root {
+    background-color: var(--card_box_bg);
+    h2 {
+      font-family: "IBM Plex Sans", sans-serif;
+      color: var(--color-gray);
+    }
+    .tab-content {
+      .details_data {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        span,p {
+          color: var(--clock-color);
+          font-weight: 500;
+          font-size: 16px;
+        }
+      }
+       span,p {
+          color: var(--clock-color);
+          font-weight: 500;
+          font-size: 16px;
+          &.reason-div{
+            word-wrap: break-word;
+          }
+        }
+    }
+  }
+  .toogle {
+    /* Temel Toggle Switch Stili */
+    p,
+    label {
+      color: var(--clock-color);
+      font-weight: 500;
+      font-size: 16px;
+    }
+    .inner_div {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    svg {
+      margin-bottom: 5px;
+    }
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 45px;
+      height: 24px;
+      margin: 10px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 17px;
+      width: 17px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(19px);
+    }
+
+    /* Mavi Toggle Switch */
+    .toggle-switch.blue input:checked + .slider {
+      background-color: #2196f3;
+    }
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+// Hide tabs navigation when only one tab is visible (hideExitButton is true)
+.single-tab-hide-nav {
+  // Hide all nav elements
+  > .nav-tabs,
+  > .nav,
+  ul.nav-tabs,
+  ul.nav,
+  .nav-tabs,
+  .nav {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+  
+  // Remove tab content borders and padding
+  .tab-content {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  // Hide tab panes navigation
+  [role="tablist"],
+  [role="tab"] {
+    display: none !important;
+  }
+  
+  // Show only the active tab content directly
+  .tab-pane {
+    display: block !important;
+  }
+}
+
+// Mobile positioning for Order Details Dialog - Position above Order Card
+@media (max-width: 768px) {
+  // Target Material-UI Dialog root container
+  .MuiDialog-root.single_order_dialog,
+  .single_order_dialog .MuiDialog-root {
+    align-items: flex-start !important;
+    justify-content: center !important;
+    padding-top: 20px !important;
+    z-index: 1300 !important;
+  }
+  
+  // Target Material-UI Dialog container
+  .MuiDialog-container.single_order_dialog,
+  .single_order_dialog .MuiDialog-container {
+    align-items: flex-start !important;
+    justify-content: center !important;
+    padding-top: 20px !important;
+    display: flex !important;
+  }
+  
+  // Target Material-UI Dialog paper (the actual dialog box)
+  .MuiDialog-paper.single_order_dialog,
+  .single_order_dialog .MuiDialog-paper,
+  .dialog_data.single_order_dialog .MuiDialog-paper {
+    margin: 0 auto !important;
+    margin-top: 20px !important;
+    position: relative !important;
+    top: 0 !important;
+    max-height: 60vh !important;
+    width: calc(100% - 40px) !important;
+    max-width: 300px !important;
+    align-self: flex-start !important;
+    z-index: 1301 !important;
+    transform: none !important;
+  }
+  
+  // Target Material-UI Dialog backdrop
+  .MuiBackdrop-root.single_order_dialog,
+  .single_order_dialog ~ .MuiBackdrop-root {
+    z-index: 1299 !important;
+  }
+  
+  // Global override for Material-UI Dialog on mobile when inside order card
+  body .MuiDialog-root[class*="single_order_dialog"],
+  body .MuiDialog-container[class*="single_order_dialog"] {
+    align-items: flex-start !important;
+    padding-top: 20px !important;
+  }
+  
+  body .MuiDialog-paper[class*="single_order_dialog"] {
+    margin-top: 20px !important;
+    align-self: flex-start !important;
+    top: 0 !important;
+  }
+}
+
+.single_order_dialog{
+  
+}
+
+// Responsive styles for Subscription Upgrade Dialog
+@media (max-width: 768px) {
+  .dialog_data.subscription-upgrade-dialog {
+    .MuiDialog-paper {
+      margin: 16px;
+      max-width: calc(100% - 32px);
+    }
+
+    .subscription-dialog-title {
+      padding: 16px 20px;
+      font-size: 18px;
+
+      .title-wrapper {
+        font-size: 18px;
+        gap: 10px;
+
+        .title-icon {
+          font-size: 20px;
+        }
+      }
+
+      .close-button {
+        width: 28px;
+        height: 28px;
+      }
+    }
+
+    .upgrade_div {
+      padding: 24px 20px;
+
+      .subscription-upgrade-content {
+        gap: 20px;
+
+        .upgrade-image-wrapper .upgrade-img {
+          width: 140px;
+          height: 140px;
+        }
+
+        .upgrade-message-wrapper .upgrade-message {
+          font-size: 14px;
+          line-height: 1.5;
+        }
+      }
+    }
+
+    .subscription-dialog-actions {
+      padding: 16px 20px;
+      flex-direction: column-reverse;
+
+      .cancel-button,
+      .upgrade-button {
+        width: 100%;
+        min-width: auto;
+      }
+    }
+  }
+}

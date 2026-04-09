@@ -1,0 +1,233 @@
+// OptionChain Color Variables - Reusable across pages
+// This file contains all color variables for OptionChain components
+// Import this file in any component that needs OptionChain styling
+
+// Light Mode Variables
+:root {
+  // Card and Container Colors
+  --option-card-bg: #ffffff;
+  --option-card-border: #f1f5f9;
+  --option-card-shadow: rgba(0, 0, 0, 0.08);
+  
+  // Header Colors
+  --option-header-bg: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  --option-header-border: #e2e8f0;
+  
+  // Text Colors
+  --option-text-primary: #1e293b;
+  --option-text-secondary: #64748b;
+  --option-text-muted: #475569;
+  --option-text-light: #374151;
+  
+  // Form Elements
+  --option-input-bg: #ffffff;
+  --option-input-border: #e2e8f0;
+  --option-input-focus-border: #3b82f6;
+  --option-input-focus-shadow: rgba(59, 130, 246, 0.1);
+  
+  // Button Colors
+  --option-btn-primary-bg: #3b82f6;
+  --option-btn-primary-text: #ffffff;
+  --option-btn-primary-shadow: rgba(59, 130, 246, 0.2);
+  --option-btn-secondary-bg: #eff6ff;
+  --option-btn-secondary-text: #3b82f6;
+  --option-btn-secondary-border: #dbeafe;
+  --option-btn-secondary-hover: #dbeafe;
+  
+  // Grid and Table Colors
+  --option-grid-bg: #f8fafc;
+  --option-grid-border: #e2e8f0;
+  --option-row-hover: #f8fafc;
+  --option-row-border: #f1f5f9;
+  
+  // Status Colors
+  --option-success-bg: #f0fdf4;
+  --option-success-text: #16a34a;
+  --option-success-border: #16a34a;
+  --option-danger-bg: #fef2f2;
+  --option-danger-text: #dc2626;
+  --option-danger-border: #dc2626;
+  --option-warning-bg: #fef3c7;
+  --option-warning-text: #f59e0b;
+  --option-warning-border: #f59e0b;
+  
+  // Strike Price Colors
+  --option-strike-bg: #f1f5f9;
+  --option-strike-text: #475569;
+  --option-strike-border: #64748b;
+  
+  // Action Button Colors
+  --option-action-success: #16a34a;
+  --option-action-success-hover: #15803d;
+  --option-action-danger: #dc2626;
+  --option-action-danger-hover: #b91c1c;
+  --option-action-neutral: #64748b;
+  --option-action-neutral-hover: #475569;
+  
+  // Popup and Tooltip Colors
+  --option-popup-bg: #ffffff;
+  --option-popup-border: #e2e8f0;
+  --option-popup-shadow: rgba(0, 0, 0, 0.15);
+  
+  // Secondary Elements
+  --option-secondary-bg: #f0f9ff;
+  --option-secondary-text: #0369a1;
+  --option-strike-secondary-bg: #f9fafb;
+  --option-strike-secondary-text: #1f2937;
+  
+  // Additional Utility Colors
+  --option-divider: #e2e8f0;
+  --option-overlay: rgba(0, 0, 0, 0.05);
+  --option-selection: rgba(59, 130, 246, 0.1);
+  
+}
+
+// Dark Mode Variables
+[data-theme="dark"] {
+  // Card and Container Colors
+  --option-card-bg: #2B2A33;
+  --option-card-border: #444444;
+  --option-card-shadow: rgba(0, 0, 0, 0.3);
+  
+  // Header Colors
+  --option-header-bg: linear-gradient(135deg, #3a3a4a 0%, #2a2a3a 100%);
+  --option-header-border: #555555;
+  
+  // Text Colors
+  --option-text-primary: #ffffff;
+  --option-text-secondary: #b0b3b8;
+  --option-text-muted: #d7d4d4;
+  --option-text-light: #ededed;
+  
+  // Form Elements
+  --option-input-bg: #3a3a4a;
+  --option-input-border: #555555;
+  --option-input-focus-border: #4a7cff;
+  --option-input-focus-shadow: rgba(74, 124, 255, 0.2);
+  
+  // Button Colors
+  --option-btn-primary-bg: #4a7cff;
+  --option-btn-primary-text: #ffffff;
+  --option-btn-primary-shadow: rgba(74, 124, 255, 0.3);
+  --option-btn-secondary-bg: #1e1e2f;
+  --option-btn-secondary-text: #4a7cff;
+  --option-btn-secondary-border: #444444;
+  --option-btn-secondary-hover: #2a2a3a;
+  
+  // Grid and Table Colors
+  --option-grid-bg: #2a2a3a;
+  --option-grid-border: #444444;
+  --option-row-hover: #3a3a4a;
+  --option-row-border: #444444;
+  
+  // Status Colors
+  --option-success-bg: #1e2a32;
+  --option-success-text: #2dd4bf;
+  --option-success-border: #2dd4bf;
+  --option-danger-bg: #432f31;
+  --option-danger-text: #ff6b7a;
+  --option-danger-border: #ff6b7a;
+  --option-warning-bg: #2E2619;
+  --option-warning-text: #ffb84d;
+  --option-warning-border: #ffb84d;
+  
+  // Strike Price Colors
+  --option-strike-bg: #313136;
+  --option-strike-text: #d7d4d4;
+  --option-strike-border: #777980;
+  
+  // Action Button Colors
+  --option-action-success: #2dd4bf;
+  --option-action-success-hover: #159892;
+  --option-action-danger: #ff6b7a;
+  --option-action-danger-hover: #f41d34;
+  --option-action-neutral: #777980;
+  --option-action-neutral-hover: #686868;
+  
+  // Popup and Tooltip Colors
+  --option-popup-bg: #3a3a4a;
+  --option-popup-border: #555555;
+  --option-popup-shadow: rgba(0, 0, 0, 0.5);
+  
+  // Secondary Elements
+  --option-secondary-bg: #1e1e2f;
+  --option-secondary-text: #6b8fd8;
+  --option-strike-secondary-bg: #2a2a3a;
+  --option-strike-secondary-text: #ededed;
+  
+  // Additional Utility Colors
+  --option-divider: #444444;
+  --option-overlay: rgba(255, 255, 255, 0.05);
+  --option-selection: rgba(74, 124, 255, 0.2);
+  
+}
+
+// Mixins for easy usage
+@mixin option-card {
+  background: var(--option-card-bg);
+  border: 1px solid var(--option-card-border);
+  box-shadow: 0 4px 20px var(--option-card-shadow);
+}
+
+@mixin option-header {
+  background: var(--option-header-bg);
+  border-bottom: 1px solid var(--option-header-border);
+}
+
+@mixin option-input {
+  background: var(--option-input-bg);
+  border: 2px solid var(--option-input-border);
+  color: var(--option-text-primary);
+  
+  &:focus {
+    border-color: var(--option-input-focus-border);
+    box-shadow: 0 0 0 3px var(--option-input-focus-shadow);
+  }
+}
+
+@mixin option-button-primary {
+  background: var(--option-btn-primary-bg);
+  color: var(--option-btn-primary-text);
+  box-shadow: 0 2px 4px var(--option-btn-primary-shadow);
+}
+
+@mixin option-button-secondary {
+  background: var(--option-btn-secondary-bg);
+  color: var(--option-btn-secondary-text);
+  border: 2px solid var(--option-btn-secondary-border);
+}
+
+@mixin option-grid-header {
+  background: var(--option-grid-bg);
+  color: var(--option-text-muted);
+  border-bottom: 2px solid var(--option-grid-border);
+}
+
+@mixin option-row {
+  border-bottom: 1px solid var(--option-row-border);
+  
+  &:hover {
+    background: var(--option-row-hover);
+  }
+}
+
+@mixin option-status-success {
+  background: var(--option-success-bg);
+  color: var(--option-success-text);
+  border-color: var(--option-success-border);
+}
+
+@mixin option-status-danger {
+  background: var(--option-danger-bg);
+  color: var(--option-danger-text);
+  border-color: var(--option-danger-border);
+}
+
+@mixin option-status-warning {
+  background: var(--option-warning-bg);
+  color: var(--option-warning-text);
+  border-color: var(--option-warning-border);
+}
+
+// Alternative dark theme class (fallback)
+// .dark-theme - removed empty ruleset

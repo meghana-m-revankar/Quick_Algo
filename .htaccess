@@ -1,0 +1,46 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+
+# --------------------
+# BASIC SECURITY
+# --------------------
+Header always set X-Content-Type-Options "nosniff"
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set X-XSS-Protection "1; mode=block"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+
+# --------------------
+# HSTS (ONLY HTTPS)
+# --------------------
+Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+
+# --------------------
+# CONTENT SECURITY POLICY
+# --------------------
+Header always set Content-Security-Policy "
+default-src 'self';
+script-src 'self';
+style-src 'self' 'unsafe-inline';
+img-src 'self' data:;
+font-src 'self';
+connect-src 
+  'self'
+  https://tv.quickalgoplus.co.in
+  https://qapi.quickalgoplus.co.in
+  https://set.quickalgoplus.co.in;
+frame-ancestors 'self';
+base-uri 'self';
+form-action 'self';
+"
+
+</IfModule>

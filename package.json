@@ -1,0 +1,122 @@
+{
+  "name": "quickalgo",
+  "version": "0.1.0",
+  "private": true,
+  "imports": {
+    "#pages/*": "./src/pages/*",
+    "#redux/*": "./src/redux/*",
+    "#helpers": "./src/utils/helpers.js",
+    "#axios": "./src/services/axios.js",
+    "#axiosInstance": "./src/services/axiosInstance.js",
+    "#constant/*": "./src/constant/*.js",
+    "#utils/*": "./src/utils/*.js",
+    "#context/*": "./src/context/*.js",
+    "#components": "./src/components/index.js",
+    "#component": "./src/components/*.js",
+    "#services/*": "./src/services/*.js",
+    "#hooks/*": "./src/hooks/*.js",
+    "#icons": "./src/data/icon.jsx",
+    "#jsonData": "./src/data/jsonData.js",
+    "#library/*": "./src/library/*"
+  },
+  "dependencies": {
+    "@babel/helper-define-polyfill-provider": "^0.6.5",
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@microsoft/signalr": "^8.0.7",
+    "@microsoft/signalr-protocol-msgpack": "^8.0.7",
+    "@mui/material": "^7.1.0",
+    "@mui/x-charts": "^7.28.0",
+    "@mui/x-date-pickers": "^8.4.0",
+    "@reduxjs/toolkit": "^2.6.1",
+    "@uiw/react-json-view": "^2.0.0-alpha.37",
+    "axios": "^1.8.2",
+    "bootstrap": "^5.3.3",
+    "chart.js": "^4.5.0",
+    "chartjs-plugin-annotation": "^3.1.0",
+    "crypto-js": "^4.2.0",
+    "dayjs": "^1.11.13",
+    "flatpickr": "^4.6.13",
+    "joi": "^17.13.3",
+    "js-cookie": "^3.0.5",
+    "jspdf": "^3.0.3",
+    "jspdf-autotable": "^5.0.7",
+    "platform": "^1.3.6",
+    "public-ip": "^7.0.1",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.10.9",
+    "react-chartjs-2": "^5.3.0",
+    "react-clock": "^5.1.0",
+    "react-data-table-component": "^7.7.0",
+    "react-dom": "^18.2.0",
+    "react-draggable": "^4.4.6",
+    "react-helmet": "^6.1.0",
+    "react-hot-toast": "^2.5.2",
+    "react-icons": "^5.5.0",
+    "react-modern-drawer": "^1.4.0",
+    "react-pro-sidebar": "^1.1.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.2.0",
+    "react-scripts": "^5.0.1",
+    "react-shimmer-effects": "^1.0.4",
+    "react-spinners": "^0.15.0",
+    "react-window": "^2.1.0",
+    "react-window-infinite-loader": "^1.0.10",
+    "recharts": "^3.2.1",
+    "redux-persist": "^6.0.0",
+    "redux-persist-transform-encrypt": "^5.1.1",
+    "sass": "^1.85.1",
+    "styled-components": "^6.1.17",
+    "sweetalert2": "^11.17.2",
+    "ua-parser-js": "^2.0.4",
+    "use-deep-compare": "^1.3.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "build:no-cache": "rm -rf build && react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "analyze": "npm run build && npx webpack-bundle-analyzer build/static/js/*.js",
+    "build:analyze": "GENERATE_SOURCEMAP=false npm run build && npx webpack-bundle-analyzer build/static/js/*.js",
+    "lighthouse": "lighthouse http://localhost:3000 --output=html --output-path=./lighthouse-report.html",
+    "icons:analyze": "grep -r 'react-icons' src/ --include='*.jsx' --include='*.js' | wc -l",
+    "icons:migrate": "node scripts/migrate-icons.js",
+    "bundle:size": "npm run build && du -sh build/static/js/*.js | sort -hr"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "overrides": {
+    "nth-check": "^2.1.1",
+    "postcss": "^8.4.31",
+    "webpack-dev-server": "^4.15.1",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
+    "react-scripts": {
+      "webpack-dev-server": "^4.15.1"
+    }
+  },
+  "devDependencies": {
+    "ajv": "^8.18.0",
+    "ajv-keywords": "^5.1.0",
+    "webpack-bundle-analyzer": "^4.10.2"
+  }
+}

@@ -1,0 +1,594 @@
+// Input All
+.input-main-data {
+
+  &.autofilled-text-new{
+    input{
+      // background: #E6E9EF;
+    }
+  }
+    width: 100%;
+    position: relative;
+    label {
+      font-size: var(--font_16);
+      font-weight: 500;
+      color: var(--btn-text);
+      display: block;
+      margin-bottom: 0.5rem;
+
+      @include media_2048{
+        font-size: var(--font_12);
+      
+      }
+    }
+  
+    input,
+    textarea {
+      border-radius: 5px;
+      padding: 0.375rem 0.75rem;
+      color: var(--btn-text);
+      font-size: var(--font_14);
+      outline: none;  
+      width: 100%;
+      background: var(--btn_fillter_bg);
+      // font-family: "Poppins", sans-serif;
+      
+    
+      &::placeholder {
+        color: var(--color_com_input_dr_placeholder);
+        font-size: var(--font_14);
+       
+      }
+      &:disabled {
+        background: var(--disable-input);
+      }
+      &:focus {
+        // border: 2px solid var(--border-color);
+      }
+    }
+  
+    select {
+      border-radius: 15px;
+      border: 2px solid var(--color_com_input_border);
+      padding: 14px 30px;
+      color: var(--color_com_SpanishRoast_131635);
+      font-size: var(--font_16);
+      outline: none;
+  
+      @include media_2048{
+        font-size: var(--font_14);
+      }
+      &::placeholder {
+        color: var(--color_com_input_dr_placeholder);
+      }
+    }
+  
+    .MuiSelect-select {
+      border-radius: 15px;
+      border: 2px solid var(--border-color);
+      padding: 15px 30px;
+      color: var(--btn-text);
+      font-size: var(--font_16);
+      outline: none;
+      background: var(--btn_fillter_bg);
+  
+      @include media_2048{
+        font-size: var(--font_14);
+      }
+      &::placeholder {
+        color: var(--color_com_input_dr_placeholder);
+      }
+  
+      &:focus {
+        border-radius: 15px;
+      }
+  
+  
+    }
+  
+    .MuiOutlinedInput-notchedOutline {
+      border: none;
+    }
+  
+    .date-input-inner {
+      position: relative;
+  
+      span {
+        position: absolute;
+        top: 17px;
+        left: auto;
+        right: 20px;
+        cursor: pointer;
+        @include media_2048 {
+          top: 7px;
+          svg{
+            width: 15px;
+            height: 15px;
+          }
+        }
+      }
+    }
+  
+    .wrap-image-false {
+      border-radius: 15px;
+      // border: 2px solid var(--border-color);
+      border: 2px dashed var(--border-color);
+      color: var(--btn-text);
+      gap: 10px;
+      background: var(--btn_fillter_bg);
+      outline: none;
+      display: flex;
+      align-items: center;
+      color: var(--btn-text);
+      justify-content: center;
+       background: #F1F7FF;
+       position: relative;
+       cursor: pointer;
+  
+      //  background: var(--btn_light);
+    
+
+      @include media_2048 {
+        font-size: var(--font_12);
+        border: 1px dashed var(--border-color);
+        border-radius: 10px;
+      }
+
+      @include media_1365 {
+        font-size: var(--font_12);
+      }
+ 
+      .remove-file-button {
+        position: absolute;
+        top: -9px;
+        right: -3px;
+        background: red;
+        border: none;
+        border-radius: 100px;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        svg{
+          width: 10px;
+          height: 10px;
+          path{
+            fill: #fff;
+            stroke: #fff;
+            stroke-width: 3px;
+          }
+        }
+    }
+      .icon-bs {
+        svg {
+          width: 20px;
+          height: 20px;
+          // path{
+          //   fill:var(--heading_color);
+          // }
+          @include media_1365{
+            width: 14px;
+            height: 14px;
+          }
+        }
+      }
+  
+      .file-name {
+        margin: 0;
+        // color: var(--btn-text);
+        color: #131635;
+        font-size: var(--font_16);
+        @include media_2048{
+          font-size: var(--font_14);
+        }
+        @include media_1365{
+          font-size: var(--font_12);
+        }
+        // @media #{$media_1024} {
+        //   font-size: $Font_14;
+        //  }
+      }
+  
+      // @media #{$media_1024} {
+      //   padding: 15px 15px;
+      //  }
+    }
+  
+    .automcomplete_select_info {
+      .MuiAutocomplete-inputRoot {
+        padding-right: 0px !important;
+        padding: 0;
+      }
+    
+      .MuiSvgIcon-root {
+        fill: var(--btn-text);
+      }
+    
+      input {
+        padding: 14px 30px !important;
+        font-size: var(--font_12);
+        line-height: 1.5;
+        @include media_2048 {
+          padding: 10px 14px !important;
+        }
+        @include media_1365 {
+          padding: 8px 14px !important;
+        }
+      }
+    
+      .MuiAutocomplete-listbox {
+        padding: 0 !important;
+        margin: 0 !important;
+        font-size: var(--font_12) !important;  /* Match the input font size */
+        line-height: 1.5 !important;
+        max-height: 300px !important;  /* Limit dropdown height if necessary */
+        overflow-y: auto !important;  /* Make dropdown scrollable */
+      }
+    
+      .MuiAutocomplete-option, .MuiListItem-root {
+        padding: 10px 14px !important;  /* Consistent padding */
+        font-size: var(--font_12) !important;  /* Ensure matching font size */
+        min-height: 40px !important;  /* Ensure options have enough height */
+        display: flex !important;
+        align-items: center !important;  /* Ensure vertical alignment of text */
+      }
+    
+      /* Active Option (Selected) Styling */
+      .MuiAutocomplete-option[aria-selected="true"] {
+        background-color: #e6f7ff !important;  /* Adjust the active option's background */
+      }
+    
+      .MuiAutocomplete-popupIndicator {
+        svg {
+          width: 12px !important;  /* Adjust the size of the dropdown indicator */
+          height: 12px !important;
+          path {
+            stroke: var(--btn-text) !important;  /* Set color for the indicator */
+          }
+        }
+      }
+    
+      /* Disabled Input Styling */
+      .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
+        opacity: 1 !important;
+        -webkit-text-fill-color: var(--color_undefined_858F9D) !important;
+      }
+    }
+    
+  
+    .data-switch-btn-gird {
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    .automcomplete_select_info_multiple {
+      .MuiAutocomplete-inputRoot {
+        padding-right: 30px !important;
+        padding: 0;
+      }
+  
+      .MuiInputBase-root {
+        padding: 0;
+        border-radius: 15px;
+        border: 2px solid var(--border-color);
+        padding: 14px 15px;
+        color: #131635;
+        font-size: 16px;
+        outline: none;
+        width: 100%;
+        gap: 5px;
+        background: var(--btn_fillter_bg);
+        
+        .MuiSvgIcon-root{
+          fill: rgb(255, 255, 255);  
+        }
+
+        @include media_2048{
+          font-size: var(--font_12);
+          padding: 10px 14px;
+          border: 1px solid var(--border-color);
+          border-radius: 10px;
+        }
+        input {
+          border-radius: 0;
+          border: none;
+          padding: 0;
+          background: transparent;
+        }
+
+        .MuiAutocomplete-popupIndicator{
+          svg{
+            width: 12px; /* Adjust the size as needed */
+            height: 12px;
+            path{
+              stroke :  var(--btn-text);
+              // fill: var(--btn-text);
+            }
+          }
+        }
+
+        
+  
+        .MuiChip-filled {
+          background:  var(--chip-color-bg);
+          color:  var(--chip-color);
+          margin: 0;
+          height: 18px;
+          .MuiChip-label {
+            font-size: 12px;
+          }
+        }
+  
+        .MuiChip-deleteIcon {
+          color:var(--chip-color);
+          font-size: 16px;
+        }
+      }
+    }
+  
+  
+    .contact-number-all-input {
+      border-radius: 15px;
+      border: 2px solid var(--border-color);
+      padding: 14px 30px;
+      color: var(--btn-text);
+      font-size: var(--font_16);
+      outline: none;
+      width: 100%;
+      background: var(--btn_fillter_bg);
+      display: flex;
+  
+      @include media_2048{
+        font-size: var(--font_12);
+        padding: 10px 14px;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+      }
+      select {
+        padding: 0;
+        border: none;
+      }
+  
+      input {
+        padding: 0;
+        border: none;
+      }
+    }
+  
+    .input-check {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+  
+      input {
+        width: 30px;
+        height: 19px;
+      }
+  
+      label {
+        margin: 0;
+      }
+    }
+  
+
+    .react-tel-input{
+      .form-control{
+          border-radius: 15px;
+          border: 2px solid var(--border-color);
+          background: var(--btn_fillter_bg);
+          color: var(--btn-text);
+          outline: none;
+          box-shadow: none;
+          width: 100%;
+          height: 57px;
+          @include media_2048{
+            // border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: var(--font_12);
+            height: 38.58px;
+          }
+          @include media_1365{
+            border-radius: 7px;
+          }
+      }
+
+      .selected-flag{
+        &:hover{ 
+          background-color: transparent;
+        }
+      }
+      .flag-dropdown{
+          border-right: 1px solid var(--border-color);
+          // border-radius: 15px;
+          background: var(--btn_fillter_bg);
+          border-radius: 14px 0px 0px 14px;
+          // border: none;
+          height: 36px;
+          color: var(--btn-text);
+          // background: transparent;
+          top: 1px;
+          padding: 1px;
+          left: 1px;
+          border-left: none;
+          border-top: none;
+          border-bottom: none;
+          @include media_2048{
+            // border: 1px solid var(--border-color);
+          }
+      }
+  }
+  
+  }
+
+
+  // All Input's
+.all_input {
+    margin-bottom: 30px;
+    @include media_1536{
+      margin-bottom: 20px;
+    }
+    label {
+      color: var(--color_text_label);
+      font-weight: 500;
+      font-size: var(--font_16);
+      margin-bottom: 10px;
+      display: block;
+
+
+      @include media_2048{
+        font-size: var(--font_14);
+      }
+
+     
+
+      @include media_1536{
+        font-size: var(--font_12);
+      }
+    }
+  
+    input {
+      background-color: var(--color_input_bg);
+      border: 1px solid var(--color_input_border);
+      outline: none;
+      width: -webkit-fill-available;
+      border-radius: 40px;
+      padding: 14px 32px;
+      color: var(--btn-text);
+      @include media_2048{
+        font-size: var(--font_14);
+        padding: 9px 15px;
+      }
+      @include media_1280{
+        padding: 10px 10px;
+      }
+  
+      &::placeholder {
+        font-size: var(--font_14);
+        color: var(--color_placeholder);
+        @include media_2048{
+          font-size: var(--font_12);
+        }
+      }
+    }
+  
+    .password-input-main {
+      position: relative !important;
+      .btn-icon {
+        button {
+          position: absolute;
+          top: 14px;
+          right: 17px;
+          background: none;
+          border: none;
+          padding: 0;
+          @include media_2048{
+            top: 9px;
+          }
+        }
+      }
+    }
+  
+    .select-data-main {
+      .MuiInputLabel-formControl {
+        font-family: "Poppins", sans-serif;
+        font-size: 16px;
+        color: var(--color_com_text_content);
+      }
+  
+      .MuiSelect-select {
+        padding: 7.5px 14px;
+        color: var(--color_com_text_content);
+        font-size: 14px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+      }
+  
+      .MuiOutlinedInput-notchedOutline {
+        border-color: var(--color_com_text_content);
+        ;
+      }
+    }
+  }
+  
+
+
+
+
+
+  .main-checkbox {
+    display: flex;
+    align-items: unset;
+    gap: 8px; 
+  
+ 
+    input[type="checkbox"] {
+      display: none;
+    }
+  
+
+    .checkbox-label {
+      display: inline-block;
+      width: 20px;
+      height: 18px;
+      // background-color: #fff; 
+      // border: 1px solid #FFD700; 
+      border-radius: 2px; 
+      cursor: pointer;
+      position: relative;
+      transition: background-color 0.2s ease;
+      border: 2px solid var(--checkbox-color);
+      background: var(--btn_fillter_bg);
+      margin-top: 3px;
+      
+
+      @include media_1280{
+        width: 15px;
+        height: 15px;
+        border-radius: 3px;
+      }
+   
+      &::after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 6px;
+        width: 6px;
+        height: 12px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+        opacity: 0; /* Hide checkmark by default */
+        transition: opacity 0.2s ease-in-out;
+       
+        @include media_1280{
+            top: 0px;
+            left: 5px;
+        }
+
+      }
+    }
+  
+ 
+    input[type="checkbox"]:checked + .checkbox-label {
+      background-color: var(--bg-checked-color); 
+      border: none;
+      &::after {
+        opacity: 1;
+      }
+    }
+  
+  
+    span {
+      font-size: var(--font_14);
+      color:var(--btn-text);
+      
+
+      &.checkbox-span-new{
+        display: block;
+        width: 97px;
+        position: absolute;
+        top: 0px;
+        left: 25px;
+      }
+
+    }
+}

@@ -1,0 +1,37 @@
+// Font URLs
+$font-path: "./../../../assets/fonts/";
+
+$font-poppins: (
+  regular: "#{$font-path}/IBMPlexSans-Regular.ttf",
+  medium: "#{$font-path}/IBMPlexSans-Medium.ttf",
+  semiBold: "#{$font-path}/IBMPlexSans-SemiBold.ttf",
+  bold: "#{$font-path}/IBMPlexSans-Bold.ttf",
+  extraBold: "#{$font-path}/IBMPlexSans-ExtraBold.ttf"
+);
+
+
+
+// Font weights map
+$font-weights: (
+  regular: 400,
+  medium: 500,
+  semiBold: 600, 
+  bold: 700,
+  extraBold: 800
+);
+
+// Mixin to @font-face 
+@mixin font-face($font-family, $font-map, $weight-map) {
+  @each $weight, $file-name in $font-map {
+    $font-weight: map-get($weight-map, $weight);
+    @font-face {
+      font-family: $font-family;
+      src: url(#{$file-name});
+      font-weight: $font-weight; 
+      font-style: normal;
+    }
+  }
+}
+
+@include font-face("IBM Plex Sans", $font-poppins, $font-weights);
+

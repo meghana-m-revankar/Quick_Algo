@@ -1,0 +1,770 @@
+// Chart Page Color Variables - Reusable across pages
+// This file contains all color variables for Chart components
+// Import this file in any component that needs Chart styling
+
+// System Theme Detection and Light Mode Variables
+:root {
+  // Page Background Colors
+  --chart-page-bg: #ffffff;
+  --chart-content-bg: #ffffff;
+  
+  // Header Colors
+  --chart-header-bg: #f8f9fa;
+  --chart-header-border: #e5e7eb;
+  --chart-header-divider: #d1d5db;
+  
+  // Text Colors
+  --chart-text-primary: #333333;
+  --chart-text-secondary: #6b7280;
+  --chart-text-muted: #9ca3af;
+  --chart-text-light: #374151;
+  
+  // Icon and Brand Colors
+  --chart-icon-color: #667eea;
+  --chart-brand-primary: #667eea;
+  --chart-brand-hover: #5a67d8;
+  
+  // Button Colors
+  --chart-btn-bg: #f3f4f6;
+  --chart-btn-border: #d1d5db;
+  --chart-btn-text: #6b7280;
+  --chart-btn-hover-bg: #e5e7eb;
+  --chart-btn-hover-border: #9ca3af;
+  --chart-btn-hover-text: #374151;
+  --chart-btn-active-bg: #667eea;
+  --chart-btn-active-border: #667eea;
+  --chart-btn-active-text: #ffffff;
+  --chart-btn-primary-shadow: rgba(102, 126, 234, 0.3);
+  
+  // Control Button Colors
+  --chart-control-bg: #f3f4f6;
+  --chart-control-border: #d1d5db;
+  --chart-control-text: #6b7280;
+  --chart-control-hover-bg: #e5e7eb;
+  --chart-control-hover-border: #9ca3af;
+  --chart-control-hover-text: #374151;
+  --chart-control-disabled-bg: #f9fafb;
+  --chart-control-disabled-text: #9ca3af;
+  
+  // Display and Status Colors
+  --chart-display-bg: #f9fafb;
+  --chart-display-border: #e5e7eb;
+  --chart-display-text: #6b7280;
+  --chart-symbol-bg: #e5e7eb;
+  --chart-symbol-text: #6b7280;
+  
+  // Chart Container Colors
+  --chart-container-bg: #ffffff;
+  --chart-container-border: #e5e7eb;
+  --chart-container-shadow: rgba(0, 0, 0, 0.1);
+  
+  // Layout and Spacing Colors
+  --chart-layout-gap: #e5e7eb;
+  --chart-section-border: #e5e7eb;
+  --chart-section-bg: #ffffff;
+  
+  // Loading and Error States
+  --chart-loading-bg: rgba(255, 255, 255, 0.95);
+  --chart-loading-shadow: rgba(0, 0, 0, 0.15);
+  --chart-loading-spinner-bg: #f3f3f3;
+  --chart-loading-spinner-color: #667eea;
+  --chart-loading-text: #666666;
+  
+  --chart-error-bg: #f8f9fa;
+  --chart-error-text: #666666;
+  --chart-error-btn-bg: #667eea;
+  --chart-error-btn-hover: #5a67d8;
+  
+  // Option Chain Integration
+  --chart-option-chain-bg: #ffffff;
+  --chart-option-chain-border: #e5e7eb;
+  --chart-option-chain-shadow: rgba(0, 0, 0, 0.1);
+
+  // Order Card Colors
+  --chart-sidebar-bg: #ffffff;
+  --chart-sidebar-divider: #e5e7eb;
+  --chart-card-bg: #f9fafb;
+  --chart-card-border: #e5e7eb;
+  --chart-card-header-bg: #f3f4f6;
+  --chart-success: #10b981;
+  --chart-success-hover: #059669;
+  --chart-success-bg: #d1fae5;
+  --chart-success-shadow: rgba(16, 185, 129, 0.3);
+  --chart-danger: #ef4444;
+  --chart-danger-hover: #dc2626;
+  --chart-danger-bg: #fee2e2;
+  --chart-danger-shadow: rgba(239, 68, 68, 0.3);
+  --chart-warning: #f59e0b;
+  --chart-warning-hover: #d97706;
+  --chart-warning-bg: #fef3c7;
+  --chart-warning-shadow: rgba(245, 158, 11, 0.3);
+  --chart-info: #3b82f6;
+  --chart-info-hover: #2563eb;
+  --chart-info-bg: #dbeafe;
+  --chart-info-shadow: rgba(59, 130, 246, 0.3);
+  
+  // Chart Border and Overlay
+  --chart-border-color: #e5e7eb;
+  --chart-overlay: rgba(0, 0, 0, 0.5);
+  --chart-hover-bg: #f3f4f6;
+  --chart-primary: #667eea;
+  --chart-primary-hover: #5a67d8;
+  --chart-primary-shadow: rgba(102, 126, 234, 0.3);
+  
+  // Link Colors
+  --chart-link-text: #667eea;
+  --chart-link-hover: #5a67d8;
+  
+  // Selection Colors
+  --chart-selection: rgba(102, 126, 234, 0.1);
+  
+  // Input and Form Colors
+  --chart-input-bg: #ffffff;
+  --chart-input-border: #d1d5db;
+  --chart-input-focus-border: #667eea;
+  --chart-input-focus-shadow: rgba(102, 126, 234, 0.2);
+  --chart-input-text: #333333;
+  --chart-input-placeholder: #9ca3af;
+  
+  // Table Colors
+  --chart-table-header-bg: #f3f4f6;
+  --chart-table-row-hover: #f9fafb;
+  --chart-table-border: #e5e7eb;
+  
+  // Option Chain Specific Colors
+  --chart-option-ce-bg: #10b981;
+  --chart-option-ce-text: #ffffff;
+  --chart-option-pe-bg: #ef4444;
+  --chart-option-pe-text: #ffffff;
+  
+  // Accent Colors
+  --chart-accent-bg: #f0f9ff;
+  --chart-accent-text: #0369a1;
+  
+  // Additional missing variables
+  --chart-error-btn-bg: #667eea;
+  --chart-error-btn-hover: #5a67d8;
+  --chart-info-hover: #2563eb;
+}
+
+// System Dark Mode Detection (prefers-color-scheme)
+@media (prefers-color-scheme: dark) {
+  :root {
+    // Page Background Colors
+    --chart-page-bg: #1a1a1a;
+    --chart-content-bg: #1a1a1a;
+    
+    // Header Colors
+    --chart-header-bg: #2d2d2d;
+    --chart-header-border: #404040;
+    --chart-header-divider: #404040;
+    
+    // Text Colors
+    --chart-text-primary: #ffffff;
+    --chart-text-secondary: #cccccc;
+    --chart-text-muted: #999999;
+    --chart-text-light: #e5e5e5;
+    
+    // Icon and Brand Colors
+    --chart-icon-color: #4a9eff;
+    --chart-brand-primary: #4a9eff;
+    --chart-brand-hover: #3d8bff;
+    
+    // Button Colors
+    --chart-btn-bg: #333333;
+    --chart-btn-border: #404040;
+    --chart-btn-text: #cccccc;
+    --chart-btn-hover-bg: #404040;
+    --chart-btn-hover-border: #555555;
+    --chart-btn-hover-text: #ffffff;
+    --chart-btn-active-bg: #4a9eff;
+    --chart-btn-active-border: #4a9eff;
+    --chart-btn-active-text: #ffffff;
+    --chart-btn-primary-shadow: rgba(74, 158, 255, 0.3);
+    
+    // Control Button Colors
+    --chart-control-bg: #333333;
+    --chart-control-border: #404040;
+    --chart-control-text: #cccccc;
+    --chart-control-hover-bg: #404040;
+    --chart-control-hover-border: #555555;
+    --chart-control-hover-text: #ffffff;
+    --chart-control-disabled-bg: #2a2a2a;
+    --chart-control-disabled-text: #666666;
+    
+    // Display and Status Colors
+    --chart-display-bg: #2a2a2a;
+    --chart-display-border: #404040;
+    --chart-display-text: #cccccc;
+    --chart-symbol-bg: #404040;
+    --chart-symbol-text: #cccccc;
+    
+    // Chart Container Colors
+    --chart-container-bg: #1a1a1a;
+    --chart-container-border: #404040;
+    --chart-container-shadow: rgba(0, 0, 0, 0.3);
+    
+    // Layout and Spacing Colors
+    --chart-layout-gap: #404040;
+    --chart-section-border: #404040;
+    --chart-section-bg: #1a1a1a;
+    
+    // Loading and Error States
+    --chart-loading-bg: rgba(26, 26, 26, 0.95);
+    --chart-loading-shadow: rgba(0, 0, 0, 0.4);
+    --chart-loading-spinner-bg: #333333;
+    --chart-loading-spinner-color: #4a9eff;
+    --chart-loading-text: #cccccc;
+    
+    --chart-error-bg: #2a2a2a;
+    --chart-error-text: #cccccc;
+    --chart-error-btn-bg: #4a9eff;
+    --chart-error-btn-hover: #3d8bff;
+    
+    // Option Chain Integration
+    --chart-option-chain-bg: #1a1a1a;
+    --chart-option-chain-border: #404040;
+    --chart-option-chain-shadow: rgba(0, 0, 0, 0.3);
+
+    // Order Card Colors
+    --chart-sidebar-bg: #1a1a1a;
+    --chart-sidebar-divider: #404040;
+    --chart-card-bg: #2a2a2a;
+    --chart-card-border: #404040;
+    --chart-card-header-bg: #333333;
+    --chart-success: #10b981;
+    --chart-success-hover: #059669;
+    --chart-success-bg: #064e3b;
+    --chart-success-shadow: rgba(16, 185, 129, 0.3);
+    --chart-danger: #ef4444;
+    --chart-danger-hover: #dc2626;
+    --chart-danger-bg: #7f1d1d;
+    --chart-danger-shadow: rgba(239, 68, 68, 0.3);
+    --chart-warning: #f59e0b;
+    --chart-warning-hover: #d97706;
+    --chart-warning-bg: #78350f;
+    --chart-warning-shadow: rgba(245, 158, 11, 0.3);
+    --chart-info: #3b82f6;
+    --chart-info-hover: #2563eb;
+    --chart-info-bg: #1e3a8a;
+    --chart-info-shadow: rgba(59, 130, 246, 0.3);
+    
+    // Chart Border and Overlay
+    --chart-border-color: #404040;
+    --chart-overlay: rgba(0, 0, 0, 0.7);
+    --chart-hover-bg: #333333;
+    --chart-primary: #4a9eff;
+    --chart-primary-hover: #3d8bff;
+    --chart-primary-shadow: rgba(74, 158, 255, 0.3);
+    
+    // Link Colors
+    --chart-link-text: #4a9eff;
+    --chart-link-hover: #3d8bff;
+    
+    // Selection Colors
+    --chart-selection: rgba(74, 124, 255, 0.2);
+    
+    // Input and Form Colors
+    --chart-input-bg: #2a2a2a;
+    --chart-input-border: #404040;
+    --chart-input-focus-border: #4a9eff;
+    --chart-input-focus-shadow: rgba(74, 158, 255, 0.2);
+    --chart-input-text: #ffffff;
+    --chart-input-placeholder: #666666;
+    
+    // Table Colors
+    --chart-table-header-bg: #333333;
+    --chart-table-row-hover: #2a2a2a;
+    --chart-table-border: #404040;
+    
+    // Option Chain Specific Colors
+    --chart-option-ce-bg: #10b981;
+    --chart-option-ce-text: #ffffff;
+    --chart-option-pe-bg: #ef4444;
+    --chart-option-pe-text: #ffffff;
+    
+    // Accent Colors
+    --chart-accent-bg: #1e3a8a;
+    --chart-accent-text: #93c5fd;
+    
+    // Additional missing variables
+    --chart-error-btn-bg: #4a9eff;
+    --chart-error-btn-hover: #3d8bff;
+    --chart-info-hover: #1d4ed8;
+  }
+}
+
+// Force Dark Mode (when user explicitly chooses dark mode via toggle)
+[data-theme="dark"],
+.dark-theme {
+  // Page Background Colors
+  --chart-page-bg: #1a1a1a;
+  --chart-content-bg: #1a1a1a;
+  
+  // Header Colors
+  --chart-header-bg: #2d2d2d;
+  --chart-header-border: #404040;
+  --chart-header-divider: #404040;
+  
+  // Text Colors
+  --chart-text-primary: #ffffff;
+  --chart-text-secondary: #cccccc;
+  --chart-text-muted: #999999;
+  --chart-text-light: #e5e5e5;
+  
+  // Icon and Brand Colors
+  --chart-icon-color: #4a9eff;
+  --chart-brand-primary: #4a9eff;
+  --chart-brand-hover: #3d8bff;
+  
+  // Button Colors
+  --chart-btn-bg: #333333;
+  --chart-btn-border: #404040;
+  --chart-btn-text: #cccccc;
+  --chart-btn-hover-bg: #404040;
+  --chart-btn-hover-border: #555555;
+  --chart-btn-hover-text: #ffffff;
+  --chart-btn-active-bg: #4a9eff;
+  --chart-btn-active-border: #4a9eff;
+  --chart-btn-active-text: #ffffff;
+  --chart-btn-primary-shadow: rgba(74, 158, 255, 0.3);
+  
+  // Control Button Colors
+  --chart-control-bg: #333333;
+  --chart-control-border: #404040;
+  --chart-control-text: #cccccc;
+  --chart-control-hover-bg: #404040;
+  --chart-control-hover-border: #555555;
+  --chart-control-hover-text: #ffffff;
+  --chart-control-disabled-bg: #2a2a2a;
+  --chart-control-disabled-text: #666666;
+  
+  // Display and Status Colors
+  --chart-display-bg: #2a2a2a;
+  --chart-display-border: #404040;
+  --chart-display-text: #cccccc;
+  --chart-symbol-bg: #404040;
+  --chart-symbol-text: #cccccc;
+  
+  // Chart Container Colors
+  --chart-container-bg: #1a1a1a;
+  --chart-container-border: #404040;
+  --chart-container-shadow: rgba(0, 0, 0, 0.3);
+  
+  // Layout and Spacing Colors
+  --chart-layout-gap: #404040;
+  --chart-section-border: #404040;
+  --chart-section-bg: #1a1a1a;
+  
+  // Loading and Error States
+  --chart-loading-bg: rgba(26, 26, 26, 0.95);
+  --chart-loading-shadow: rgba(0, 0, 0, 0.4);
+  --chart-loading-spinner-bg: #333333;
+  --chart-loading-spinner-color: #4a9eff;
+  --chart-loading-text: #cccccc;
+  
+  --chart-error-bg: #2a2a2a;
+  --chart-error-text: #cccccc;
+  --chart-error-btn-bg: #4a9eff;
+  --chart-error-btn-hover: #3d8bff;
+  
+  // Option Chain Integration
+  --chart-option-chain-bg: #1a1a1a;
+  --chart-option-chain-border: #404040;
+  --chart-option-chain-shadow: rgba(0, 0, 0, 0.3);
+
+  // Order Card Colors
+  --chart-sidebar-bg: #1a1a1a;
+  --chart-sidebar-divider: #404040;
+  --chart-card-bg: #2a2a2a;
+  --chart-card-border: #404040;
+  --chart-card-header-bg: #333333;
+  --chart-success: #10b981;
+  --chart-success-hover: #059669;
+  --chart-success-bg: #064e3b;
+  --chart-success-shadow: rgba(16, 185, 129, 0.3);
+  --chart-danger: #ef4444;
+  --chart-danger-hover: #dc2626;
+  --chart-danger-bg: #7f1d1d;
+  --chart-danger-shadow: rgba(239, 68, 68, 0.3);
+  --chart-warning: #f59e0b;
+  --chart-warning-hover: #d97706;
+  --chart-warning-bg: #78350f;
+  --chart-warning-shadow: rgba(245, 158, 11, 0.3);
+  --chart-info: #3b82f6;
+  --chart-info-hover: #2563eb;
+  --chart-info-bg: #1e3a8a;
+  --chart-info-shadow: rgba(59, 130, 246, 0.3);
+  
+  // Chart Border and Overlay
+  --chart-border-color: #404040;
+  --chart-overlay: rgba(0, 0, 0, 0.7);
+  --chart-hover-bg: #333333;
+  --chart-primary: #4a9eff;
+  --chart-primary-hover: #3d8bff;
+  --chart-primary-shadow: rgba(74, 158, 255, 0.3);
+  
+  // Link Colors
+  --chart-link-text: #4a9eff;
+  --chart-link-hover: #3d8bff;
+  
+  // Selection Colors
+  --chart-selection: rgba(74, 124, 255, 0.2);
+  
+  // Input and Form Colors
+  --chart-input-bg: #2a2a2a;
+  --chart-input-border: #404040;
+  --chart-input-focus-border: #4a9eff;
+  --chart-input-focus-shadow: rgba(74, 158, 255, 0.2);
+  --chart-input-text: #ffffff;
+  --chart-input-placeholder: #666666;
+  
+  // Table Colors
+  --chart-table-header-bg: #333333;
+  --chart-table-row-hover: #2a2a2a;
+  --chart-table-border: #404040;
+  
+  // Option Chain Specific Colors
+  --chart-option-ce-bg: #10b981;
+  --chart-option-ce-text: #ffffff;
+  --chart-option-pe-bg: #ef4444;
+  --chart-option-pe-text: #ffffff;
+  
+  // Accent Colors
+  --chart-accent-bg: #1e3a8a;
+  --chart-accent-text: #93c5fd;
+  
+  // Additional missing variables
+  --chart-error-btn-bg: #4a9eff;
+  --chart-error-btn-hover: #3d8bff;
+  --chart-info-hover: #1d4ed8;
+}
+
+// Force Light Mode (when user explicitly chooses light mode via toggle)
+[data-theme="light"] {
+  // Page Background Colors
+  --chart-page-bg: #ffffff;
+  --chart-content-bg: #ffffff;
+  
+  // Header Colors
+  --chart-header-bg: #f8f9fa;
+  --chart-header-border: #e5e7eb;
+  --chart-header-divider: #d1d5db;
+  
+  // Text Colors
+  --chart-text-primary: #333333;
+  --chart-text-secondary: #6b7280;
+  --chart-text-muted: #9ca3af;
+  --chart-text-light: #374151;
+  
+  // Icon and Brand Colors
+  --chart-icon-color: #667eea;
+  --chart-brand-primary: #667eea;
+  --chart-brand-hover: #5a67d8;
+  
+  // Button Colors
+  --chart-btn-bg: #f3f4f6;
+  --chart-btn-border: #d1d5db;
+  --chart-btn-text: #6b7280;
+  --chart-btn-hover-bg: #e5e7eb;
+  --chart-btn-hover-border: #9ca3af;
+  --chart-btn-hover-text: #374151;
+  --chart-btn-active-bg: #667eea;
+  --chart-btn-active-border: #667eea;
+  --chart-btn-active-text: #ffffff;
+  --chart-btn-primary-shadow: rgba(102, 126, 234, 0.3);
+  
+  // Control Button Colors
+  --chart-control-bg: #f3f4f6;
+  --chart-control-border: #d1d5db;
+  --chart-control-text: #6b7280;
+  --chart-control-hover-bg: #e5e7eb;
+  --chart-control-hover-border: #9ca3af;
+  --chart-control-hover-text: #374151;
+  --chart-control-disabled-bg: #f9fafb;
+  --chart-control-disabled-text: #9ca3af;
+  
+  // Display and Status Colors
+  --chart-display-bg: #f9fafb;
+  --chart-display-border: #e5e7eb;
+  --chart-display-text: #6b7280;
+  --chart-symbol-bg: #e5e7eb;
+  --chart-symbol-text: #6b7280;
+  
+  // Chart Container Colors
+  --chart-container-bg: #ffffff;
+  --chart-container-border: #e5e7eb;
+  --chart-container-shadow: rgba(0, 0, 0, 0.1);
+  
+  // Layout and Spacing Colors
+  --chart-layout-gap: #e5e7eb;
+  --chart-section-border: #e5e7eb;
+  --chart-section-bg: #ffffff;
+  
+  // Loading and Error States
+  --chart-loading-bg: rgba(255, 255, 255, 0.95);
+  --chart-loading-shadow: rgba(0, 0, 0, 0.15);
+  --chart-loading-spinner-bg: #f3f3f3;
+  --chart-loading-spinner-color: #667eea;
+  --chart-loading-text: #666666;
+  
+  --chart-error-bg: #f8f9fa;
+  --chart-error-text: #666666;
+  --chart-error-btn-bg: #667eea;
+  --chart-error-btn-hover: #5a67d8;
+  
+  // Option Chain Integration
+  --chart-option-chain-bg: #ffffff;
+  --chart-option-chain-border: #e5e7eb;
+  --chart-option-chain-shadow: rgba(0, 0, 0, 0.1);
+
+  // Order Card Colors
+  --chart-sidebar-bg: #ffffff;
+  --chart-sidebar-divider: #e5e7eb;
+  --chart-card-bg: #f9fafb;
+  --chart-card-border: #e5e7eb;
+  --chart-card-header-bg: #f3f4f6;
+  --chart-success: #10b981;
+  --chart-success-hover: #059669;
+  --chart-success-bg: #d1fae5;
+  --chart-success-shadow: rgba(16, 185, 129, 0.3);
+  --chart-danger: #ef4444;
+  --chart-danger-hover: #dc2626;
+  --chart-danger-bg: #fee2e2;
+  --chart-danger-shadow: rgba(239, 68, 68, 0.3);
+  --chart-warning: #f59e0b;
+  --chart-warning-hover: #d97706;
+  --chart-warning-bg: #fef3c7;
+  --chart-warning-shadow: rgba(245, 158, 11, 0.3);
+  --chart-info: #3b82f6;
+  --chart-info-hover: #2563eb;
+  --chart-info-bg: #dbeafe;
+  --chart-info-shadow: rgba(59, 130, 246, 0.3);
+  
+  // Chart Border and Overlay
+  --chart-border-color: #e5e7eb;
+  --chart-overlay: rgba(0, 0, 0, 0.5);
+  --chart-hover-bg: #f3f4f6;
+  --chart-primary: #667eea;
+  --chart-primary-hover: #5a67d8;
+  --chart-primary-shadow: rgba(102, 126, 234, 0.3);
+  
+  // Link Colors
+  --chart-link-text: #667eea;
+  --chart-link-hover: #5a67d8;
+  
+  // Selection Colors
+  --chart-selection: rgba(102, 126, 234, 0.1);
+  
+  // Input and Form Colors
+  --chart-input-bg: #ffffff;
+  --chart-input-border: #d1d5db;
+  --chart-input-focus-border: #667eea;
+  --chart-input-focus-shadow: rgba(102, 126, 234, 0.2);
+  --chart-input-text: #333333;
+  --chart-input-placeholder: #9ca3af;
+  
+  // Table Colors
+  --chart-table-header-bg: #f3f4f6;
+  --chart-table-row-hover: #f9fafb;
+  --chart-table-border: #e5e7eb;
+  
+  // Option Chain Specific Colors
+  --chart-option-ce-bg: #10b981;
+  --chart-option-ce-text: #ffffff;
+  --chart-option-pe-bg: #ef4444;
+  --chart-option-pe-text: #ffffff;
+  
+  // Accent Colors
+  --chart-accent-bg: #f0f9ff;
+  --chart-accent-text: #0369a1;
+  
+  // Additional missing variables
+  --chart-error-btn-bg: #667eea;
+  --chart-error-btn-hover: #5a67d8;
+  --chart-info-hover: #2563eb;
+}
+
+// Mixins for chart components
+@mixin chart-selection {
+  background: var(--chart-selection);
+}
+
+@mixin chart-card {
+  background: var(--chart-card-bg);
+  border: 1px solid var(--chart-card-border);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px var(--chart-container-shadow);
+}
+
+@mixin chart-button {
+  background: var(--chart-btn-bg);
+  border: 1px solid var(--chart-btn-border);
+  color: var(--chart-btn-text);
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: var(--chart-btn-hover-bg);
+    border-color: var(--chart-btn-hover-border);
+    color: var(--chart-btn-hover-text);
+  }
+  
+  &:active {
+    background: var(--chart-btn-active-bg);
+    border-color: var(--chart-btn-active-border);
+    color: var(--chart-btn-active-text);
+  }
+}
+
+// Additional chart mixins
+@mixin chart-page {
+  background: var(--chart-page-bg);
+  color: var(--chart-text-primary);
+}
+
+@mixin chart-header {
+  background: var(--chart-header-bg);
+  border: 1px solid var(--chart-header-border);
+  color: var(--chart-text-primary);
+}
+
+@mixin chart-control-button {
+  background: var(--chart-control-bg);
+  border: 1px solid var(--chart-control-border);
+  color: var(--chart-control-text);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: var(--chart-control-hover-bg);
+    border-color: var(--chart-control-hover-border);
+    color: var(--chart-control-hover-text);
+  }
+  
+  &:disabled {
+    background: var(--chart-control-disabled-bg);
+    color: var(--chart-control-disabled-text);
+    cursor: not-allowed;
+  }
+}
+
+@mixin chart-display {
+  background: var(--chart-display-bg);
+  border: 1px solid var(--chart-display-border);
+  color: var(--chart-display-text);
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+
+@mixin chart-container {
+  background: var(--chart-container-bg);
+  border: 1px solid var(--chart-container-border);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px var(--chart-container-shadow);
+}
+
+@mixin chart-loading {
+  background: var(--chart-loading-bg);
+  color: var(--chart-loading-text);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px var(--chart-loading-shadow);
+}
+
+@mixin chart-error {
+  background: var(--chart-error-bg);
+  color: var(--chart-error-text);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+// Additional utility mixins for better theme support
+@mixin chart-input {
+  background: var(--chart-input-bg);
+  border: 1px solid var(--chart-input-border);
+  color: var(--chart-input-text);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: var(--chart-input-focus-border);
+    box-shadow: 0 0 0 3px var(--chart-input-focus-shadow);
+  }
+  
+  &::placeholder {
+    color: var(--chart-input-placeholder);
+  }
+}
+
+@mixin chart-table {
+  background: var(--chart-card-bg);
+  border: 1px solid var(--chart-table-border);
+  border-radius: 8px;
+  overflow: hidden;
+  
+  th {
+    background: var(--chart-table-header-bg);
+    color: var(--chart-text-primary);
+    border-bottom: 1px solid var(--chart-table-border);
+  }
+  
+  td {
+    border-bottom: 1px solid var(--chart-table-border);
+    color: var(--chart-text-primary);
+    
+    &:hover {
+      background: var(--chart-table-row-hover);
+    }
+  }
+}
+
+// Theme transition mixin for smooth switching
+@mixin chart-theme-transition {
+  transition: 
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  :root {
+    --chart-border-color: #000000;
+    --chart-text-primary: #000000;
+    --chart-text-secondary: #333333;
+    --chart-btn-border: #000000;
+    --chart-control-border: #000000;
+  }
+  
+  [data-theme="dark"],
+  .dark-theme {
+    --chart-border-color: #ffffff;
+    --chart-text-primary: #ffffff;
+    --chart-text-secondary: #cccccc;
+    --chart-btn-border: #ffffff;
+    --chart-control-border: #ffffff;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

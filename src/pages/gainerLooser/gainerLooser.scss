@@ -1,0 +1,837 @@
+@use "../../styles/scss/abstract/mixins" as *;
+
+/* ========================================
+   GAINER LOOSER PAGE SPECIFIC STYLES
+   ======================================== */
+.gainer_looser_page {
+  width: 100%;
+  min-height: auto;
+  padding: 25px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+
+  @include media_990 {
+    padding: 20px 10px;
+  }
+  
+  .card-box {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 20px 20px 0 20px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    
+    &.full-width {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    @include media_990 {
+      padding: 10px;
+    }
+  }
+
+// Make table rows interactive - Updated for better dark/light mode support
+.table-hover tbody tr {
+  transition: all 0.2s ease;
+  
+  &:hover {
+    // background: #fff !important;
+    // transform: translateY(-1px);
+    // box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Dark mode hover effect
+.dark-theme .table-hover tbody tr:hover {
+  background-color: var(--box-hover-dark) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+// Make tab cards interactive
+.tab_data .tabs {
+  transition: all 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+}
+.gainer_looser_page {
+  .card-box {
+    @include media_425 {
+      padding: 10px;
+    }
+    .box-body {
+      margin-bottom: 0;
+      padding-bottom: 0;
+
+      .box-flex{
+        display: flex;
+        width: 100%;
+        gap: 20px;
+        margin: 0;
+        
+        &.row {
+          margin-left: 0;
+          margin-right: 0;
+          
+          > [class*="col-"] {
+            padding-left: 10px;
+            padding-right: 10px;
+          }
+        }
+
+        @include media_767 {
+          flex-direction: column;
+          gap: 20px;
+          
+          > [class*="col-"] {
+            width: 100%;
+            max-width: 100%;
+            flex: 0 0 100%;
+          }
+        }
+      }
+      .box_section {
+        padding: 20px 20px 0 20px;
+        border: 1px solid var(--box-border);
+        border-radius: 10px;
+        height: auto;
+        min-height: auto;
+        background-color: var(--card_box_bg);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0;
+        padding-bottom: 0;
+
+        .header_section {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          margin-bottom: 15px;
+          padding-bottom: 0;
+          .box-title {
+            display: inline-block;
+            margin: 0;
+            margin-bottom: 1rem;
+            color: var(--text-color-primary);
+            font-size: 1.2857142857142858rem;
+            font-weight: 600;
+          }
+        }
+        
+        // Table responsive wrapper
+        .table-responsive {
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          min-height: 0;
+          margin-bottom: 0;
+          padding-bottom: 0;
+          
+          table {
+            width: 100%;
+            table-layout: auto;
+            flex: 1;
+            margin-bottom: 0;
+            padding-bottom: 0;
+            
+            tbody {
+              tr:last-child {
+                border-bottom: none !important;
+                margin-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+      // Table styling for both dark and light modes - HIGH SPECIFICITY
+      .gainer_looser_page .card-box .box-body .box_section .table-responsive table {
+        background-color: var(--card_box_bg) !important;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid var(--header-border);
+        
+        thead {
+          background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%) !important;
+          
+          th {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%) !important;
+            color: white !important;
+            border: none !important;
+            padding: 1rem !important;
+            font-weight: 600 !important;
+            text-align: center !important;
+            border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
+            
+            &:last-child {
+              border-right: none !important;
+            }
+          }
+        }
+        
+        tbody {
+          margin-bottom: 0;
+          padding-bottom: 0;
+          
+          tr {
+            background-color: var(--card_box_bg) !important;
+            border-bottom: 1px solid var(--header-border) !important;
+            transition: all 0.2s ease;
+            margin-bottom: 0;
+            
+            &:hover {
+              background-color: var(--box-hover) !important;
+              transform: translateY(-1px);
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+            
+            &:last-child {
+              border-bottom: none !important;
+              margin-bottom: 0 !important;
+              padding-bottom: 0 !important;
+            }
+            
+            td {
+              color: var(--text-color-primary) !important;
+              background-color: transparent !important;
+              border: none !important;
+              padding: 1rem !important;
+              text-align: center !important;
+              vertical-align: middle !important;
+              
+              // Symbol name styling
+              &:first-child {
+                font-weight: 600 !important;
+                color: var(--color-primary) !important;
+              }
+              
+              // Price and change styling
+              &.text-success {
+                color: var(--color-success) !important;
+                font-weight: 600 !important;
+              }
+              
+              &.text-danger {
+                color: var(--color-danger) !important;
+                font-weight: 600 !important;
+              }
+            }
+          }
+        }
+      }
+      
+      // Gainer section specific styling
+      .gainer_section {
+        .box-title {
+          color: var(--color-success);
+        }
+        
+        .table-responsive {
+          border-left: 3px solid var(--color-success);
+        }
+      }
+      
+      // Loser section specific styling
+      .looser_section {
+        .box-title {
+          color: var(--color-danger);
+        }
+        
+        .table-responsive {
+          border-left: 3px solid var(--color-danger);
+        }
+      }
+      
+      // Dark mode specific table adjustments - HIGH SPECIFICITY
+      .dark-theme .gainer_looser_page .card-box .box-body .box_section .table-responsive table {
+        thead th {
+          background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%) !important;
+          color: white !important;
+          border-right-color: rgba(255, 255, 255, 0.2) !important;
+        }
+        
+        tbody tr {
+          &:hover {
+            background-color: var(--box-hover-dark) !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+          }
+          
+          td {
+            color: var(--text-color-primary) !important;
+            
+            &:first-child {
+              color: var(--color-primary) !important;
+            }
+            
+            &.text-success {
+              color: var(--color-success-dark) !important;
+            }
+            
+            &.text-danger {
+              color: var(--color-danger-dark) !important;
+            }
+          }
+        }
+      }
+      
+      // Dark mode section styling
+      .dark-theme .gainer_looser_page .gainer_section {
+        .box-title {
+          color: var(--color-success-dark) !important;
+        }
+        
+        .table-responsive {
+          border-left-color: var(--color-success-dark) !important;
+        }
+      }
+      
+      .dark-theme .gainer_looser_page .looser_section {
+        .box-title {
+          color: var(--color-danger-dark) !important;
+        }
+        
+        .table-responsive {
+          border-left-color: var(--color-danger-dark) !important;
+        }
+      }
+    }
+  }
+
+  .full_tabs {
+    padding: 10px !important;
+    .gainer_looser_tabs {
+      margin-bottom: 30px;
+      h3 {
+        font-size: 1.5rem;
+      }
+      .tab_data {
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+        @include media_1024{
+          flex-wrap: wrap;
+        }
+        @include media_968{
+          gap: 25px;
+        }
+
+        @include media_768{
+          gap: 25px;
+          justify-content: normal;
+        }
+
+        .tabs {
+          min-height: 160px;
+          border: 1px solid var(--box-border);
+          border-radius: 10px;
+          width: 15%;
+          box-shadow: none;
+          display: flex;
+
+          @include media_1365{
+            width: 17%;
+          }    
+            
+          @include media_968{
+            width: 20%;
+          }
+
+          @include media_768{
+            width: 30%;
+          }
+
+          @include media_650{
+            width: 47%;
+          }
+
+          @include media_567{
+            width: 45%;
+          }
+
+          @include media_375{
+            width: 100%;
+          }
+
+
+
+          .box-body {
+            padding: 10px;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            flex: 1 1 auto;
+
+
+            &.up-2 {
+              background: rgb(56, 118, 29);
+            }
+
+            &.up-1-5 {
+              background: rgb(133, 162, 34);
+            }
+
+            &.up-0-5 {
+              background: rgb(171, 185, 36);
+            }
+            &.up-0 {
+              background: rgb(209, 207, 38);
+            }
+            &.down-0-5 {
+              background: rgb(238, 182, 32);
+            }
+            &.down-1-5 {
+              background: rgb(229, 136, 25);
+            }
+            &.down-2-0 {
+              background: rgb(221, 91, 15);
+            }
+            &.down-2-5 {
+              background: rgb(204, 10, 0);
+            }
+
+            .tabs_inner {
+              background-color: rgba(0, 0, 0, 0.2);
+              border-radius: 10px;
+              padding: 10px;
+             
+            }
+            .tabs_outer {
+              margin-top: 20px;
+              align-items: center;
+              justify-content: space-between;
+              display: flex;
+            }
+          }
+        }
+      }
+    }
+  }
+
+    .pl-0{
+      padding-left: none;
+    }
+    
+    // Mobile responsive improvements
+    @include media_767 {
+      padding: 15px 15px 0 15px;
+      padding-bottom: 0;
+      
+      .card-box {
+        padding: 15px 15px 0 15px;
+        padding-bottom: 0;
+      }
+    }
+    
+    @include media_425 {
+      padding: 10px 10px 0 10px;
+      padding-bottom: 0;
+      
+      .card-box {
+        padding: 10px 10px 0 10px;
+        padding-bottom: 0;
+      }
+    }
+}
+
+// Remove bottom spacing from content section
+.content.gainer_looser_page {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  
+  & > * {
+    margin-bottom: 0;
+  }
+}
+
+// FORCE TABLE STYLES - HIGHEST SPECIFICITY OVERRIDE
+.gainer_looser_page .card-box .box-body .box_section .table-responsive .table.table-hover {
+  background-color: var(--card_box_bg) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  border: 1px solid var(--header-border) !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  
+  thead {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%) !important;
+    
+    tr {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%) !important;
+    }
+    
+    th {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%) !important;
+      color: white !important;
+      border: none !important;
+      padding: 1rem !important;
+      font-weight: 600 !important;
+      text-align: center !important;
+      border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
+      
+      &:last-child {
+        border-right: none !important;
+      }
+    }
+  }
+  
+  tbody {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    
+    tr {
+      background-color: var(--card_box_bg) !important;
+      border-bottom: 1px solid var(--header-border) !important;
+      transition: all 0.2s ease !important;
+      margin-bottom: 0 !important;
+      
+      &:hover {
+        background-color: var(--box-hover) !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+      }
+      
+      &:last-child {
+        border-bottom: none !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+      }
+      
+      td {
+        color: var(--text-color-primary) !important;
+        background-color: transparent !important;
+        border: none !important;
+        padding: 1rem !important;
+        text-align: center !important;
+        vertical-align: middle !important;
+        
+        &:first-child {
+          color: var(--color-primary) !important;
+          font-weight: 600 !important;
+        }
+        
+        &.text-success {
+          color: var(--color-success) !important;
+          font-weight: 600 !important;
+        }
+        
+        &.text-danger {
+          color: var(--color-danger) !important;
+          font-weight: 600 !important;
+        }
+      }
+    }
+  }
+}
+
+// Dark mode override
+.dark-theme .gainer_looser_page .card-box .box-body .box_section .table-responsive .table.table-hover {
+  tbody tr {
+    &:hover {
+      background-color: var(--box-hover-dark) !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+    }
+    
+    td {
+      color: var(--text-color-primary) !important;
+      
+      &:first-child {
+        color: var(--color-primary) !important;
+      }
+      
+      &.text-success {
+        color: var(--color-success-dark) !important;
+      }
+      
+      &.text-danger {
+        color: var(--color-danger-dark) !important;
+      }
+    }
+  }
+}
+
+// ADDITIONAL OVERRIDE - FORCE ALL TABLE STYLES
+.gainer_looser_page table.table {
+  background-color: var(--card_box_bg) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  border: 1px solid var(--header-border) !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  
+  thead {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%) !important;
+    
+    th {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%) !important;
+      color: white !important;
+      border: none !important;
+      padding: 1rem !important;
+      font-weight: 600 !important;
+      text-align: center !important;
+      border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
+      
+      &:last-child {
+        border-right: none !important;
+      }
+    }
+  }
+  
+  tbody {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    
+    tr {
+      background-color: var(--card_box_bg) !important;
+      border-bottom: 1px solid var(--header-border) !important;
+      transition: all 0.2s ease !important;
+      margin-bottom: 0 !important;
+      
+      &:hover {
+        background-color: var(--box-hover) !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+      }
+      
+      &:last-child {
+        border-bottom: none !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+      }
+      
+      td {
+        color: var(--text-color-primary) !important;
+        background-color: transparent !important;
+        border: none !important;
+        padding: 1rem !important;
+        text-align: center !important;
+        vertical-align: middle !important;
+        
+        &:first-child {
+          color: var(--color-primary) !important;
+          font-weight: 600 !important;
+        }
+        
+        &.text-success {
+          color: var(--color-success) !important;
+          font-weight: 600 !important;
+        }
+        
+        &.text-danger {
+          color: var(--color-danger) !important;
+          font-weight: 600 !important;
+        }
+      }
+    }
+  }
+}
+
+// Dark mode for additional override
+.dark-theme .gainer_looser_page table.table {
+  tbody tr {
+    &:hover {
+      background-color: var(--box-hover-dark) !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+    }
+    
+    td {
+      color: var(--text-color-primary) !important;
+      
+      &:first-child {
+        color: var(--color-primary) !important;
+      }
+      
+      &.text-success {
+        color: var(--color-success-dark) !important;
+      }
+      
+      &.text-danger {
+        color: var(--color-danger-dark) !important;
+      }
+    }
+  }
+}
+
+.data-new-row{
+  display: flex;
+  gap: 20px;
+  .col-data-50{
+    width: 50%;
+    padding: 20px;
+    background: #E8FAFD;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    
+    @include media_990 {
+      width: 100%;
+      padding: 10px;
+    }
+
+  }
+
+   @include media_990 {
+    flex-direction: column;
+    gap: 0px;
+   }
+}
+
+// Subscription blocked styles with multiple blur layers
+.gainer_looser_page.subscription-blocked {
+  position: relative;
+  overflow: hidden;
+  
+  .gainer-looser-content-wrapper {
+    position: relative;
+    
+    &.content-blurred {
+      filter: blur(25px) !important;
+      -webkit-filter: blur(25px) !important;
+      pointer-events: none !important;
+      user-select: none !important;
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      opacity: 0.3 !important;
+    }
+  }
+  
+  // Multiple blur overlay layers for maximum protection
+  .blur-overlay-layer-1,
+  .blur-overlay-layer-2,
+  .blur-overlay-layer-3 {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 9996 !important;
+    pointer-events: none !important;
+  }
+  
+  .blur-overlay-layer-1 {
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    z-index: 9995 !important;
+  }
+  
+  .blur-overlay-layer-2 {
+    filter: blur(15px) !important;
+    -webkit-filter: blur(15px) !important;
+    z-index: 9994 !important;
+  }
+  
+  .blur-overlay-layer-3 {
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    z-index: 9993 !important;
+  }
+  
+  // Prevent interaction with content
+  * {
+    pointer-events: none !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+  }
+  
+  // Exception for dialog - no blur, higher z-index
+  // Dialog should be outside the blurred content
+  .subscription-upgrade-dialog,
+  .subscription-upgrade-dialog * {
+    pointer-events: auto !important;
+    user-select: auto !important;
+    -webkit-user-select: auto !important;
+    -moz-user-select: auto !important;
+    -ms-user-select: auto !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
+// Global styles to ensure dialog is never blurred (outside subscription-blocked scope)
+.MuiDialog-root,
+.MuiDialog-root *,
+.MuiDialog-container,
+.MuiDialog-container *,
+.MuiDialog-paper,
+.MuiDialog-paper * {
+  filter: none !important;
+  -webkit-filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.MuiBackdrop-root {
+  backdrop-filter: blur(0px) !important;
+  -webkit-backdrop-filter: blur(0px) !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+// Additional protection with high specificity
+body .gainer_looser_page.subscription-blocked .gainer-looser-content-wrapper.content-blurred {
+  filter: blur(25px) !important;
+  -webkit-filter: blur(25px) !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  opacity: 0.3 !important;
+  transform: scale(0.98) !important;
+}
+
+// Force blur on all child elements (except dialog)
+body .gainer_looser_page.subscription-blocked .gainer-looser-content-wrapper.content-blurred *:not(.MuiDialog-root):not(.MuiDialog-root *):not(.subscription-upgrade-dialog):not(.subscription-upgrade-dialog *) {
+  filter: blur(5px) !important;
+  -webkit-filter: blur(5px) !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+// Canvas overlay for additional visual protection (below dialog)
+.gainer_looser_page.subscription-blocked::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  z-index: 9990;
+  pointer-events: none;
+}
+
+.gainer_looser_page.subscription-blocked::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 9989;
+  pointer-events: none;
+}
+
+}
+
+
+
+

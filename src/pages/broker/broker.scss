@@ -1,0 +1,619 @@
+@use "../../styles/scss/abstract/mixins" as *;
+
+// Broker page styling
+
+// Broker Page Main Container
+.broker_page {
+  background: #f3f5f7;
+  // min-height: 100vh;
+  padding: 25px;
+
+   @include media_1024 {
+    padding: 20px 10px;
+   }
+
+  // Main Content Area
+  .card-box {
+    background: #e8fafd;
+    border-radius: 10px;
+    padding: 15px 15px;
+    border: 1px solid var(--border-color);
+
+    @include media_768 {
+      padding: 15px;
+      margin-bottom: 50px;
+    }
+
+    // Compact Header Section
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding-bottom: 20px;
+      /* border-bottom: 3px solid #E1E7EF; */
+      background: #e8fafd;
+      padding: 10px 15px; 
+      border-radius: 14px;
+      border: 2px solid #28b4ca;
+
+      @include media_650 {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+      }
+
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        .header-icon {
+          background: #e8fafd;
+          border-radius: 8px;
+          padding: 7px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #28b4ca;
+
+          .icon {
+            font-size: 18px;
+            color: #28b4ca;
+          }
+        }
+
+        .header-text {
+          .page-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-color-primary);
+            margin: 0 0 5px 0;
+            line-height: 20px;
+          }
+
+          .page-subtitle {
+            font-size: 12px;
+            color: #a9a9a9;
+            margin: 0;
+            font-weight: 400;
+          }
+        }
+      }
+
+      .header-stats {
+        display: flex;
+        gap: 15px;
+
+        // @include media_768 {
+        //   width: 100%;
+        //   justify-content: space-between;
+        // }
+
+        .stat-item {
+         display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 10px;
+        background: #fff;
+        border-radius: 100px;
+        border: 1px solid #28b4ca;
+        min-width: 100px;
+
+          .stat-icon {
+            font-size: 14px;
+            color: #28b4ca;
+          }
+
+          .stat-number {
+            font-size: 14px;
+            color: #28b4ca;
+            font-weight: 600;
+          }
+
+          .stat-label {
+            font-size: 14px;
+            color: #28b4ca;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    // Tabs Styling
+    .broker-tabs {
+      .nav-tabs {
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: 25px;
+
+        .nav-link {
+          border: none;
+          background: transparent;
+          color: var(--text-color-secondary);
+          font-weight: 500;
+          padding: 15px 25px;
+          border-radius: 8px 8px 0 0;
+          position: relative;
+
+          &:hover,
+          &.active {
+            color: var(--text-color-primary);
+            background: var(--new-v3);
+          }
+
+          &.active {
+            border-bottom: 2px solid var(--border-color);
+          }
+        }
+      }
+
+      .tab-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+
+        .tab-icon {
+          font-size: 16px;
+          color: var(--text-color-primary);
+        }
+
+        // .tab-count {
+        //   background: var(--new-v3);
+        //   color: var(--text-color-primary);
+        //   padding: 4px 8px;
+        //   border-radius: 8px;
+        //   font-size: 12px;
+        //   font-weight: 500;
+        //   margin-left: 8px;
+        //   border: 1px solid var(--border-color);
+        // }
+      }
+    }
+
+    // Broker Grid
+    .broker-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 10px 0;
+
+      @include media_768 {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 15px;
+      }
+
+      @include media_480 {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      // Broker Card
+      .broker-card {
+        background: var(--card_box_bg);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 10px 15px;
+        position: relative;
+        overflow: hidden;
+
+        &.active-broker {
+          border-left: 2px solid var(--border-color);
+        }
+
+        // Card Header
+        .card-header {
+          display: flex;
+          align-items: flex-start;
+          gap: 15px;
+          margin-bottom: 15px;
+
+          .broker-logo {
+            flex-shrink: 0;
+
+            .logo-image {
+              width: 40px;
+              height: 40px;
+              border-radius: 6px;
+              object-fit: contain;
+              border: 1px solid #28b4ca;
+              padding: 6px;
+              background: #e8fafd;
+            }
+          }
+
+          .broker-info {
+            flex: 1;
+
+            .broker-name {
+              font-size: 16px;
+              font-weight: 600;
+              color: var(--text-color-primary);
+              margin: 0 0 8px 0;
+              line-height: 1.3;
+              margin-bottom: 3px;
+            }
+
+            .broker-badge,
+            .status-indicator {
+              display: inline-flex;
+              align-items: center;
+              gap: 6px;
+              padding: 6px 12px;
+              border-radius: 20px;
+              font-size: 12px;
+              font-weight: 500;
+              border: 1px solid;
+
+              .badge-icon,
+              .status-icon {
+                font-size: 14px;
+              }
+            }
+
+            .broker-badge {
+                background: #e9fafd;
+                color:#0b6e7c;
+                border-color: #36b3c9;
+            }
+
+            .status-indicator {
+              &.active {
+                background: var(--new-v3);
+                color: var(--text-color-primary);
+                border-color: var(--border-color);
+              }
+
+              &.inactive {
+                background: var(--new-v3);
+                color: var(--text-color-primary);
+                border-color: var(--border-color);
+              }
+            }
+          }
+        }
+
+        // Card Body
+        .card-body {
+          margin-bottom: 20px;
+
+          .broker-details {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 15px;
+
+            .detail-item {
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              padding: 10px;
+              // background: #e8fafd;
+              border-radius: 8px;
+              border: 1px solid #28b4ca;
+
+              .detail-icon {
+                font-size: 16px;
+                color: var(--text-color-primary);
+                flex-shrink: 0;
+              }
+
+              .detail-label {
+                font-size: 13px;
+                color: var(--text-color-secondary);
+                font-weight: 500;
+                min-width: 80px;
+              }
+
+              .detail-value {
+                font-size: 13px;
+                color: var(--text-color-primary);
+                font-weight: 600;
+                margin-left: auto;
+
+                &.status-available,
+                &.status-active {
+                  color: var(--text-color-primary);
+                }
+
+                &.status-inactive {
+                  color: var(--text-color-secondary);
+                }
+              }
+            }
+          }
+
+          .market-support {
+            display: flex;
+            // align-items: center;
+            gap: 10px;
+            padding: 10px;
+            // background: #e8fafd;
+            border-radius: 8px;
+            border: 1px solid #28b4ca;
+            flex-direction: column;
+
+            .market-support-label {
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              min-width: 120px;
+
+              .label-icon {
+                font-size: 16px;
+                color: var(--text-color-primary);
+                flex-shrink: 0;
+              }
+
+              .label-text {
+                font-size: 13px;
+                color: var(--text-color-secondary);
+                font-weight: 500;
+              }
+            }
+
+            .exchange-buttons {
+              display: flex;
+              gap: 8px;
+              flex-wrap: wrap;
+              // margin-left: auto;
+
+              .exchange-btn {
+                padding: 4px 11px;
+                border-radius: 16px;
+                font-size: 12px;
+                font-weight: 600;
+                border: 1px solid;
+                display: inline-block;
+                text-align: center;
+                min-width: 40px;
+
+                &.nse {
+                  background: transparent;
+                  color: #000;
+                  border-color: #000;
+                }
+
+                &.bse {
+                  background: transparent;
+                  color: #007bff;
+                  border-color: #007bff;
+                }
+
+                &.mcx {
+                  background: transparent;
+                  color: #28a745;
+                  border-color: #28a745;
+                }
+              }
+            }
+          }
+        }
+
+        // Card Footer
+        .card-footer {
+          .btn {
+            width: 100%;
+           padding: 11px 11px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: none;
+
+            .btn-icon {
+              font-size: 16px;
+            }
+
+            &.btn-primary {
+              color: white;
+              background: #28B4CA;
+              border-radius: 100px;
+              border: 1px solid #28B4CA;
+              &:hover{
+                background: #fff;
+              box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+              transform: translateY(-1px);
+              color: #28B4CA;
+              }
+            }
+
+            &.btn-danger {
+              background: #dc3545;
+              color: white;
+              border: 1px solid #dc3545;
+
+              &:hover {
+                background: #c82333;
+                border-color: #bd2130;
+              }
+            }
+          }
+        }
+      }
+
+      // Skeleton Loading
+      .broker-card-skeleton {
+        background: var(--card_box_bg);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 20px;
+        height: 280px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      // Loading State
+      .loading-state {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 20px;
+        text-align: center;
+
+        .loading-spinner {
+          width: 40px;
+          height: 40px;
+          border: 3px solid var(--border-color);
+          border-radius: 50%;
+          margin-bottom: 20px;
+        }
+
+        p {
+          color: var(--text-color-secondary);
+          font-size: 16px;
+          margin: 0;
+        }
+      }
+
+      // Empty State
+      .empty-state {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 20px;
+        text-align: center;
+        background: var(--new-v3);
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+
+        .empty-icon {
+          margin-bottom: 20px;
+
+          .icon {
+            font-size: 48px;
+            color: var(--text-color-primary);
+            opacity: 0.6;
+          }
+        }
+
+        h3 {
+          color: var(--text-color-primary);
+          font-size: 24px;
+          font-weight: 600;
+          margin: 0 0 15px 0;
+        }
+
+        p {
+          color: var(--text-color-secondary);
+          font-size: 16px;
+          line-height: 1.6;
+          margin: 0;
+          max-width: 400px;
+        }
+      }
+    }
+  }
+
+  // Responsive Design
+  @include media_768 {
+    .card-box .page-header .header-text .page-title {
+      font-size: 22px;
+    }
+
+    .card-box .page-header .header-stats .stat-item {
+      min-width: 90px;
+      padding: 8px 12px;
+
+      .stat-number {
+        font-size: 16px;
+      }
+      .stat-label {
+        font-size: 10px;
+      }
+    }
+  }
+
+  @include media_480 {
+    .card-box {
+      // padding: 15px;
+      // margin: 10px;
+
+      .page-header {
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+
+        .header-left {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+
+          .header-text .page-title {
+            font-size: 20px;
+          }
+        }
+      }
+
+      .broker-tabs .nav-tabs .nav-link {
+        padding: 12px 15px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.broker_page {
+  .nav-tabs {
+    background: #fff;
+    padding: 5px;
+    border-radius: 10px;
+    gap: 20px;
+
+     @include media_650 {
+      flex-direction: column;
+        .nav-item{
+          width: 100%;
+          .nav-link{
+            width: 100%;
+          }
+        }
+     }
+
+
+    .nav-link {
+      background: var(--box-hover);
+      color: var(--text-color-secondary);
+      border-radius: 10px;
+          transition: all 0.2s ease;
+
+          
+      &:hover{
+        background: var(--border-color);
+      }
+
+      .tab-count {
+        padding: 4px 8px;
+        border-radius: 7px;
+        font-size: 12px;
+        font-weight: 500;
+        // margin-left: 8px;
+        background: #f3f3f3;
+      }
+      &.active {
+        background: linear-gradient(
+          180deg,
+          rgba(40, 180, 202, 0.15) 0%,
+          rgba(40, 180, 202, 0.08) 100%
+        );
+        color: #0b6e7c;
+        font-weight: 600;
+        box-shadow: inset 0 0 0 1px rgba(40, 180, 202, 0.35);
+        border: none;
+
+        .tab-count {
+          background: #e8fafd;
+          color: #28b4ca;
+          border: 1px solid #28b4ca;
+        }
+      }
+    }
+  }
+}
