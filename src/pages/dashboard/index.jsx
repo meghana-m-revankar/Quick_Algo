@@ -36,15 +36,15 @@ const Dashboard = () => {
     marketStatus,
     activeMarketTab,
     isLoading,
-    showNewsPopup,
+   /*  showNewsPopup, */
     selectedNews,
     mcxSymbols,
     isMcxLoading,
     mcxSymbolValue,
 
     handleRightMarketTab,
-    openNewsPopup,
-    closeNewsPopup,
+    /* openNewsPopup,
+    closeNewsPopup, */
 
     setActiveBrokerTab,
     setActiveMarket,
@@ -473,7 +473,7 @@ const Dashboard = () => {
               )}
             </div>
 
-            <div className="learning-center-section">
+         {/*    <div className="learning-center-section">
               <div className="section-header">
                 <h3>🎓 Learning Center</h3>
                 <button
@@ -578,9 +578,9 @@ const Dashboard = () => {
                   )}
                 </div>
               </div>
-            </div>
+            </div> */}
 
-            <div className="news-section-full">
+          {/*   <div className="news-section-full">
               <div className="section-header">
                 <h3>📰 Latest Market News</h3>
                 <button
@@ -638,9 +638,9 @@ const Dashboard = () => {
                   </div>
                 )}
               </div>
-            </div>
+            </div> */}
 
-            {showNewsPopup && (
+          {/*   {showNewsPopup && (
               <div className="news-popup-overlay" onClick={closeNewsPopup}>
                 <div
                   className="news-popup"
@@ -708,7 +708,7 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-            )}
+            )} */}
           </div>
         </div>
 

@@ -4,19 +4,18 @@ import Storage from "#services/storage";
 
 // Async action to handle user login
 export const asyncGetBrokerMaster = async () => {
-  // Make the API call and directly return the response without error handling
-  const token = Storage.decryptData(localStorage.getItem("tokenID"));
-  const customerID = Storage.decryptData(localStorage.getItem("customerID"));
+  const token = localStorage.getItem("tokenID");
+  const customerID = localStorage.getItem("customerID");
+
   const response = await axios.get(API_ENDPOINTS?.GetBokerMaster, {
     headers: {
-      authorization: `${customerID}:${token}`, // Add the Authorization header
+      authorization: `${customerID}:${token}`,
       "Content-Type": "application/json",
     },
   });
-  // Return the response data directly (success or failure response)
+
   return response;
 };
-
 // Async action to handle user login
 export const asyncGetCustBrokerConfigByID = async (sendData) => {
   // Make the API call and directly return the response without error handling
@@ -77,20 +76,27 @@ export const asyncPostChoiceBrokerLogin = async ({ formData }) => {
 
 // / Async action to Submit OTP
 export const asyncVerifyOTP = async (sendData) => {
-  // Make the API call and directly return the response without error handling
   const token = Storage.decryptData(localStorage.getItem("tokenID"));
   const customerID = Storage.decryptData(localStorage.getItem("customerID"));
-  const response = await axios.get(API_ENDPOINTS?.VerifyKotakUserOtp, {
-    params: sendData,
-    headers: {
-      authorization: `${customerID}:${token}`, // Add the Authorization header
-      "Content-Type": "application/json",
-    },
-  });
-  // Return the response data directly (success or failure response)
+
+  const response = await axios.get(
+    "https://clientapi.algoresponcetrading.in/api/CustVerifyOTP",
+    {
+      params: {
+        CustomerID: sendData.CustomerID,
+        otp: sendData.otp || sendData.OTP,
+        ipAddress: sendData.ipAddress,
+        Device: sendData.Device,
+      },
+      headers: {
+        authorization: `${customerID}:${token}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
   return response;
 };
-
 
 
 // Async action to save broker totp

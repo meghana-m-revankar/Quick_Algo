@@ -133,11 +133,11 @@ const Header = () => {
           path: "/trade-option",
           icon: <IconRegistry name="swap-horiz" />,
         },
-        {
+    /*     {
           name: "Chart",
           path: "/chart",
           icon: <IconRegistry name="timeline" />,
-        },
+        }, */
         {
           name: "Gainer/Loser",
           path: "/gainer-looser",
@@ -145,40 +145,46 @@ const Header = () => {
         },
       ],
     },
-    {
+      {
+      name: "Algo-Setup",
+      icon: <IconRegistry name="add" />,
+      path: "/algo",
+      single: true,
+    }, 
+  /*   {
       name: "Learning",
       icon: <IconRegistry name="school" />,
       items: [
-        {
+       {
           name: "Learning Center",
           path: "/learning-center",
           icon: <IconRegistry name="school" />,
-        },
-        // {
-        //   name: "Create Strategy",
-        //   path: "/create-strategy",
-        //   icon: <IconRegistry name="add" />,
-        // },
+        }, 
+         {
+           name: "Create Strategy",
+           path: "/create-strategy",
+          icon: <IconRegistry name="add" />,
+         },
 
         {
           name: "Strategy Description",
           path: "/strategy",
           icon: <IconRegistry name="psychology" />,
         },
-        // {
-        //   name: "API Docs",
-        //   path: "/api-docs",
-        //   icon: <IconRegistry name="api" />,
-        // },
+         {
+           name: "API Docs",
+           path: "/api-docs",
+           icon: <IconRegistry name="api" />,
+         },
       ],
-    },
-    {
+    }, */
+/*     {
       name: "Strategy-Algo",
       icon: <IconRegistry name="add" />,
       path: "/strategy-list",
       single: true,
-    },
-    {
+    }, */
+  /*   {
       name: "Back Test",
       icon: <IconRegistry name="auto-graph" />,
       path: "/backtest",
@@ -189,7 +195,7 @@ const Header = () => {
       icon: <IconRegistry name="account-balance" />,
       path: "/broker",
       single: true,
-    },
+    }, */
     // {
     //   name: "Orders",
     //   icon: <IconRegistry name="assignment" />,
@@ -202,18 +208,19 @@ const Header = () => {
     //   path: "/logs/active",
     //   single: true,
     // },
-    {
+/*     {
       name: "News",
       icon: <IconRegistry name="article" />,
       path: "/news",
       single: true,
-    },
-    {
+    }, */
+/*     {
       name: "FAQ",
       icon: <IconRegistry name="help" />,
       path: "/faq",
       single: true,
-    },
+    }, */
+  
   ];
 
   // Button New Data
@@ -342,7 +349,7 @@ const Header = () => {
           )}
 
           {/* Plans */}
-          <div className="action-item">
+          {/* <div className="action-item">
             <NavLink
               to="/plans"
               className="action-button plans-button"
@@ -350,7 +357,7 @@ const Header = () => {
             >
               <IconRegistry name="dollar-sign" />
             </NavLink>
-          </div>
+          </div> */}
 
           {/* Notification */}
           {/* <div className="action-item">
@@ -429,12 +436,12 @@ const Header = () => {
                 <Dropdown.Item>
                   <NavLink to="/profile">Profile</NavLink>
                 </Dropdown.Item>
-                <Dropdown.Item>
+               {/*  <Dropdown.Item>
                   <NavLink to="/payment-history">Payment History</NavLink>
-                </Dropdown.Item>
-                <Dropdown.Item>
+                </Dropdown.Item> */}
+               {/*  <Dropdown.Item>
                   <NavLink to="/kyc-list">KYC List</NavLink>
-                </Dropdown.Item>
+                </Dropdown.Item> */}
                 <Dropdown.Divider />
                 <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
               </Dropdown.Menu>

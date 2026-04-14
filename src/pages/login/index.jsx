@@ -68,7 +68,7 @@ const Login = () => {
             <h2 className="signin-title">Sign in</h2>
 
             {/* Login Mode Toggle */}
-            <div className="login-mode-toggle">
+            <div className="login-mode-toggle d-none">
               <button
                 type="button"
                 className={`toggle-btn ${
@@ -154,7 +154,7 @@ const Login = () => {
                   </div>
                 </>
               ) : (
-                <div className="form-group">
+                <div className="form-group d-none">
                   <label htmlFor="MobileNo" className="form-label">
                     Mobile Number
                   </label>

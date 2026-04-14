@@ -33,12 +33,11 @@ export const GlobalServices = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const signalRContext = useSignalR();
   const addedSymbolsRef = useRef(new Set()); // Track already added symbols to avoid duplicates
-
   // Get authentication state from Redux
   const { isUserLoggedIn } = useSelector((state) => state.userDetails);
   const { userDetail } = useSelector((state) => state.userDetails);
   const { companyDetails } = useSelector((state) => state.companyDetails);
-
+  const customerId = userDetail?.customerID;
   // Helper function to check if user is authenticated
   const isAuthenticated = () => {
     return isUserLoggedIn && checkLogin();
@@ -164,7 +163,8 @@ export const GlobalServices = ({ children }) => {
       try {
         let activeSubResponse;
         if (typeof paymentService.getActiveSubscription === 'function') {
-          activeSubResponse = await paymentService.getActiveSubscription();
+          //activeSubResponse = await paymentService.getActiveSubscription();
+          activeSubResponse = await paymentService.getActiveSubscription(customerId);
         } else {
           // Fallback: Direct API call
           const response = await chartAxios.get("/api/payment/active-subscription");

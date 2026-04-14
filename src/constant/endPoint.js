@@ -5,7 +5,7 @@ export const API_ENDPOINTS = {
     CustVerifyOTP : 'CustVerifyOTP',
     CustSaveSignup : 'CustSaveSignup',
     CustForgotpassword : 'CustForgotpassword',
-    GetCustomerKycStatus : 'GetCustomerKycStatus',
+    GetCustomerKycStatus: 'GetCustomerKycStatus',
     GetHeaderSymbols : 'GetHeaderSymbols',
     getTopGainer : 'getTopGainer',
     getTopLooser : 'getTopLooser',

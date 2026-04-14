@@ -229,8 +229,8 @@ class AuthService {
   async invalidateNodeToken(customerId) {
     try {
       // Get current token before clearing
-      const currentToken = Storage.decryptData(localStorage.getItem("nodeToken"));
-      
+      //const currentToken = Storage.decryptData(localStorage.getItem("nodeToken"));
+      const currentToken = localStorage.getItem("tokenID");
       const apiUrl = process.env.REACT_APP_ENV === 'production' 
         ? process.env.REACT_APP_PRODUCTION_NODE_API_URL 
         : process.env.REACT_APP_NODE_API_URL;

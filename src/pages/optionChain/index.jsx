@@ -597,7 +597,7 @@ const OptionChain = () => {
                       }
                     >
                       {" "}
-                      <FaChartLine size={20} />
+                    {/* <FaChartLine size={20} /> */}
                     </span>
                   </Tooltip>
                 </div>
@@ -668,17 +668,19 @@ const OptionChain = () => {
                     })()}
                   </span>
                 </div>
-                {chartIdentifier?.symbolCategoryName == "MCX" ||
-                chartIdentifier?.symbolCategoryName == "BSE" ? null : (
-                  <div
-                    className={`greeks-toggle-btn ${
-                      showGreeks ? "active" : ""
-                    }`}
-                    onClick={() => setShowGreeks(!showGreeks)}
-                  >
-                    <span>Greeks</span>
-                  </div>
-                )}
+         {/*
+  chartIdentifier?.symbolCategoryName == "MCX" ||
+  chartIdentifier?.symbolCategoryName == "BSE" ? null : (
+    <div
+      className={`greeks-toggle-btn ${
+        showGreeks ? "active" : ""
+      }`}
+      onClick={() => setShowGreeks(!showGreeks)}
+    >
+      <span>Greeks</span>
+    </div>
+  )
+*/}
               </div>
             </div>
             {/* Mobile View Controls */}
@@ -1049,7 +1051,7 @@ const OptionChain = () => {
                               >
                                 {symbolValueCE[val?.identifier]?.product}
                                 <div className="action-buttons ce-action-buttons">
-                                  <Tooltip title={TextData.chartTooltip} arrow>
+                                {/*   <Tooltip title={TextData.chartTooltip} arrow>
                                     <span
                                       className="chart-icon"
                                       onClick={() =>
@@ -1060,8 +1062,8 @@ const OptionChain = () => {
                                     >
                                       <FaChartLine size={14} />
                                     </span>
-                                  </Tooltip>
-                                  {/* <Tooltip title="Buy" arrow>
+                                  </Tooltip> */}
+                                   <Tooltip title="Buy" arrow>
                                     <span
                                       className="buy-button"
                                       onClick={() => {
@@ -1108,7 +1110,7 @@ const OptionChain = () => {
                                     >
                                       S
                                     </span>
-                                  </Tooltip> */}
+                                  </Tooltip> 
                                 </div>
                               </td>
                               <td
@@ -1221,7 +1223,7 @@ const OptionChain = () => {
                                   >
                                     {symbolValuePE[pe?.identifier]?.product}{" "}
                                     <div className="action-buttons pe-action-buttons">
-                                      <Tooltip
+                                  {/*     <Tooltip
                                         title={TextData.chartTooltip}
                                         arrow
                                       >
@@ -1235,8 +1237,8 @@ const OptionChain = () => {
                                         >
                                           <FaChartLine size={14} />
                                         </span>
-                                      </Tooltip>
-                                      {/* <Tooltip title="Buy" arrow>
+                                      </Tooltip> */}
+                                      <Tooltip title="Buy" arrow>
                                         <span
                                           className="buy-button"
                                           onClick={() => {
@@ -1285,7 +1287,7 @@ const OptionChain = () => {
                                         >
                                           S
                                         </span>
-                                      </Tooltip> */}
+                                      </Tooltip> 
                                     </div>
                                   </td>
                                   {/* PE Greek Data Columns */}

@@ -4,16 +4,16 @@ import Storage from "#services/storage";
 
 // Async action to handle user login
 export const asyncGetHeaderSymbols = async () => {
-  // Make the API call and directly return the response without error handling
-  const token = Storage.decryptData(localStorage.getItem("tokenID"));
-  const customerID = Storage.decryptData(localStorage.getItem("customerID"));
+  const token = localStorage.getItem("tokenID");
+  const customerID = localStorage.getItem("customerID");
+
   const response = await axios.get(API_ENDPOINTS?.GetHeaderSymbols, {
     headers: {
-      authorization: `${customerID}:${token}`, // Add the Authorization header
+      authorization: `${customerID}:${token}`,
       "Content-Type": "application/json",
     },
   });
-  // Return the response data directly (success or failure response)
+
   return response;
 };
 
@@ -81,17 +81,16 @@ export const asyncGetSymbolExpiryList = async ({ sendData }) => {
 
 // Async action to option symbol expiry list
 export const asyncGetCustBrokerConfig = async ({ sendData }) => {
-  // Make the API call and directly return the response without error handling
-  const token = Storage.decryptData(localStorage.getItem("tokenID"));
-  const customerID = Storage.decryptData(localStorage.getItem("customerID"));
+  const token = localStorage.getItem("tokenID");
+  const customerID = localStorage.getItem("customerID");
+
   const response = await axios.get(API_ENDPOINTS?.GetCustBrokerConfig, {
-    // params:sendData,
     headers: {
-      authorization: `${customerID}:${token}`, // Add the Authorization header
+      authorization: `${customerID}:${token}`,
       "Content-Type": "application/json",
     },
   });
-  // Return the response data directly (success or failure response)
+
   return response;
 };
 

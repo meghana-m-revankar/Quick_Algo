@@ -1,7 +1,11 @@
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { asyncUserLogin, asyncCustLoginWithMobile } from "#redux/auth/action/authAction";
+import {
+  asyncUserLogin,
+  // ❌ TEMPORARILY COMMENTED (Mobile login not needed now)
+  // asyncCustLoginWithMobile,
+} from "#redux/auth/action/authAction";
 import Joi from "joi";
 import { errorMsg } from "#helpers";
 import { validateFormData, handleCatchErrors } from "#utils/validation";
@@ -11,7 +15,7 @@ const UserLogin = () => {
   const navigate = useNavigate();
 
   const [loading, setIsLoading] = useState(false);
-  const [loginMode, setLoginMode] = useState("mobile");
+  const [loginMode, setLoginMode] = useState("username");
 
   const { companyDetails } = useSelector((state) => state.companyDetails);
 
@@ -27,7 +31,7 @@ const UserLogin = () => {
 
   useEffect(() => {
     if (companyDetails?.companyID) {
-      setFormData(prev => ({
+      setFormData((prev) => ({
         ...prev,
         CompanyID: companyDetails.companyID,
       }));
@@ -40,18 +44,15 @@ const UserLogin = () => {
   const handleChange = useCallback((e) => {
     const { name, value } = e.target;
     let processedValue = value;
-    
-    // For MobileNo field: only allow numbers and limit to 10 digits
+
     if (name === "MobileNo") {
-      // Remove all non-numeric characters
       processedValue = value.replace(/\D/g, "");
-      // Limit to 10 digits
       if (processedValue.length > 10) {
         processedValue = processedValue.slice(0, 10);
       }
     }
-    
-    setFormData((prev) => ({ 
+
+    setFormData((prev) => ({
       ...prev,
       [name]: processedValue,
     }));
@@ -65,7 +66,7 @@ const UserLogin = () => {
     e.preventDefault();
 
     let validationSchema;
-    
+
     if (loginMode === "username") {
       validationSchema = Joi.object({
         Username: Joi.string().required().messages({
@@ -78,22 +79,23 @@ const UserLogin = () => {
         }),
       }).unknown(true);
     } else {
-      validationSchema = Joi.object({
-        MobileNo: Joi.string()
-          .pattern(/^[0-9]{10}$/)
-          .required()
-          .messages({
-            "any.required": "Mobile number is required.",
-            "string.empty": "Mobile number is required.",
-            "string.pattern.base": "Mobile number must be exactly 10 digits.",
-          }),
-      }).unknown(true);
+      // ❌ TEMPORARILY COMMENTED (Mobile login not needed now)
+      // validationSchema = Joi.object({
+      //   MobileNo: Joi.string()
+      //     .pattern(/^[0-9]{10}$/)
+      //     .required()
+      //     .messages({
+      //       "any.required": "Mobile number is required.",
+      //       "string.empty": "Mobile number is required.",
+      //       "string.pattern.base": "Mobile number must be exactly 10 digits.",
+      //     }),
+      // }).unknown(true);
+
+      setIsLoading(false);
+      return;
     }
 
-    const validationResponse = await validateFormData(
-      formData,
-      validationSchema
-    );
+    const validationResponse = await validateFormData(formData, validationSchema);
 
     if (!validationResponse.status) {
       setFormErrors(validationResponse.errors);
@@ -101,28 +103,30 @@ const UserLogin = () => {
     }
 
     setIsLoading(true);
-    
+
     if (loginMode === "username") {
       const usernameLoginData = {
-        Username: formData?.Username,
+        UserName: formData?.Username,
         Password: formData?.Password,
         CompanyID: formData?.CompanyID,
         DeviceNo: formData?.DeviceNo,
-        ipAddress: formData?.ipAddress
+        IpAddress: formData?.ipAddress,
       };
-      
+
       asyncUserLogin({ formData: usernameLoginData })
         .then((result) => {
           if (result?.data?.message === "success") {
+            localStorage.setItem("UserName", usernameLoginData.UserName);
             navigate("/otp", {
               state: {
                 customerID: formData?.Username,
-                resCustomerID: result?.data?.result?.customerId,
+               resCustomerID: result?.data?.result?.customerID,
                 loginMode: "username",
                 loginFormData: usernameLoginData,
               },
             });
           } else {
+            console.log("FAILED:", result?.data);
             errorMsg(result?.data?.message);
           }
         })
@@ -133,34 +137,38 @@ const UserLogin = () => {
           setIsLoading(false);
         });
     } else {
-      const mobileLoginData = {
-        MobileNo: formData?.MobileNo,
-        DeviceNo: formData?.DeviceNo,
-        TypeodDevice: formData?.TypeodDevice,
-        ipAddress: formData?.ipAddress
-      };
-      
-      asyncCustLoginWithMobile({ formData: mobileLoginData })
-        .then((result) => {
-          if (result?.data?.message === "success") {
-            navigate("/otp", {
-              state: {
-                customerID: formData?.MobileNo,
-                resCustomerID: result?.data?.result?.customerId,
-                loginMode: "mobile",
-                loginFormData: mobileLoginData,
-              },
-            });
-          } else {
-            errorMsg(result?.data?.message);
-          }
-        })
-        .catch((loginError) => {
-          handleCatchErrors(loginError, navigate, setFormErrors, "/");
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
+      // ❌ TEMPORARILY COMMENTED (Mobile login not needed now)
+
+      // const mobileLoginData = {
+      //   MobileNo: formData?.MobileNo,
+      //   DeviceNo: formData?.DeviceNo,
+      //   TypeodDevice: formData?.TypeodDevice,
+      //   ipAddress: formData?.ipAddress,
+      // };
+
+      // asyncCustLoginWithMobile({ formData: mobileLoginData })
+      //   .then((result) => {
+      //     if (result?.data?.message === "success") {
+      //       navigate("/otp", {
+      //         state: {
+      //           customerID: formData?.MobileNo,
+      //           resCustomerID: result?.data?.result?.CustomerID,
+      //           loginMode: "mobile",
+      //           loginFormData: mobileLoginData,
+      //         },
+      //       });
+      //     } else {
+      //       errorMsg(result?.data?.message);
+      //     }
+      //   })
+      //   .catch((loginError) => {
+      //     handleCatchErrors(loginError, navigate, setFormErrors, "/");
+      //   })
+      //   .finally(() => {
+      //     setIsLoading(false);
+      //   });
+
+      setIsLoading(false);
     }
   };
 

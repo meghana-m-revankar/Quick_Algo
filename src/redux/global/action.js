@@ -4,22 +4,23 @@ import Storage from "#services/storage";
 
 // Async action to handle get strategy list
 export const asyncGetCustomerUnReadNotification = async () => {
-  // Make the API call and directly return the response without error handling
-  const token = Storage.decryptData(localStorage.getItem("tokenID"));
-  const customerID = Storage.decryptData(localStorage.getItem("customerID"));
+  const customerID = localStorage.getItem("customerID");
+  const token = localStorage.getItem("tokenID");
+
   const response = await axios.get(
-    API_ENDPOINTS?.GetUnreadNotificationByCustomerID,
+    API_ENDPOINTS.GetUnreadNotificationByCustomerID,
     {
+      params: {
+        customerId: customerID,
+      },
       headers: {
-        authorization: `${customerID}:${token}`, // Add the Authorization header
-        "Content-Type": "application/json",
+        authorization: `${customerID}:${token}`,
       },
     }
   );
-  // Return the response data directly (success or failure response)
+
   return response;
 };
-
 // Async action to handle get strategy list
 export const GetNotificationByCustomerID = async () => {
   // Make the API call and directly return the response without error handling

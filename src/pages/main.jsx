@@ -34,16 +34,15 @@ const Main = () => {
 
   const { isUserLoggedIn } = useSelector((state) => state.userDetails);
 
-  useEffect(() => {
-    if (
-      !isUserLoggedIn ||
-      !localStorage.getItem("customerID") ||
-      !localStorage.getItem("tokenID")
-    ) {
-      dispatch(userLogout());
-    }
-  }, []);
-
+useEffect(() => {
+  if (
+    !isUserLoggedIn ||
+    !localStorage.getItem("customerID") ||  // ← was "CustomerId", now "customerID"
+    !localStorage.getItem("tokenID")
+  ) {
+    dispatch(userLogout());
+  }
+}, []);
   // Clear page-specific caches on route change
   useEffect(() => {
     // Clear chart caches when navigating away from chart page

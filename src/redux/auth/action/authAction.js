@@ -1,6 +1,5 @@
 import axios from "#axios";
 import { API_ENDPOINTS } from "#constant/endPoint";
-
 // Async action to handle user login
 export const asyncUserLogin = async ({formData}) => {
   try {
@@ -13,7 +12,7 @@ export const asyncUserLogin = async ({formData}) => {
     throw error;
   }
 };
-
+console.log("axios baseURL:", axios.defaults.baseURL);
 // Async action to handle mobile login with OTP
 export const asyncCustLoginWithMobile = async ({formData}) => {
   try {
@@ -24,33 +23,29 @@ export const asyncCustLoginWithMobile = async ({formData}) => {
     throw error;
   }
 };
+export const asyncUserVerifyOtp = async (formData) => {
+  const url =
+    `${API_ENDPOINTS?.CustVerifyOTP}` +
+    `?CustomerID=${formData.CustomerID}` +
+    `&&otp=${formData.otp}` +
+    `&&ipAddress=${formData.ipAddress}` +
+    `&&Device=${formData.Device}`;
 
-
-// Async action to handle user login
-export const asyncUserVerifyOtp =  async (formData) => {
-  // Make the API call and directly return the response without error handling
-  const response = await axios.post(API_ENDPOINTS?.CustVerifyOTP, { ...formData });// -- stage
-  // const response = await axios.get(API_ENDPOINTS?.CustVerifyOTP, { params : formData });  
-  // Return the response data directly (success or failure response)
-  return response;
+  return axios.get(url);
 };
 
-
-// Async action to handle user login
-export const asyncGetCustomerKycStatus =  async ({formData,customerID,tokenID}) => {
- 
-  // Make the API call and directly return the response without error handling
-  const response = await axios.post(API_ENDPOINTS?.GetCustomerKycStatus, { ...formData }, {
-    headers: {
-      authorization: `${customerID}:${tokenID}`, // Add the Authorization header
-      "Content-Type": "application/json",
+export const asyncGetCustomerKycStatus = async ({ customerID, tokenID }) => {
+  const response = await axios.get("GetCustomerKycStatus", {
+    params: {
+      customerId: customerID,  // numeric 69561
     },
+    headers: {
+      Authorization: `${customerID}:${tokenID}`,
+      "Content-type": "application/json",
+    }
   });
-  // Return the response data directly (success or failure response)
   return response;
 };
-
-
 // Async action to handle user login
 export const asyncUserSignup =  async ({formData}) => {
   // Make the API call and directly return the response without error handling

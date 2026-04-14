@@ -99,7 +99,7 @@ const useAlgo = () => {
     IdentifierID: 0,
     Identifier: "",
     CustomerAlgoTradeID: 0,
-    CustomerID:Storage.decryptData(localStorage.getItem("customerID")),
+    CustomerID:localStorage.getItem("customerID"),
     TradeType0: 0,
     BrokerConfigID: "",
     StratergyID: "",
@@ -115,7 +115,7 @@ const useAlgo = () => {
     startTime: null,
     endTime: null,
     squareoffTime: null,
-    customerId:Storage.decryptData(localStorage.getItem("customerID")),
+    customerId:localStorage.getItem("customerID"),
     isActive: null,
     createddate: null,
     companyId: null,
@@ -141,7 +141,7 @@ const useAlgo = () => {
     PECE1: null,
     PECE0: null,
     IdentifierName: "",
-    CustomerId: Storage.decryptData(localStorage.getItem("customerID")),
+    CustomerID: localStorage.getItem("customerID"),
     ProductName: "",
     COAID: 0,
     CustomerBrokerID: 0,
@@ -159,7 +159,7 @@ const useAlgo = () => {
       {
         CallType: 0,
         CustomerAlgoTradeID: 0,
-        CustomerID: Storage.decryptData(localStorage.getItem("customerID")),
+        CustomerID: localStorage.getItem("customerID"),
         IdentifierID: 0,
         Identifier: "",
         ProductType: 2,
@@ -190,7 +190,7 @@ const useAlgo = () => {
     IdentifierID: 0,
     Identifier: "",
     CustomerAlgoTradeID: 0,
-    CustomerID: Storage.decryptData(localStorage.getItem("customerID")),
+    CustomerID: localStorage.getItem("customerID"),
     TradeType: 1,
     ProductType: 2,
     BrokerConfigID: 0,
@@ -428,9 +428,12 @@ const useAlgo = () => {
           IdentifierID: data?.customerOptionsAlgo?.identifierID,
           Identifier: data?.customerOptionsAlgo?.identifierName,
           IdentifierName: data?.customerOptionsAlgo?.identifierName,
-          customerId:Storage.decryptData(localStorage.getItem("customerID")),
-          CustomerId:Storage.decryptData(localStorage.getItem("customerID")),
-          CustomerID:Storage.decryptData(localStorage.getItem("customerID")),
+         // customerId:localStorage.getItem("customerID"),
+          //CustomerId:localStorage.getItem("customerID"),
+          //CustomerID:localStorage.getItem("customerID"),
+          customerId: localStorage.getItem("customerID"),
+CustomerId: localStorage.getItem("customerID"),
+CustomerID: localStorage.getItem("customerID"),
           BrokerConfigID: data?.customerOptionsAlgoChild[0]?.brokerConfigID,
           StratergyID: data?.customerOptionsAlgo?.statergyID,
           statergyID: data?.customerOptionsAlgo?.statergyID,
@@ -442,7 +445,8 @@ const useAlgo = () => {
               ...algoOptionData.customerOptionsAlgochild[0],
               IdentifierID: data?.customerOptionsAlgo?.identifierID,
               Identifier: data?.customerOptionsAlgo?.identifierName,
-              CustomerID:Storage.decryptData(localStorage.getItem("customerID")),
+              //CustomerID:localStorage.getItem("customerID"),
+              CustomerID: localStorage.getItem("customerID"),
               brokerConfigID: data?.customerOptionsAlgoChild[0]?.brokerConfigID,
               ProductType: data?.customerOptionsAlgoChild[0]?.productType,
               CallType: data?.customerOptionsAlgoChild[0]?.callType,
@@ -593,7 +597,7 @@ const useAlgo = () => {
             data?.customerOptionsAlgo?.customerBrokerID;
           formData.expiryDate = data?.customerOptionsAlgo?.expiryDate;
           formData.companyId = companyDetails?.companyID;
-          formData.customerId =Storage.decryptData(localStorage.getItem("customerID"));
+          formData.customerId =localStorage.getItem("customerID");
           formData.productName = symData?.product;
           formData.identifierID = data?.customerOptionsAlgo?.identifierID;
           formData.identifierName = data?.customerOptionsAlgo?.identifierName;
@@ -630,7 +634,7 @@ const useAlgo = () => {
           formData.customerBrokerID = data?.customerAlgoTradeId;
           formData.expiryDate = symData?.expiry;
           formData.companyId = companyDetails?.companyID;
-          formData.customerId =Storage.decryptData(localStorage.getItem("customerID"));
+          formData.customerId =localStorage.getItem("customerID") ;
           formData.productName = symData?.product;
           formData.identifierID = data?.identifierID;
           formData.identifierName = data?.identifier;
@@ -725,9 +729,9 @@ const useAlgo = () => {
                 IdentifierID: data?.identifierID,
                 Identifier: data?.identifierName,
                 IdentifierName: data?.identifierName,
-                customerId:Storage.decryptData(localStorage.getItem("customerID")),
-                CustomerId:Storage.decryptData(localStorage.getItem("customerID")),
-                CustomerID:Storage.decryptData(localStorage.getItem("customerID")),
+                customerId:localStorage.getItem("customerID"),
+                CustomerId:localStorage.getItem("customerID"),
+                CustomerID:  localStorage.getItem("customerID"),
                 BrokerConfigID: data?.brokerConfigID,
                 StratergyID: data?.statergyID,
                 statergyID: data?.statergyID,
@@ -739,7 +743,7 @@ const useAlgo = () => {
                     ...algoOptionData.customerOptionsAlgochild[0],
                     IdentifierID: data?.identifierID,
                     Identifier: data?.identifierName,
-                    CustomerID:Storage.decryptData(localStorage.getItem("customerID")),
+                    CustomerID:localStorage.getItem("customerID"),
                     brokerConfigID: data?.brokerConfigID,
                     ProductType: data?.productType,
                     CallType: data?.callType,
@@ -775,7 +779,7 @@ const useAlgo = () => {
               setAlgoNFData((prev) => ({
                 ...algoNFData,
                 CustomerAlgoTradeID: symData?.customerAlgoTradeID,
-                CustomerID:Storage.decryptData(localStorage.getItem("customerID")),
+                CustomerID:localStorage.getItem("customerID"),
                 IdentifierID: data?.identifierID,
                 Identifier: data?.identifierName,
                 ProductType: data?.productType,
@@ -1215,7 +1219,7 @@ const useAlgo = () => {
         setAlgoNFData({
           ...algoNFData,
           customerAlgoTradeID: data?.customerAlgoTradeID,
-          CustomerID:Storage.decryptData(localStorage.getItem("customerID")),
+          CustomerID:localStorage.getItem("customerID"),
           IdentifierID: data?.identifierID,
           Identifier: data?.identifier,
           TradeType: data?.tradeType,

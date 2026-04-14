@@ -38,7 +38,7 @@ const useStrategyList = () => {
       setError(null);
 
       // Get CustomerId from localStorage
-      const customerId = Storage.decryptData(localStorage.getItem("customerID"));
+      const customerId = localStorage.getItem("customerID");
       
       if (!customerId) {
         setError("Customer ID not found. Please login again.");

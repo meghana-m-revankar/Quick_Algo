@@ -26,56 +26,51 @@ const authSlice = createSlice({
       state.userDetail = data;
       state.error = null;
 
-  
-
-      
       // Store ASP.NET data (existing functionality)
-      localStorage.setItem("customerID", Storage.encryptData(customerId));
-      localStorage.setItem("UserName", Storage.encryptData(data?.userName));
-      localStorage.setItem("tokenID", Storage.encryptData(data?.tokenID));
-      localStorage.setItem("loginTime", Storage.encryptData(new Date().toISOString()));
-      
+      // localStorage.setItem("customerID", Storage.encryptData(customerId));
+      // localStorage.setItem("UserName", Storage.encryptData(data?.userName));
+      //localStorage.setItem("tokenID", Storage.encryptData(data?.tokenID));
+      //localStorage.setItem("loginTime", Storage.encryptData(new Date().toISOString()));
+      localStorage.setItem("customerID", customerId);
+      //localStorage.setItem("UserName", data?.UserName);
+      localStorage.setItem("tokenID", data?.tokenID);
+      localStorage.setItem("loginTime", new Date().toISOString());
+      localStorage.getItem("tokenID");
       // Initialize Node.js auth service
       AuthService.init();
-      
+
       // Note: ReactChart token creation is handled in otp.js after OTP verification
       // to avoid duplicate API calls and rate limiting issues
     },
     userLogout: (state) => {
-      // Get customer ID before clearing
-      const customerId = Storage.decryptData(localStorage.getItem("customerID"));
-      
-      // Clear ASP.NET data (existing functionality)
-      localStorage.removeItem("customerID");
-      // localStorage.removeItem("customerId");
-      localStorage.removeItem("userName");
-      localStorage.removeItem("tokenID");
-      localStorage.removeItem("loginTime");
-      localStorage.removeItem("riskHomeModal");
-      
-      // Clear broker setup data on logout
-      Storage.clearBrokerSetupData();
-      
-      // Invalidate Node.js token on backend and clear local data
-      if (customerId) {
-        AuthService.invalidateNodeToken(customerId);
-        AuthService.invalidateReactChartToken(customerId);
-      } else {
-        AuthService.clearNodeTokens();
-        AuthService.clearReactChartTokens();
-      }
-      AuthService.destroy();
-      
-      // Reset state
-      state.loading = false;
-      state.isUserLoggedIn = false;
-      state.token = null;
-      state.userDetail = null;
-      state.error = null;
-      
-      // Clear cookies
-      Cookies.remove("authToken");
-    },
+  // ✅ No decryption needed — value is plain
+  const customerId = localStorage.getItem("customerID");
+
+  localStorage.removeItem("customerID");
+  localStorage.removeItem("userName");
+  localStorage.removeItem("tokenID");
+  localStorage.removeItem("loginTime");
+  localStorage.removeItem("riskHomeModal");
+
+  Storage.clearBrokerSetupData();
+
+  if (customerId) {
+    AuthService.invalidateNodeToken(customerId);
+    AuthService.invalidateReactChartToken(customerId);
+  } else {
+    AuthService.clearNodeTokens();
+    AuthService.clearReactChartTokens();
+  }
+  AuthService.destroy();
+
+  state.loading = false;
+  state.isUserLoggedIn = false;
+  state.token = null;
+  state.userDetail = null;
+  state.error = null;
+
+  Cookies.remove("authToken");
+},
   },
 });
 
