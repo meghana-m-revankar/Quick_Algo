@@ -3,7 +3,7 @@
 // @use "./colors" as colors; 
 
 // Button 
-@mixin btn_info($bg-color,$text-color,$padding,$border-radius:100px,$border:none,$font-size:var(--font_18),$font-weight:600){
+@mixin btn_info($bg-color,$text-color,$padding,$border-radius:10px,$border:none,$font-size:var(--font_18),$font-weight:600){
   background: $bg-color;
   color: $text-color;
   padding: $padding;

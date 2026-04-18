@@ -89,7 +89,7 @@
 // Header Main Styles
 .header-deshboard-main {
   height: 70px;
-  background: var(--card_box_bg);
+  background: #ffffff;
   border-bottom: 1px solid var(--header-border);
   position: fixed;
   width: 100%;
@@ -263,16 +263,16 @@
             }
 
             &:hover {
-              color: #28b4ca;
+              color: #000000;
               // background: var(--box-hover);
-              border-bottom: 1px solid #28b4ca;
+              border-bottom: 1px solid #000000;
             }
 
             &.active {
-              color: #28b4ca !important;
+              color: #000000 !important;
               // background: var(--color-link-bg);
               font-weight: 600;
-              border-bottom: 1px solid #28b4ca;
+              border-bottom: 1px solid #000000;
             }
 
             .nav-icon {
@@ -309,6 +309,7 @@
 
           .nav-dropdown {
             position: relative;
+           
 
             &.active {
               .dropdown-arrow {
@@ -372,7 +373,7 @@
 
                   .item-icon {
                     font-size: 18px;
-                    color: #28b4ca;
+                    color: #000000;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -432,7 +433,7 @@
           justify-content: center;
           width: 40px;
           height: 40px;
-          background: #28b4ca;
+          background: #f8faff;
           border: 2px solid #e1e7ef;
           border-radius: 8px;
           color: #ffffff;
@@ -1496,8 +1497,9 @@
             position: relative;
 
             &:hover {
-              background: var(--dropdown-item-hover-bg);
+              background: #f8faff;
               color: var(--dropdown-item-hover-text);
+              
             }
 
             &:focus {
@@ -1540,7 +1542,7 @@
 
             // Read notification - light green background
             &.read {
-              background-color: #28b4ca !important; // Light green
+              background-color: #000000 !important; // Light green
               p {
                 color: #fff;
                 font-weight: 500;
@@ -1876,7 +1878,7 @@
             transition: var(--dropdown-transition);
 
             &:hover {
-              background: var(--dropdown-item-hover-bg);
+              background:#f8f9fa;
               color: var(--dropdown-item-hover-text);
             }
 
@@ -2223,7 +2225,7 @@
       left: -2px;
       right: -2px;
       bottom: -2px;
-      background: linear-gradient(45deg, var(--color-primary), transparent);
+      background: #ffffff;
       border-radius: var(--dropdown-border-radius);
       z-index: -1;
       opacity: 0.1;

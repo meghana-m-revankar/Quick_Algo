@@ -5,10 +5,11 @@
    ======================================== */
 .gainer_looser_page {
   width: 100%;
-  min-height: auto;
+  min-height: 100vh;
   padding: 25px;
   margin-bottom: 0;
   padding-bottom: 0;
+  background: #F0F5F5;
 
   @include media_990 {
     padding: 20px 10px;
@@ -665,7 +666,8 @@
   .col-data-50{
     width: 50%;
     padding: 20px;
-    background: #E8FAFD;
+    background: #ffffff;
+    border: 1px solid #e7edf7;
     border-radius: 10px;
     margin-bottom: 20px;
     

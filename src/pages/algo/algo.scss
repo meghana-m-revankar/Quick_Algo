@@ -4,6 +4,7 @@
    ALGO PAGE SPECIFIC STYLES
    ======================================== */
 .algo_page {
+  background: #F0F5F5;
   // Algo specific styles will go here
   
   ::-webkit-scrollbar {
@@ -13,8 +14,8 @@
   .tab-content{
     .position-relative{
       input{
-        // border: 1px solid #28B4CA;
-        border: 1px solid #28B4CA !important;
+        // border: 1px solid #2C6DEE;
+        border: 1px solid #2C6DEE !important;
         border-radius: 100px;
         background: #fff !important;
       }
@@ -25,13 +26,13 @@
   display: flex;
     gap: 5px;
     overflow-y: scroll;
-    border: 2px solid var(--box-border);
+    border: 1px solid var(--box-border);
     padding: 20px;
     background: var(--box_card);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     /* margin: 10px; */
     border-radius: 8px;
-    background: #e8fafd;
+    background: #f8faff;
 
     @include media_1536{
       padding: 15px;
@@ -90,11 +91,11 @@
 
 .heading-flex{
    .btn-success {
-       background-color: #28B4CA;
-    border-color: #28B4CA;
+       background-color: #159043;
+    border-color: #159043;
     font-size: 15px;
     font-weight: 500;
-    border-radius: 100px;
+    border-radius: 8px;
     padding: 10px 20px; 
 
      @include media_1536 {
@@ -127,16 +128,16 @@
 
   .tab_content #uncontrolled-tab-example .nav-item .nav-link {
         padding: 7px 17px;
-    border-radius: 100px;
+    border-radius: 8px;
     border: none;
  
     background-color: transparent;
     transition: background-color 0.3s ease, color 0.25s ease, box-shadow 0.3s ease;
     will-change: background-color, box-shadow;
     &.active{
-      // background: #28B4CA;
-          background: #28B4CA;
-    background-color: #28B4CA;
+      // background: #2C6DEE;
+          background: #159043;
+    background-color: #159043;
     color: #ffffff;
     }
   }
@@ -216,7 +217,7 @@
       }
 
       .toggle-switch.blue input:checked + .slider {
-        background-color: #28B4CA;
+        background-color: #2C6DEE;
       }
     }
 
@@ -261,14 +262,14 @@
 
           .no-button{
             svg {
-              fill: #28B4CA;
+              fill: #2C6DEE;
             }
           }
 
           svg {
             flex-shrink: 0;
             color: var(--add_more_btn_color);
-            stroke: #28B4CA;
+            stroke: #2C6DEE;
             
           }
         }
@@ -367,7 +368,7 @@
         }
 
         .toggle-switch.blue input:checked + .slider {
-          background-color: #28B4CA;
+          background-color: #2C6DEE;
         }
       }
     }
@@ -496,7 +497,7 @@
       }
 
       .peer:checked ~ .icon {
-        background: linear-gradient(180deg, rgba(40, 180, 202, 0.15) 0%, rgba(40, 180, 202, 0.08) 100%);
+        background: #f8faff;
     color: #0b6e7c;
     font-weight: 600;
     box-shadow: inset 0 0 0 1px rgba(40, 180, 202, 0.35);
@@ -565,7 +566,7 @@
             border-radius: 100px !important;
             border: none;
             &.active{
-              background: #28B4CA !important;
+              background: #2C6DEE !important;
               color: #ffffff;
             }
           }
@@ -634,14 +635,14 @@
           svg {
             flex-shrink: 0;
             color: var(--add_more_btn_color);
-            stroke: #28B4CA;
-            color: #28B4CA;
+            stroke: #2C6DEE;
+            color: #2C6DEE;
             
           }
 
               .no-list-icon-flex{
             svg {
-              fill: #28B4CA;
+              fill: #2C6DEE;
             }
           }
 
@@ -670,7 +671,7 @@
     }
 
     .card-box-left-list {
-      width: 30%;
+      width: 40%;
       max-height: 83vh;
       padding: 14px 15px !important;
 
@@ -733,7 +734,7 @@
     min-height: 50px; // Minimum height for better touch targets
     transition: border-color 0.3s ease;
     border-radius: 100px !important;
-    border: 1px solid #28B4CA !important;
+    border: 1px solid #2C6DEE !important;
     background: #fff !important;
 
       @include media_1536 {

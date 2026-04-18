@@ -55,7 +55,8 @@ const useAlgo = () => {
   const [listButtonLoading, setListButtonLoading] = useState(false);
 
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [subscriptionDialogMessage, setSubscriptionDialogMessage] = useState("");
+  const [subscriptionDialogMessage, setSubscriptionDialogMessage] =
+    useState("");
 
   const handleClickDialogOpen = (data, tab) => {
     setSubscriptionDialogMessage(SETUP_ALGO_UPGRADE_MSG);
@@ -99,7 +100,7 @@ const useAlgo = () => {
     IdentifierID: 0,
     Identifier: "",
     CustomerAlgoTradeID: 0,
-    CustomerID:localStorage.getItem("customerID"),
+    CustomerID: Number(localStorage.getItem("customerID")),
     TradeType0: 0,
     BrokerConfigID: "",
     StratergyID: "",
@@ -115,7 +116,7 @@ const useAlgo = () => {
     startTime: null,
     endTime: null,
     squareoffTime: null,
-    customerId:localStorage.getItem("customerID"),
+    customerId: Number(localStorage.getItem("customerID")),
     isActive: null,
     createddate: null,
     companyId: null,
@@ -141,7 +142,7 @@ const useAlgo = () => {
     PECE1: null,
     PECE0: null,
     IdentifierName: "",
-    CustomerID: localStorage.getItem("customerID"),
+    CustomerId: Storage.decryptData(localStorage.getItem("customerID")),
     ProductName: "",
     COAID: 0,
     CustomerBrokerID: 0,
@@ -159,7 +160,7 @@ const useAlgo = () => {
       {
         CallType: 0,
         CustomerAlgoTradeID: 0,
-        CustomerID: localStorage.getItem("customerID"),
+        customerId: Number(localStorage.getItem("customerID")),
         IdentifierID: 0,
         Identifier: "",
         ProductType: 2,
@@ -190,7 +191,7 @@ const useAlgo = () => {
     IdentifierID: 0,
     Identifier: "",
     CustomerAlgoTradeID: 0,
-    CustomerID: localStorage.getItem("customerID"),
+    customerId: Number(localStorage.getItem("customerID")),
     TradeType: 1,
     ProductType: 2,
     BrokerConfigID: 0,
@@ -210,83 +211,76 @@ const useAlgo = () => {
   };
   const [algoNFData, setAlgoNFData] = useState(algoNFObj);
 
-
   const [symbolData, setSymbolData] = useState("");
   const [changeAlgoState, setChangeAlgoState] = useState("");
   const [expiryList, setExpiryList] = useState([]);
   const [brokerList, setBrokerList] = useState([]);
   const [lotSize, setLotSize] = useState("");
   const [freezeQty, setFreezeQty] = useState(null);
-   
 
   const getSymbolIdentifierList = useCallback(
     async (symbolCategory) => {
       try {
-  
         const result = await asyncGetSymbolIdentifierByCustomerID({
           searchtxt: "",
         });
         const allData = result?.data?.result;
 
-        
         const updatedList = await Promise.all(
           symbolCategory.map(async (val) => {
             // val
             if (val?.symbolCategoryName === "NSE") {
               const symbolCategoryData = allData?.filter(
-                (v) => v?.symbolCategoryName === "NSE"
+                (v) => v?.symbolCategoryName === "NSE",
               );
               const watchListNSEData = await fetchWatchList(
                 { categoryID: 1, identifier: "" },
-                navigate
+                navigate,
               );
 
-          
-              if(watchListNSEData && watchListNSEData.length > 0){
-                  const finalSymbolCategoryData = symbolCategoryData.map(
-                    (mainItem) => {
-                      const match = watchListNSEData.find(
-                        (item) => item.symbolIdentifierId == mainItem.identifierID
-                      );
-                    
-                      return {
-                        ...mainItem,
-                        watchListID: match ? match.watchListID : 0,
-                        symbolIdentifierId: match
-                          ? match.symbolIdentifierId
-                          : mainItem.identifierID,
-                        addedinAlgoTrade: match ? match.addedinAlgoTrade : false,
-                        customerAlgoTradeID: match ? match.customerAlgoTradeID : 0,
-                      };
-                    }
-                  );
-                  return { ...val, symbol: finalSymbolCategoryData  
-                } 
+              if (watchListNSEData && watchListNSEData.length > 0) {
+                const finalSymbolCategoryData = symbolCategoryData.map(
+                  (mainItem) => {
+                    const match = watchListNSEData.find(
+                      (item) =>
+                        item.symbolIdentifierId == mainItem.identifierID,
+                    );
+
+                    return {
+                      ...mainItem,
+                      watchListID: match ? match.watchListID : 0,
+                      symbolIdentifierId: match
+                        ? match.symbolIdentifierId
+                        : mainItem.identifierID,
+                      addedinAlgoTrade: match ? match.addedinAlgoTrade : false,
+                      customerAlgoTradeID: match
+                        ? match.customerAlgoTradeID
+                        : 0,
+                    };
+                  },
+                );
+                return { ...val, symbol: finalSymbolCategoryData };
               }
             }
 
             if (val?.symbolCategoryName === "FUTURES") {
               const symbolCategoryData = allData?.filter(
-                (v) => v?.symbolCategoryName === "FUTURES"
+                (v) => v?.symbolCategoryName === "FUTURES",
               );
 
-        
               let watchListFUTData = await fetchWatchList(
                 { categoryID: 2, identifier: "" },
-                navigate
+                navigate,
               );
-              if(!watchListFUTData){
-                watchListFUTData = []
+              if (!watchListFUTData) {
+                watchListFUTData = [];
               }
-           
 
               const finalSymbolCategoryData = symbolCategoryData.map(
                 (mainItem) => {
                   const match = watchListFUTData.find(
-                    (item) => item.symbolIdentifierId == mainItem.identifierID
+                    (item) => item.symbolIdentifierId == mainItem.identifierID,
                   );
-
-                 
 
                   return {
                     ...mainItem,
@@ -297,89 +291,95 @@ const useAlgo = () => {
                     addedinAlgoTrade: match ? match.addedinAlgoTrade : false,
                     customerAlgoTradeID: match ? match.customerAlgoTradeID : 0,
                   };
-                }
+                },
               );
-          
+
               return { ...val, symbol: finalSymbolCategoryData };
             }
 
             if (val?.symbolCategoryName === "OPTIONS") {
               let data = await fetchWatchList(
                 { categoryID: 5, identifier: "" },
-                navigate
+                navigate,
               );
-              if(!data){
-                data = []
+              if (!data) {
+                data = [];
               }
 
               return { ...val, symbol: data };
             }
             if (val?.symbolCategoryName === "MCX") {
               const symbolCategoryData = allData?.filter(
-                (v) => v?.symbolCategoryName === "MCX"
+                (v) => v?.symbolCategoryName === "MCX",
               );
               let watchListFUTData = await fetchWatchList(
                 { categoryID: 3, identifier: "" },
-                navigate
+                navigate,
               );
 
-              if(!watchListFUTData){
-                watchListFUTData = []
+              if (!watchListFUTData) {
+                watchListFUTData = [];
               }
 
-              const finalSymbolCategoryData = symbolCategoryData?.map(
-                (mainItem) => {
-                  if (!mainItem) return null;
-                  
-                  const match = watchListFUTData?.find(
-                    (item) => item?.symbolIdentifierId == mainItem?.identifierID
-                  );
+              const finalSymbolCategoryData =
+                symbolCategoryData
+                  ?.map((mainItem) => {
+                    if (!mainItem) return null;
 
-                  return {
-                    ...mainItem,
-                    watchListID: match?.watchListID || 0,
-                    symbolIdentifierId: match?.symbolIdentifierId || mainItem?.identifierID,
-                    addedinAlgoTrade: match?.addedinAlgoTrade || false,
-                    customerAlgoTradeID: match?.customerAlgoTradeID || 0,
-                  };
-                }
-              )?.filter(Boolean) || [];
+                    const match = watchListFUTData?.find(
+                      (item) =>
+                        item?.symbolIdentifierId == mainItem?.identifierID,
+                    );
+
+                    return {
+                      ...mainItem,
+                      watchListID: match?.watchListID || 0,
+                      symbolIdentifierId:
+                        match?.symbolIdentifierId || mainItem?.identifierID,
+                      addedinAlgoTrade: match?.addedinAlgoTrade || false,
+                      customerAlgoTradeID: match?.customerAlgoTradeID || 0,
+                    };
+                  })
+                  ?.filter(Boolean) || [];
               return { ...val, symbol: finalSymbolCategoryData };
             }
 
             if (val?.symbolCategoryName === "BSE") {
               const symbolCategoryData = allData?.filter(
-                (v) => v?.symbolCategoryName === "BSE"
+                (v) => v?.symbolCategoryName === "BSE",
               );
               let watchListFUTData = await fetchWatchList(
                 { categoryID: 12, identifier: "" },
-                navigate
+                navigate,
               );
-              if(!watchListFUTData){
-                watchListFUTData = []
+              if (!watchListFUTData) {
+                watchListFUTData = [];
               }
-              const finalSymbolCategoryData = symbolCategoryData?.map(
-                (mainItem) => {
-                  if (!mainItem) return null;
-                  
-                  const match = watchListFUTData?.find(
-                    (item) => item?.symbolIdentifierId == mainItem?.identifierID
-                  );
+              const finalSymbolCategoryData =
+                symbolCategoryData
+                  ?.map((mainItem) => {
+                    if (!mainItem) return null;
 
-                  return {
-                    ...mainItem,
-                    watchListID: match?.watchListID || 0,
-                    symbolIdentifierId: match?.symbolIdentifierId || mainItem?.identifierID,
-                    addedinAlgoTrade: match?.addedinAlgoTrade || false,
-                    customerAlgoTradeID: match?.customerAlgoTradeID || 0,
-                  };
-                }
-              )?.filter(Boolean) || [];
+                    const match = watchListFUTData?.find(
+                      (item) =>
+                        item?.symbolIdentifierId == mainItem?.identifierID,
+                    );
+
+                    return {
+                      ...mainItem,
+                      watchListID: match?.watchListID || 0,
+                      symbolIdentifierId:
+                        match?.symbolIdentifierId || mainItem?.identifierID,
+                      addedinAlgoTrade: match?.addedinAlgoTrade || false,
+                      customerAlgoTradeID: match?.customerAlgoTradeID || 0,
+                    };
+                  })
+                  ?.filter(Boolean) || [];
               return { ...val, symbol: finalSymbolCategoryData };
             }
 
             return val;
-          })
+          }),
         );
         // symbolCategory
         setCategoryLoading(false);
@@ -393,14 +393,14 @@ const useAlgo = () => {
         setListButtonLoading(false);
       }
     },
-    [navigate]
+    [navigate],
   );
 
   const getSymbolCategoryList = useCallback(async () => {
     try {
       const result = await asyncGetSymbolCategoryList();
       const allCategory = result?.data?.result;
- 
+
       if (allCategory?.length) {
         getSymbolIdentifierList(allCategory);
       }
@@ -428,12 +428,9 @@ const useAlgo = () => {
           IdentifierID: data?.customerOptionsAlgo?.identifierID,
           Identifier: data?.customerOptionsAlgo?.identifierName,
           IdentifierName: data?.customerOptionsAlgo?.identifierName,
-         // customerId:localStorage.getItem("customerID"),
-          //CustomerId:localStorage.getItem("customerID"),
-          //CustomerID:localStorage.getItem("customerID"),
-          customerId: localStorage.getItem("customerID"),
-CustomerId: localStorage.getItem("customerID"),
-CustomerID: localStorage.getItem("customerID"),
+          customerId: Number(localStorage.getItem("customerID")),
+          CustomerId: Number(localStorage.getItem("customerID")),
+          CustomerID: Number(localStorage.getItem("customerID")),
           BrokerConfigID: data?.customerOptionsAlgoChild[0]?.brokerConfigID,
           StratergyID: data?.customerOptionsAlgo?.statergyID,
           statergyID: data?.customerOptionsAlgo?.statergyID,
@@ -445,8 +442,7 @@ CustomerID: localStorage.getItem("customerID"),
               ...algoOptionData.customerOptionsAlgochild[0],
               IdentifierID: data?.customerOptionsAlgo?.identifierID,
               Identifier: data?.customerOptionsAlgo?.identifierName,
-              //CustomerID:localStorage.getItem("customerID"),
-              CustomerID: localStorage.getItem("customerID"),
+              CustomerID: Number(localStorage.getItem("customerID")),
               brokerConfigID: data?.customerOptionsAlgoChild[0]?.brokerConfigID,
               ProductType: data?.customerOptionsAlgoChild[0]?.productType,
               CallType: data?.customerOptionsAlgoChild[0]?.callType,
@@ -466,6 +462,8 @@ CustomerID: localStorage.getItem("customerID"),
               OverallCapitalProfit:
                 data?.customerOptionsAlgoChild[0]?.overallCapitalProfit,
               OptionsType: data?.customerOptionsAlgoChild[0]?.optionsType,
+              optionsType:
+    data?.customerOptionsAlgoChild?.[0]?.optionsType || 0,
             },
           ],
         });
@@ -521,12 +519,12 @@ CustomerID: localStorage.getItem("customerID"),
     async (symbolIdentifierId) => {
       const lotSize = await fetchSymbolLotSize(
         { identifierid: symbolIdentifierId },
-        navigate
+        navigate,
       );
       setLotSize(lotSize);
       return lotSize;
     },
-    [navigate]
+    [navigate],
   );
 
   const getSymbolExpiryList = useCallback(
@@ -535,14 +533,14 @@ CustomerID: localStorage.getItem("customerID"),
       expiryData?.reverse();
       setExpiryList(expiryData);
     },
-    [navigate]
+    [navigate],
   );
 
   const getBrokersList = useCallback(async () => {
     try {
       const result = await asyncGetCustBrokerConfig({ sendData: "" });
       const activeBroker = result?.data?.result?.filter(
-        (b) => b.status === true
+        (b) => b.status === true,
       );
       setBrokerList((prev) => {
         const isSame = JSON.stringify(prev) === JSON.stringify(activeBroker);
@@ -578,118 +576,120 @@ CustomerID: localStorage.getItem("customerID"),
         setListButtonLoading(false);
       }
     },
-    [getLotSize, getSymbolExpiryList, getBrokersList]
+    [getLotSize, getSymbolExpiryList, getBrokersList],
   );
 
-  const addAlgoIntoSystem = useCallback(
-    async (symData, algoType) => {
-      let formData = {};
+const addAlgoIntoSystem = useCallback(
+  async (symData, algoType) => {
+    let formData = {};
 
-      if (algoType == "options") {
-        await asyncGetCustomerOptionsAlgo({
-          COAID: symData?.customerAlgoTradeID,
-        }).then(async (result) => {
-          const data = result?.data?.result;
-                  
-         
-          formData.custAlgoTradeID = symData?.customerAlgoTradeID;
-          formData.customerBrokerID =
-            data?.customerOptionsAlgo?.customerBrokerID;
-          formData.expiryDate = data?.customerOptionsAlgo?.expiryDate;
-          formData.companyId = companyDetails?.companyID;
-          formData.customerId =localStorage.getItem("customerID");
-          formData.productName = symData?.product;
-          formData.identifierID = data?.customerOptionsAlgo?.identifierID;
-          formData.identifierName = data?.customerOptionsAlgo?.identifierName;
-          formData.brokerConfigID =
-            data?.customerOptionsAlgoChild[0]?.brokerConfigId;
-          formData.statergyID = data?.customerOptionsAlgo?.statergyID;
-          formData.productType = data?.customerOptionsAlgo?.productType;
-          formData.callType = data?.customerOptionsAlgoChild[0]?.callType;
-          formData.orderQuantity =
-            data?.customerOptionsAlgoChild[0]?.orderQuantity;
-          formData.algoType = data?.customerOptionsAlgoChild[0]?.algoType;
-          formData.stoploss = data?.customerOptionsAlgoChild[0]?.stoploss;
-          formData.takeprofit = data?.customerOptionsAlgoChild[0]?.takeprofit;
-          formData.specificLimitofDay =
-            data?.customerOptionsAlgoChild[0]?.specificLimitofDay;
-          formData.overallCapital =
-            data?.customerOptionsAlgoChild[0]?.overallCapital;
-          formData.trailingProfit =
-            data?.customerOptionsAlgoChild[0]?.trailingProfit;
-          formData.overallCapitalProfit =
-            data?.customerOptionsAlgoChild[0]?.overallCapitalProfit;
-          formData.optionsType = data?.customerOptionsAlgoChild[0]?.optionsType;
-          formData.algoCategory = algoType;
+    if (algoType == "options") {
+      await asyncGetCustomerOptionsAlgo({
+        COAID: symData?.customerAlgoTradeID,
+      }).then(async (result) => {
+        const data = result?.data?.result;
 
-          await asyncAddAlgoData({ formData });
-        });
-      } else {
-        await asyncGetCustomerAlgoTradeByID({
-          CustAlgoTradeID: symData?.customerAlgoTradeID,
-        }).then(async (result) => {
-          const data = result?.data?.result;
-         
-          formData.custAlgoTradeID = data?.customerAlgoTradeId;
-          formData.customerBrokerID = data?.customerAlgoTradeId;
-          formData.expiryDate = symData?.expiry;
-          formData.companyId = companyDetails?.companyID;
-          formData.customerId =localStorage.getItem("customerID") ;
-          formData.productName = symData?.product;
-          formData.identifierID = data?.identifierID;
-          formData.identifierName = data?.identifier;
-          formData.brokerConfigID = data?.brokerConfigId;
-          formData.statergyID = data?.stratergyId;
-          formData.productType = String(data?.productType);
-          formData.callType = null;
-          formData.orderQuantity = data?.orderQuantity;
-          formData.algoType = data?.algoType;
-          formData.stoploss = data?.stoploss;
-          formData.takeprofit = data?.takeprofit;
-          formData.specificLimitofDay = data?.specificLimitofDay;
-          formData.overallCapital = data?.overallCapital;
-          formData.trailingProfit = data?.trailingProfit;
-          formData.overallCapitalProfit = data?.overallCapitalProfit;
-          formData.optionsType = null;
-          formData.algoCategory = algoType;
+        formData.custAlgoTradeID = symData?.customerAlgoTradeID;
+        formData.customerBrokerID =
+          data?.customerOptionsAlgo?.customerBrokerID;
+        formData.expiryDate = data?.customerOptionsAlgo?.expiryDate;
+        formData.companyId = companyDetails?.companyID;
+        formData.customerId = Number(localStorage.getItem("customerID"));
+        formData.productName = symData?.product;
+        formData.identifierID = data?.customerOptionsAlgo?.identifierID;
+        formData.identifierName = data?.customerOptionsAlgo?.identifierName;
+        formData.brokerConfigID =
+          data?.customerOptionsAlgoChild[0]?.brokerConfigId;
+        formData.statergyID = data?.customerOptionsAlgo?.statergyID;
+        formData.productType = data?.customerOptionsAlgo?.productType;
+        formData.callType = data?.customerOptionsAlgoChild[0]?.callType;
+        formData.orderQuantity =
+          data?.customerOptionsAlgoChild[0]?.orderQuantity;
+        formData.algoType = data?.customerOptionsAlgoChild[0]?.algoType;
+        formData.stoploss = data?.customerOptionsAlgoChild[0]?.stoploss;
+        formData.takeprofit = data?.customerOptionsAlgoChild[0]?.takeprofit;
+        formData.specificLimitofDay =
+          data?.customerOptionsAlgoChild[0]?.specificLimitofDay;
+        formData.overallCapital =
+          data?.customerOptionsAlgoChild[0]?.overallCapital;
+        formData.trailingProfit =
+          data?.customerOptionsAlgoChild[0]?.trailingProfit;
+        formData.overallCapitalProfit =
+          data?.customerOptionsAlgoChild[0]?.overallCapitalProfit;
+        formData.optionsType =
+          data?.customerOptionsAlgoChild[0]?.optionsType;
+        formData.algoCategory = algoType;
 
-          await asyncAddAlgoData({ formData });
-        });
-      }
+        // ✅ FIX HERE
+        await asyncAddAlgoData({ payload: formData });
+      });
+    } else {
+      await asyncGetCustomerAlgoTradeByID({
+        CustAlgoTradeID: symData?.customerAlgoTradeID,
+      }).then(async (result) => {
+        const data = result?.data?.result;
 
-      let data = {};
-      if (algoType == "options") {
-        data = {
-          COAID: symData?.customerAlgoTradeID,
-          IsActive: false,
-        };
-        await asyncPostCustomerOptionsAlgoStatus({
-          data,
-        }).then(async (result) => {
-          setAlgoType("");
-          setChangeAlgoState("");
-          getSymbolCategoryList();
-        });
-      } else {
-        data = {
-          CustomerAlgoTradeID: symData?.customerAlgoTradeID,
-          status: false,
-        };
+        formData.custAlgoTradeID = data?.customerAlgoTradeId;
+        formData.customerBrokerID = data?.customerAlgoTradeId;
+        formData.expiryDate = symData?.expiry;
+        formData.companyId = companyDetails?.companyID;
+        formData.customerId = Number(localStorage.getItem("customerID"));
+        formData.productName = symData?.product;
+        formData.identifierID = data?.identifierID;
+        formData.identifierName = data?.identifier;
+        formData.brokerConfigID = data?.brokerConfigId;
+        formData.statergyID = data?.stratergyId;
+        formData.productType = String(data?.productType);
+        formData.callType = null;
+        formData.orderQuantity = data?.orderQuantity;
+        formData.algoType = data?.algoType;
+        formData.stoploss = data?.stoploss;
+        formData.takeprofit = data?.takeprofit;
+        formData.specificLimitofDay = data?.specificLimitofDay;
+        formData.overallCapital = data?.overallCapital;
+        formData.trailingProfit = data?.trailingProfit;
+        formData.overallCapitalProfit =
+          data?.overallCapitalProfit;
+        formData.optionsType = null;
+        formData.algoCategory = algoType;
 
-        await asyncPostCustomerAlgoTradeStatus({
-          data,
-        }).then(async (result) => {
-          setAlgoType("");
-          setChangeAlgoState("");
-          getSymbolCategoryList();
-        });
-      }
-    },
-    [navigate]
-  );
+        // ✅ FIX HERE
+        await asyncAddAlgoData({ payload: formData });
+      });
+    }
 
-  const getAlgoIntoSystem = useCallback(  
+    let data = {};
+    if (algoType == "options") {
+      data = {
+        COAID: symData?.customerAlgoTradeID,
+        IsActive: false,
+      };
+      await asyncPostCustomerOptionsAlgoStatus({
+        data,
+      }).then(async () => {
+        setAlgoType("");
+        setChangeAlgoState("");
+        getSymbolCategoryList();
+      });
+    } else {
+      data = {
+        CustomerAlgoTradeID: symData?.customerAlgoTradeID,
+        status: false,
+      };
 
+      await asyncPostCustomerAlgoTradeStatus({
+        data,
+      }).then(async () => {
+        setAlgoType("");
+        setChangeAlgoState("");
+        getSymbolCategoryList();
+      });
+    }
+  },
+  [navigate]
+);
+
+  const getAlgoIntoSystem = useCallback(
     async (symData, algoType) => {
       const lotSize = await getLotSize(symData?.symbolIdentifierId);
       setFreezeQty(symData?.freezeQty ?? null);
@@ -729,9 +729,9 @@ CustomerID: localStorage.getItem("customerID"),
                 IdentifierID: data?.identifierID,
                 Identifier: data?.identifierName,
                 IdentifierName: data?.identifierName,
-                customerId:localStorage.getItem("customerID"),
-                CustomerId:localStorage.getItem("customerID"),
-                CustomerID:  localStorage.getItem("customerID"),
+                customerId: Number(localStorage.getItem("customerID")),
+                CustomerId: Number(localStorage.getItem("customerID")),
+                CustomerID: Number(localStorage.getItem("customerID")),
                 BrokerConfigID: data?.brokerConfigID,
                 StratergyID: data?.statergyID,
                 statergyID: data?.statergyID,
@@ -743,7 +743,9 @@ CustomerID: localStorage.getItem("customerID"),
                     ...algoOptionData.customerOptionsAlgochild[0],
                     IdentifierID: data?.identifierID,
                     Identifier: data?.identifierName,
-                    CustomerID:localStorage.getItem("customerID"),
+                    CustomerID: Storage.decryptData(
+                      localStorage.getItem("customerID"),
+                    ),
                     brokerConfigID: data?.brokerConfigID,
                     ProductType: data?.productType,
                     CallType: data?.callType,
@@ -774,12 +776,13 @@ CustomerID: localStorage.getItem("customerID"),
 
             if (result?.data?.data) {
               const data = result?.data?.data;
-          
 
               setAlgoNFData((prev) => ({
                 ...algoNFData,
                 CustomerAlgoTradeID: symData?.customerAlgoTradeID,
-                CustomerID:localStorage.getItem("customerID"),
+                CustomerID: Storage.decryptData(
+                  localStorage.getItem("customerID"),
+                ),
                 IdentifierID: data?.identifierID,
                 Identifier: data?.identifierName,
                 ProductType: data?.productType,
@@ -835,7 +838,7 @@ CustomerID: localStorage.getItem("customerID"),
           setDataLoading(false);
         });
     },
-    [navigate]
+    [navigate],
   );
 
   const handleOptionChange = useCallback((e) => {
@@ -856,11 +859,10 @@ CustomerID: localStorage.getItem("customerID"),
       "TrailingProfit",
     ];
 
-    if (name == "expiryDate" || name == "ExpiryDate") {
+    if (name === "expiryDate") {
       setAlgoOptionData((prev) => ({
         ...prev,
         expiryDate: value,
-        ExpiryDate: value, // Ensures both keys are set
       }));
       return;
     }
@@ -954,7 +956,7 @@ CustomerID: localStorage.getItem("customerID"),
 
   const memoizedSymbolCategoryList = useMemo(
     () => symbolCategoryList,
-    [symbolCategoryList]
+    [symbolCategoryList],
   );
 
   const handleOptionSubmit = async (e) => {
@@ -1055,13 +1057,13 @@ CustomerID: localStorage.getItem("customerID"),
             "number.min": "Trade limit must be greater then 0",
             "number.base": "Trade limit is required",
           }),
-        }).unknown(true)
+        }).unknown(true),
       ),
     }).unknown(true);
     // Use validateFormData from validation.js to validate the form data
     const validationResponse = await validateFormData(
       algoOptionData,
-      validationSchema
+      validationSchema,
     );
 
     // If validation fails, set the errors
@@ -1077,7 +1079,7 @@ CustomerID: localStorage.getItem("customerID"),
       lotSize?.quotationLot;
     formData.Createddate = dayjs().toISOString();
     formData.customerOptionsAlgochild[0].CallType = parseInt(
-      formData.customerOptionsAlgochild[0]?.CallType
+      formData.customerOptionsAlgochild[0]?.CallType,
     );
     formData.customerOptionsAlgochild[0].Createddate = dayjs().toISOString();
     formData.customerOptionsAlgochild[0].Modifieddate = dayjs().toISOString();
@@ -1129,8 +1131,12 @@ CustomerID: localStorage.getItem("customerID"),
     }
 
     let maxLotSet =
-      algoType === "futures" ? subscriptionMaxLots ?? 99999 : 99999;
-    if (algoType === "futures" && maxLotsFromFreeze !== null && maxLotsFromFreeze > 0) {
+      algoType === "futures" ? (subscriptionMaxLots ?? 99999) : 99999;
+    if (
+      algoType === "futures" &&
+      maxLotsFromFreeze !== null &&
+      maxLotsFromFreeze > 0
+    ) {
       maxLotSet = Math.min(maxLotSet, maxLotsFromFreeze);
     }
 
@@ -1179,7 +1185,7 @@ CustomerID: localStorage.getItem("customerID"),
     // Use validateFormData from validation.js to validate the form data
     const validationResponse = await validateFormData(
       algoNFData,
-      validationSchema
+      validationSchema,
     );
 
     // If validation fails, set the errors
@@ -1202,7 +1208,7 @@ CustomerID: localStorage.getItem("customerID"),
         setAlgoType("");
         successMsg("Algo Run Successfully...");
         getSymbolCategoryList();
-      }) 
+      })
       .catch((err) => {
         handleCatchErrors(err, navigate);
       })
@@ -1219,7 +1225,7 @@ CustomerID: localStorage.getItem("customerID"),
         setAlgoNFData({
           ...algoNFData,
           customerAlgoTradeID: data?.customerAlgoTradeID,
-          CustomerID:localStorage.getItem("customerID"),
+          customerId: Number(localStorage.getItem("customerID")),
           IdentifierID: data?.identifierID,
           Identifier: data?.identifier,
           TradeType: data?.tradeType,
@@ -1263,7 +1269,7 @@ CustomerID: localStorage.getItem("customerID"),
         } else {
           setTraillingProfitToggle(false);
         }
-      }
+      },
     );
   };
 
@@ -1286,8 +1292,6 @@ CustomerID: localStorage.getItem("customerID"),
         }, 500);
       });
   }, []);
-
-
 
   return {
     symbolCategoryList: memoizedSymbolCategoryList,
@@ -1331,7 +1335,7 @@ CustomerID: localStorage.getItem("customerID"),
     handleDialogClose,
     subscriptionDialogMessage,
     activeSubscriptionFeatures,
-    navigate
+    navigate,
   };
 };
 

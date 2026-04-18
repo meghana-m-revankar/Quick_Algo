@@ -1001,7 +1001,7 @@
           .chart-icon,
           .buy-button,
           .sell-button {
-            padding: 4px 6px;
+            padding: 4px 12px;
             border-radius: 4px;
             cursor: pointer;
             font-size: 10px;
@@ -1010,8 +1010,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-width: 20px;
-            height: 20px;
+            min-width: 80px;
+            height: 80px;
           }
           
           .chart-icon {
@@ -1024,8 +1024,8 @@
           }
           
           .buy-button {
-            background: var(--color-success);
-            color: white;
+            background:white;
+            color: var(--color-success);
             
             &:hover {
               background: var(--color-success-dark);
@@ -1033,8 +1033,8 @@
           }
           
           .sell-button {
-            background: var(--color-danger);
-            color: white;
+            background: white;
+            color: var(--color-danger);
             
             &:hover {
               background: var(--color-danger-dark);

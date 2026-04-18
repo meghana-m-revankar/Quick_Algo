@@ -330,7 +330,7 @@ const Header = () => {
           {/* Mobile Chart Icon  */}
           {isMobile && (
             <div className="action-item mobile-chart-icon">
-              <button
+           {/*    <button
                 className="action-button chart-button"
                 onClick={handleChartClick}
                 title={
@@ -344,7 +344,7 @@ const Header = () => {
                 ) : (
                   <IconRegistry name="chart" />
                 )}
-              </button>
+              </button> */}
             </div>
           )}
 
@@ -416,9 +416,9 @@ const Header = () => {
           {/* User Profile */}
           <div className="action-item">
             <Dropdown>
-              <Dropdown.Toggle className="action-button user-button">
+              <Dropdown.Toggle className="action-button user-button text-success">
                 <span className="user-name">{userName}</span>
-                <IconRegistry name="user" />
+                <IconRegistry name="user" className="text-success" />
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 {/* <div className="user-menu-header">

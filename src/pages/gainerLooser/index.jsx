@@ -62,8 +62,8 @@ const GainerLooser = () => {
                       <tr>
                         <th
                           style={{
-                            background: "#28B4CA",
-                            color: "white",
+                            background: "#f8faff",
+                            color: "#000000",
                             border: "none",
                             padding: "1rem",
                             fontWeight: "500",
@@ -74,8 +74,8 @@ const GainerLooser = () => {
                         </th>
                         <th
                           style={{
-                            background: "#28B4CA",
-                            color: "white",
+                            background: "#f8faff",
+                            color: "#000000",
                             border: "none",
                             padding: "1rem",
                             fontWeight: "500",
@@ -86,8 +86,8 @@ const GainerLooser = () => {
                         </th>
                         <th
                           style={{
-                            background: "#28B4CA",
-                            color: "white",
+                            background: "#f8faff",
+                            color: "#000000",
                             border: "none",
                             padding: "1rem",
                             fontWeight: "500",
@@ -115,8 +115,8 @@ const GainerLooser = () => {
                             >
                               <td
                                 style={{
-                                  backgroundColor: "#E8FAFD",
-                                  color: "#28B4CA",
+                                  backgroundColor: "#2C6DEE",
+                                  color: "#ffffff",
                                   fontWeight: "600",
                                   padding: "1rem",
                                   textAlign: "center",
@@ -215,8 +215,8 @@ const GainerLooser = () => {
                       <tr>
                         <th
                           style={{
-                            background: "#28B4CA",
-                            color: "white",
+                            background: "#f8faff",
+                            color: "#000000",
                             border: "none",
                             padding: "1rem",
                             fontWeight: "500",
@@ -227,8 +227,8 @@ const GainerLooser = () => {
                         </th>
                         <th
                           style={{
-                            background: "#28B4CA",
-                            color: "white",
+                            background: "#f8faff",
+                            color: "#000000",
                             border: "none",
                             padding: "1rem",
                             fontWeight: "500",
@@ -239,8 +239,8 @@ const GainerLooser = () => {
                         </th>
                         <th
                           style={{
-                            background: "#28B4CA",
-                            color: "white",
+                            background: "#f8faff",
+                            color: "#000000",
                             border: "none",
                             padding: "1rem",
                             fontWeight: "500",
@@ -268,8 +268,8 @@ const GainerLooser = () => {
                             >
                               <td
                                 style={{
-                                  backgroundColor: "#E8FAFD",
-                                  color: "#28B4CA",
+                                  backgroundColor: "#2C6DEE",
+                                  color: "#ffffff",
                                   fontWeight: "600",
                                   padding: "1rem",
                                   textAlign: "center",

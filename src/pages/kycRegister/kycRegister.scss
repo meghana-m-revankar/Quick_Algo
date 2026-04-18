@@ -210,8 +210,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 20% 80%, rgba(40, 180, 202, 0.12) 0%, transparent 55%),
-    radial-gradient(circle at 80% 20%, rgba(11, 63, 70, 0.08) 0%, transparent 55%);
+  background: #f8f9fa;
   z-index: 1;
 }
 
@@ -375,12 +374,12 @@
   padding: 14px 24px;
   color: #fff;
   border: none;
-  border-radius: 100px;
+  border-radius: 8px;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
-  background: linear-gradient(180deg, #28b4ca 0%, #1fa2b8 45%, #0b3f46 100%);
+  background: #159043;
   box-shadow: 0 4px 14px rgba(11, 63, 70, 0.25);
 }
 

@@ -12,11 +12,13 @@ import {
   FiZap,
   FiTarget,
   FiCpu,
+  FiHome,
   FiDatabase,
   FiCheckCircle,
   FiClock,
   FiXCircle,
   FiArrowRight,
+  FiGlobe,
 } from "react-icons/fi";
 import useTradeOption from "../tradeOption/tradeOption";
 import useSymbolDetails from "#hooks/useSymbol";
@@ -114,9 +116,9 @@ const Dashboard = () => {
           <div className="sidebar-content">
             <div className="welcome-card welcome-card-desktop-only">
               <div className="welcome-content">
-                <div className="welcome-icon">
+                {/* <div className="welcome-icon">
                   <span className="rotating-icon">👋</span>
-                </div>
+                </div> */}
                 <div className="welcome-text">
                   <h3>Welcome {userName}</h3>
                   <p>Ready to trade today?</p>
@@ -125,8 +127,8 @@ const Dashboard = () => {
             </div>
 
             <div className="session-info-card-left">
-              <div className="card-header">
-                <h3>🌐 Session Info</h3>
+              <div className="card-header action-card">
+                <h3>Session Info</h3>
                 <p>Session Information & Details</p>
               </div>
 
@@ -335,7 +337,7 @@ const Dashboard = () => {
               <div className="section-header">
                 <div className="header-content">
                   <div>
-                    <h3>🔗 Connect Broker</h3>
+                    <h3>Connect Broker</h3>
                     <p className="section-subtitle">
                       Execute strategies with live trading
                     </p>
@@ -353,7 +355,9 @@ const Dashboard = () => {
                       setActiveBrokerTab("registered");
                     }}
                   >
-                    <span className="tab-icon">🏦</span>
+                    <span className="tab-icon">
+  <FiHome />
+</span>
                     <span className="tab-text">
                       Registered ({brokerMasterList?.length || 0})
                     </span>
@@ -366,7 +370,9 @@ const Dashboard = () => {
                       setActiveBrokerTab("active");
                     }}
                   >
-                    <span className="tab-icon">✅</span>
+                   <span className="tab-icon">
+  <FiCheckCircle className="active-icon" />
+</span>
                     <span className="tab-text">
                       Active ({customerBrokerList?.length || 0})
                     </span>
@@ -409,13 +415,11 @@ const Dashboard = () => {
                         <span className="broker-name">{broker.brokerName}</span>
                         <button
                           className="setup-btn-compact"
-                          onClick={() =>
-                            navigate(
-                              `/setup/${Storage?.encryptFormatData(
-                                broker.brokerID,
-                              )}`,
-                            )
-                          }
+                         onClick={() => {
+  const id = Storage?.encryptFormatData(broker.brokerID);
+  console.log("Navigating to:", `/setup/${id}`, "brokerID:", broker.brokerID);
+  navigate(`/setup/${id}`);
+}}
                         >
                           Setup
                         </button>
@@ -717,9 +721,9 @@ const Dashboard = () => {
             {/* Welcome card - only on mobile, above NSE & BSE MCX */}
             <div className="welcome-card welcome-card-mobile-only">
               <div className="welcome-content">
-                <div className="welcome-icon">
+              {/*  <div className="welcome-icon">
                   <span className="rotating-icon">👋</span>
-                </div>
+                </div> */}
                 <div className="welcome-text">
                   <h3>Welcome {userName}</h3>
                   <p>Ready to trade today?</p>
@@ -936,7 +940,7 @@ const Dashboard = () => {
 
             <div className="modern-holiday-card">
               <div className="holiday-content">
-                <h3>📊 Market Progress</h3>
+                <h3>Market Progress</h3>
 
                 <div className="market-progress-section">
                   <div className="progress-header">
@@ -975,11 +979,13 @@ const Dashboard = () => {
                   <div
                     className={`status-badge ${marketStatus[activeMarket].status}`}
                   >
-                    <span className="status-icon">
-                      {marketStatus[activeMarket].status === "open"
-                        ? "🟢"
-                        : "🔴"}
-                    </span>
+              <span className="status-icon">
+  {marketStatus[activeMarket].status === "open" ? (
+    <FiCheckCircle className="status-open" />
+  ) : (
+    <FiXCircle className="status-closed" />
+  )}
+</span>
                     <span className="status-text">
                       {activeMarket === "fno" ? "NSE & BSE" : "MCX"}
                       {marketStatus[activeMarket].status === "open"

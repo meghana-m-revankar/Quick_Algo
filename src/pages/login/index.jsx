@@ -208,7 +208,7 @@ const Login = () => {
             <div className="form-footer">
               <p className="terms-text">
                 By clicking on "
-                <span style={{ color: "#28B4CA" }}>SEND OTP</span>" you agree to{" "}
+                <span style={{ color: "#2C6DEE" }}>SEND OTP</span>" you agree to{" "}
                 <a
                   href="https://github.com/QuickAlgoPlus/quickalgoplus_agreements/blob/main/TermsOfService.md"
                   target="_blank"

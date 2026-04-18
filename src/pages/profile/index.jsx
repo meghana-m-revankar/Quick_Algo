@@ -80,7 +80,7 @@ const Profile = () => {
             <div className="profile-card">
               <div className="profile-avatar">
                 <div className="avatar-placeholder">
-                  <FaRegUser size={25} />
+                  <FaRegUser size={25} color="white" />
                 </div>
                 <div className="info-item">
                   {/* <label>Account Status</label> */}

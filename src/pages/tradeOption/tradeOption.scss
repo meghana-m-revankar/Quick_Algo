@@ -7,10 +7,10 @@
   margin-top: 10px;
   .symbol_chart_price {
     .card-box {
-      background: #E8FAFD;
-      border: 2px solid #E1E7EF;
+     /*  background: #f8faff; */
+      border: 1px solid #e7edf7;
       border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
       
       &:hover {

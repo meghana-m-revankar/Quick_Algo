@@ -4,7 +4,6 @@ import Storage from "#services/storage";
 
 // Async action to get customer subscription 
 export const asyncGetCustomerSubscription = async () => {
-  // Make the API call using fetch and return a axios-like response object
   const token = Storage.decryptData(localStorage.getItem("tokenID"));
   const customerID = Storage.decryptData(localStorage.getItem("customerID"));
 
@@ -23,11 +22,8 @@ export const asyncGetCustomerSubscription = async () => {
   let data = null;
   try {
     data = await response.json();
-  } catch (e) {
-    // If response is not JSON, keep data as null
-  }
+  } catch (e) {}
 
-  // Return an object similar to axios response
   return {
     data,
     status: response.status,
@@ -38,47 +34,40 @@ export const asyncGetCustomerSubscription = async () => {
 
 // Async action to get subscription expiry
 export const asyncGetSubscriptionExpiry = async () => {
-  // Make the API call and directly return the response without error handling
   const token = Storage.decryptData(localStorage.getItem("tokenID"));
   const customerID = Storage.decryptData(localStorage.getItem("customerID"));
-  const response = await axios.post(API_ENDPOINTS?.GetSubscriptionExpiry, {
-    CustomerId: customerID},
-    {headers: {
-      authorization: `${customerID}:${token}`, // Add the Authorization header
+  const response = await axios.get(API_ENDPOINTS?.GetSubscriptionExpiry, {  // ✅ GET not POST
+    params: { CustomerId: customerID },  // ✅ params not body
+    headers: {
+      authorization: `${customerID}:${token}`,
       "Content-Type": "application/json",
     },
   });
-  // Return the response data directly (success or failure response)
   return response;
 };
- 
+
 // Async action to get customer API key
 export const asyncGetCustomerApiKey = async () => {
-  // Make the API call and directly return the response without error handling
   const token = Storage.decryptData(localStorage.getItem("tokenID"));
   const customerID = Storage.decryptData(localStorage.getItem("customerID"));
   const response = await axios.get(API_ENDPOINTS?.GetCustomerApiKey, {
     headers: {
-      authorization: `${customerID}:${token}`, // Add the Authorization header
+      authorization: `${customerID}:${token}`,
       "Content-Type": "application/json",
     },
   });
-  // Return the response data directly (success or failure response)
   return response;
 };
 
-
-// Async action to get customer API key
+// Async action to generate API key
 export const asyncGenerateApiKey = async () => {
-  // Make the API call and directly return the response without error handling
   const token = Storage.decryptData(localStorage.getItem("tokenID"));
   const customerID = Storage.decryptData(localStorage.getItem("customerID"));
   const response = await axios.get(API_ENDPOINTS?.GenerateApiKey, {
     headers: {
-      authorization: `${customerID}:${token}`, // Add the Authorization header
+      authorization: `${customerID}:${token}`,
       "Content-Type": "application/json",
     },
   });
-  // Return the response data directly (success or failure response)
   return response;
 };

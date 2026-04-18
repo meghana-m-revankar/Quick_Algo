@@ -88,12 +88,12 @@ const RouteArr = [
     element: <LazyRoute component={Broker} />,
   },
   {
-    name: "Broker Setup",
-    path: "/setup",
-    key: "setup",
-    route: "/setup",
-    element: <LazyRoute component={BrokerSetup} />,
-  },
+  name: "Broker Setup",
+  path: "/setup/:id",        // ✅ was "/setup"
+  key: "setup",
+  route: "/setup/:id",       // ✅ was "/setup"
+  element: <LazyRoute component={BrokerSetup} />,
+},
   {
     name: "Pending Order",
     path: "/order/pending",

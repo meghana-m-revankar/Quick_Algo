@@ -9,7 +9,7 @@
   font-family: "DM Sans", sans-serif !important;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #E8FAFD 0%, #6FD6E2 40%, #28B4CA 70%, #0B3F46 100%);
+  background: #ffffff;
 }
 
 .login-container {
@@ -18,7 +18,7 @@
   min-height: 600px;
   background: white;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   overflow: hidden;
   position: relative;
@@ -27,7 +27,7 @@
 
   .form-section {
   flex: 1;
-  background: #E8FAFD;
+  background: #f8f9fa;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,7 +70,7 @@
 }
 
 .input-icon svg{
-  stroke: #28B4CA;
+  stroke: #2C6DEE;
 }
 
 .checkmark {
@@ -85,12 +85,12 @@
 }
 
 .checkbox-container:hover .checkmark {
-  border-color: #28B4CA;
+  border-color: #2C6DEE;
 }
 
 .checkbox-input:checked ~ .checkmark {
-  background-color: #28B4CA;
-  border-color: #28B4CA;
+  background-color: #2C6DEE;
+  border-color: #2C6DEE;
 }
 
 .checkmark:after {
@@ -131,7 +131,7 @@
 }
 
 .copyright-section-left .tradingview-link {
-  color: #28B4CA !important;
+  color: #2C6DEE !important;
   text-decoration: none;
   font-weight: 500;
 }
@@ -142,7 +142,7 @@
 
 .copyright-section-left .copyright-text {
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: #000;
   margin-bottom: 0;
 }
 }
@@ -161,7 +161,7 @@
   //   radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.05) 0%, transparent 50%),
   //   radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.05) 0%, transparent 50%);
 
-  background: linear-gradient(180deg, #28B4CA 0%, #1FA2B8 45%, #0B3F46 100%);
+/*   background: linear-gradient(180deg, #28B4CA 0%, #1FA2B8 45%, #0B3F46 100%); */
   z-index: 1;
 }
 
@@ -182,7 +182,7 @@
 }
 
 .welcome-content {
-  text-align: center;
+  /* text-align: center; */
   color: white;
   position: relative;
   z-index: 2;
@@ -193,7 +193,7 @@
   font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 30px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  /* text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); */
   line-height: 1.1;
 }
 
@@ -455,7 +455,7 @@
 }
 
 .terms-link {
-  color: #28B4CA !important;
+  color: #2C6DEE !important;
   text-decoration: none;
   font-weight: 500;
 }
@@ -471,7 +471,7 @@
 }
 
 .register-link {
-  color: #28B4CA !important;
+  color: #2C6DEE !important;
   text-decoration: none;
   font-weight: 600;
 }

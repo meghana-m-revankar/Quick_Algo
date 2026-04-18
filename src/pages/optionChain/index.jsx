@@ -843,7 +843,7 @@ const OptionChain = () => {
                   </div>
 
                   {/* Desktop Header */}
-                  <div
+               {/*    <div
                     className={`option-table-header only-desktop ${
                       isSearchOpen ? "dropdown-open" : ""
                     }`}
@@ -909,34 +909,26 @@ const OptionChain = () => {
                         <div className="header-cell greek-header">Delta</div>
                       )}
                     </div>
-                  </div>
+                  </div> */}
 
                   <table className="option-table">
-                    <thead>
-                      <tr className="only-desktop" style={{ display: "none" }}>
-                        {showGreeks && <th>Delta</th>}
-                        {showGreeks && <th>Gamma</th>}
-                        {showGreeks && <th>Theta</th>}
-                        {showGreeks && <th>Vega</th>}
-                        {showGreeks && <th>IV</th>}
-                        <th>Product</th>
-                        <th>LTP Change</th>
-                        <th>LTP</th>
-                        <th className="strike">
-                          <span className="ce-indicator">CE</span>
-                          <span className="strike-title">Strike</span>
-                          <span className="pe-indicator">PE</span>
-                        </th>
-                        <th>LTP</th>
-                        <th>LTP Change</th>
-                        <th>Product</th>
-                        {showGreeks && <th>IV</th>}
-                        {showGreeks && <th>Vega</th>}
-                        {showGreeks && <th>Theta</th>}
-                        {showGreeks && <th>Gamma</th>}
-                        {showGreeks && <th>Delta</th>}
-                      </tr>
-                    </thead>
+               <thead className="option-table-header">
+  <tr className={`only-desktop header-row ${!showGreeks ? 'greeks-hidden' : ''}`}>
+    <th className="header-cell">Product</th>
+    <th className="header-cell">LTP Change</th>
+    <th className="header-cell">LTP</th>
+    <th className="header-cell strike-header">
+      <div className="strike-header-content">
+        <span className="ce-indicator">CE</span>
+        <span className="strike-title">Strike</span>
+        <span className="pe-indicator">PE</span>
+      </div>
+    </th>
+    <th className="header-cell">LTP</th>
+    <th className="header-cell">LTP Change</th>
+    <th className="header-cell">Product</th>
+  </tr>
+</thead>
                     <tbody>
                       {optionChainCEList?.length > 0 ? (
                         optionChainCEList?.map((val, key) => {
