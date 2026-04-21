@@ -6,7 +6,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 // Modern icons
 import {
-  FiTrendingUp,
+   FiTrendingUp,
   FiBarChart,
   FiActivity,
   FiZap,
@@ -19,6 +19,9 @@ import {
   FiXCircle,
   FiArrowRight,
   FiGlobe,
+  FiMonitor,
+  FiCalendar,
+  FiWifi,
 } from "react-icons/fi";
 import useTradeOption from "../tradeOption/tradeOption";
 import useSymbolDetails from "#hooks/useSymbol";
@@ -108,86 +111,150 @@ const Dashboard = () => {
       ? `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`
       : videoLink;
   };
-
+const getBrowserName = () => {
+    if (navigator.userAgent.includes("Chrome")) return "Chrome";
+    if (navigator.userAgent.includes("Firefox")) return "Firefox";
+    if (navigator.userAgent.includes("Safari")) return "Safari";
+    return "Other";
+  };
   return (
     <section className="content dashboard_page">
+      
       <div className="dashboard-layout">
         <div className="left-sidebar">
           <div className="sidebar-content">
+         {/* ── Welcome Banner (desktop only) ── */}
             <div className="welcome-card welcome-card-desktop-only">
-              <div className="welcome-content">
-                {/* <div className="welcome-icon">
-                  <span className="rotating-icon">👋</span>
-                </div> */}
-                <div className="welcome-text">
-                  <h3>Welcome {userName}</h3>
-                  <p>Ready to trade today?</p>
+              <div className="welcome-banner">
+                <div className="welcome-banner__body">
+                  <div className="welcome-banner__top">
+                    <div className="welcome-banner__avatar">
+                      {userName?.charAt(0)?.toUpperCase() || "U"}
+                    </div>
+                    <div className="welcome-banner__text">
+                      <p className="welcome-banner__eyebrow">Welcome back</p>
+                      <h3 className="welcome-banner__name">{userName}</h3>
+                    </div>
+                  </div>
+                  <div className="welcome-banner__pill">
+                    <span className="welcome-banner__pulse" />
+                    Session active · {loginTime.format("DD MMM (ddd)")}
+                  </div>
+                </div>
+                <div className="welcome-banner__stats">
+                  <div className="welcome-banner__stat">
+                    <span className="welcome-banner__stat-label">Login at</span>
+                    <span className="welcome-banner__stat-val">
+                      {loginTime.format("HH:mm:ss")}
+                    </span>
+                  </div>
+                  <div className="welcome-banner__divider" />
+                  <div className="welcome-banner__stat">
+                    <span className="welcome-banner__stat-label">Browser</span>
+                    <span className="welcome-banner__stat-val">
+                      {getBrowserName()}
+                    </span>
+                  </div>
+                  <div className="welcome-banner__divider" />
+                  <div className="welcome-banner__stat">
+                    <span className="welcome-banner__stat-label">IP</span>
+                    <span className="welcome-banner__stat-val welcome-banner__stat-val--mono">
+                      {localStorage.getItem("ipv4") || "49.43.0.14"}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
-
+ 
+            {/* ── Session Info Card ── */}
             <div className="session-info-card-left">
               <div className="card-header action-card">
-                <h3>Session Info</h3>
-                <p>Session Information & Details</p>
+                <div className="card-header__left">
+                  <h3>Session Info</h3>
+                  <p>Live session details</p>
+                </div>
+                <span className="session-live-badge">
+                  <span className="session-live-badge__dot" />
+                  Live
+                </span>
               </div>
-
+ 
               <div className="session-content">
                 <div className="session-section">
                   <div className="info-grid">
+ 
                     <div className="info-item">
-                      <span className="info-label">IP Address:</span>
-                      <span className="info-value">
-                        {localStorage.getItem("ipv4") || "49.43.0.14"}
+                      <span className="info-label">
+                        <span className="info-label__icon info-label__icon--green">
+                          <FiClock size={13} />
+                        </span>
+                        Login Time
                       </span>
-                    </div>
-
-                    <div className="info-item">
-                      <span className="info-label">Login Time:</span>
                       <span className="info-value">
                         {loginTime.format("HH:mm:ss")}
-                        <span
-                          className="live-indicator"
-                          title="Actual login time"
-                        >
-                          ●
-                        </span>
+                        <span className="live-indicator" title="Actual login time">●</span>
                       </span>
                     </div>
-
+ 
                     <div className="info-item">
-                      <span className="info-label">Login Date:</span>
-                      <span className="info-value">
+                      <span className="info-label">
+                        <span className="info-label__icon info-label__icon--green">
+                          <FiCalendar size={13} />
+                        </span>
+                        Login Date
+                      </span>
+                      <span className="info-value info-value--neutral">
                         {loginTime.format("DD MMM (ddd)")}
                       </span>
                     </div>
-
+ 
                     <div className="info-item">
-                      <span className="info-label">Browser:</span>
-                      <span className="info-value">
-                        {navigator.userAgent.includes("Chrome")
-                          ? "Chrome"
-                          : navigator.userAgent.includes("Firefox")
-                            ? "Firefox"
-                            : navigator.userAgent.includes("Safari")
-                              ? "Safari"
-                              : "Other"}
+                      <span className="info-label">
+                        <span className="info-label__icon info-label__icon--blue">
+                          <FiWifi size={13} />
+                        </span>
+                        IP Address
+                      </span>
+                      <span className="info-value info-value--mono info-value--neutral">
+                        {localStorage.getItem("ipv4") || "49.43.0.14"}
                       </span>
                     </div>
-
+ 
                     <div className="info-item">
-                      <span className="info-label">Current Time:</span>
-                      <span className="info-value">
-                        {currentTime.format("HH:mm:ss")} -{" "}
-                        {currentTime.format("DD MMM (ddd)")}
+                      <span className="info-label">
+                        <span className="info-label__icon info-label__icon--amber">
+                          <FiMonitor size={13} />
+                        </span>
+                        Browser
+                      </span>
+                      <span className="info-value info-value--neutral">
+                        {getBrowserName()}
                       </span>
                     </div>
+ 
+                    <div className="info-item info-item--last">
+                      <span className="info-label">
+                        <span className="info-label__icon info-label__icon--gray">
+                          <FiActivity size={13} />
+                        </span>
+                        Current Time
+                      </span>
+                      <span className="info-value info-value--stack">
+                        <span className="info-value__time">
+                          {currentTime.format("HH:mm:ss")}
+                        </span>
+                        <span className="info-value__date">
+                          {currentTime.format("DD MMM (ddd)")}
+                        </span>
+                      </span>
+                    </div>
+ 
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="quick-actions-section">
+            <div className="quick-actions-section d-none">
               <div className="section-header">
                 <h3>Quick Actions</h3>
                 <p className="section-subtitle">
@@ -276,7 +343,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div className="order-status-section">
+            <div className="order-status-section d-none">
               <div className="section-header">
                 <h3>Order Status</h3>
                 <p className="section-subtitle">Track your trading orders</p>
@@ -333,7 +400,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div className="connect-broker-section">
+            <div className="connect-broker-section d-none">
               <div className="section-header">
                 <div className="header-content">
                   <div>
@@ -716,7 +783,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="right-sidebar">
+        <div className="right-sidebar d-none">
           <div className="sidebar-content">
             {/* Welcome card - only on mobile, above NSE & BSE MCX */}
             <div className="welcome-card welcome-card-mobile-only">

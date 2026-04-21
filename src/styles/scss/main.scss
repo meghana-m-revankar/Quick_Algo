@@ -59,7 +59,7 @@ body {
   line-height: 1.5;
   overflow-x: hidden;
   text-align: initial;
-  /* background: #E1E7EF; */
+   background: #F0F5F5; 
   // color: var(--text-color-primary);
   font-size: 14px;
 }
@@ -182,6 +182,7 @@ h6 {
 
 .main_content {
   width: 100%;
+  background-color: #F0F5F5;
 }
 
 .form-control {
@@ -227,7 +228,7 @@ a:hover {
   position: relative;
 }
 .text-input {
-  background-color: var(--box-hover) !important;
+ /*  background-color: var(--box-hover) !important; */
   border: 1px solid var(--box-border) !important;
   color: var(--text-color-primary) !important;
 

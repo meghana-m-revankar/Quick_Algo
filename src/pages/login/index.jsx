@@ -27,212 +27,180 @@ const Login = () => {
   }
 
   return (
-    <div className="h-100vh modern-login-page">
-      <div className="login-container">
-        {/* Left Section - Welcome Message */}
-        <div className="welcome-section">
-          <div className="welcome-content">
-            <h1 className="welcome-title">Welcome Back</h1>
-            <p className="welcome-description">
-              Trade smart, control your emotions, and make decisions with a calm
-              mind—With QuickAlgo+, you not only understand the market but also
-              take every step toward successful trading. QuickAlgo+ software is
-              fully tested, reliable, and designed to manage emotions, making
-              errors highly unlikely.
-            </p>
+    <div className="container-fluid min-vh-100 d-flex align-items-center">
+  <div className="row w-100">
 
-            {/* Copyright and TradingView attribution */}
-            <div className="copyright-section-left">
-              <p className="tradingview-text">
-                Charts powered by{" "}
-                <a
-                  href="https://in.tradingview.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="tradingview-link"
-                >
-                  TradingView
-                </a>
-              </p>
-              <p className="copyright-text">
-                Copyright © 2021-{new Date().getFullYear()} QUICK ALGO+. All
-                rights reserved.
-              </p>
-            </div>
+    {/* LEFT SIDE */}
+    <div className="col-md-6 d-none d-md-flex flex-column justify-content-center  p-5">
+      <h2 className="fw-bold mb-3">Welcome Back</h2>
+
+      <div className="mt-4 small text-muted">
+        <p className="mb-1">
+          Copyright © 2021-{new Date().getFullYear()} QUICK ALGO+. All rights reserved.
+        </p>
+      </div>
+    </div>
+
+    {/* RIGHT SIDE */}
+    <div className="col-md-6 d-flex align-items-center justify-content-center">
+      <div className="card  w-100 mx-auto login-card">
+        <div className="card-body p-4">
+
+          <h4 className="text-center mb-4">Sign In</h4>
+
+          {/* Toggle (hidden like your original) */}
+          <div className="btn-group w-100 mb-3 d-none">
+            <button
+              type="button"
+              className={`btn btn-outline-primary ${loginMode === "username" ? "active" : ""}`}
+              onClick={() => setLoginMode("username")}
+            >
+              Username
+            </button>
+            <button
+              type="button"
+              className={`btn btn-outline-primary ${loginMode === "mobile" ? "active" : ""}`}
+              onClick={() => setLoginMode("mobile")}
+            >
+              Mobile OTP
+            </button>
           </div>
-        </div>
 
-        {/* Right Section - Sign In Form */}
-        <div className="form-section">
-          <div className="form-container">
-            <h2 className="signin-title">Sign in</h2>
+          <form onSubmit={handleSubmit}>
 
-            {/* Login Mode Toggle */}
-            <div className="login-mode-toggle d-none">
-              <button
-                type="button"
-                className={`toggle-btn ${
-                  loginMode === "username" ? "active" : ""
-                }`}
-                onClick={() => setLoginMode("username")}
-              >
-                Username
-              </button>
-              <button
-                type="button"
-                className={`toggle-btn ${
-                  loginMode === "mobile" ? "active" : ""
-                }`}
-                onClick={() => setLoginMode("mobile")}
-              >
-                Mobile OTP
-              </button>
-            </div>
-
-            <form onSubmit={handleSubmit} className="signin-form">
-              {loginMode === "username" ? (
-                <>
-                  <div className="form-group">
-                    <label htmlFor="Username" className="form-label">
-                      Username
-                    </label>
-                    <div className="input-group">
-                      <span className="input-icon">
-                        <IconRegistry name="user" />
-                      </span>
-                      <input
-                        type="text"
-                        className="form-input"
-                        placeholder="Enter Username"
-                        name="Username"
-                        id="Username"
-                        value={formData?.Username}
-                        onChange={handleChange}
-                      />
-                    </div>
-                    {formErrors?.Username && (
-                      <div className="error-message">
-                        {formErrors?.Username}
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="Password" className="form-label">
-                      Password
-                    </label>
-                    <div className="input-group">
-                      <span className="input-icon">
-                        <IconRegistry name="lock" />
-                      </span>
-                      <input
-                        type={isPasswordVisible ? "text" : "password"}
-                        className="form-input"
-                        placeholder="Enter password"
-                        name="Password"
-                        id="Password"
-                        value={formData?.Password}
-                        onChange={handleChange}
-                      />
-                      <button
-                        type="button"
-                        className="password-toggle"
-                        onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-                      >
-                        {!isPasswordVisible ? (
-                          <IconRegistry name="eye-low-vision" />
-                        ) : (
-                          <IconRegistry name="eye" />
-                        )}
-                      </button>
-                    </div>
-                    {formErrors?.Password && (
-                      <div className="error-message">
-                        {formErrors?.Password}
-                      </div>
-                    )}
-                  </div>
-                </>
-              ) : (
-                <div className="form-group d-none">
-                  <label htmlFor="MobileNo" className="form-label">
-                    Mobile Number
-                  </label>
+            {loginMode === "username" ? (
+              <>
+                {/* Username */}
+                <div className="mb-3">
+                  <label className="form-label">Username</label>
                   <div className="input-group">
-                    <span className="input-icon">
+                    <span className="input-group-text">
                       <IconRegistry name="user" />
                     </span>
                     <input
-                      type="tel"
-                      className="form-input"
-                      placeholder="Enter 10-digit mobile number"
-                      name="MobileNo"
-                      id="MobileNo"
-                      value={formData?.MobileNo}
+                      type="text"
+                      className="form-control"
+                      placeholder="Enter Username"
+                      name="Username"
+                      value={formData?.Username}
                       onChange={handleChange}
-                      maxLength="10"
                     />
                   </div>
-                  {formErrors?.MobileNo && (
-                    <div className="error-message">{formErrors?.MobileNo}</div>
+                  {formErrors?.Username && (
+                    <div className="text-danger small">
+                      {formErrors?.Username}
+                    </div>
                   )}
                 </div>
-              )}
 
-              <div className="form-options">
-                <label className="checkbox-container">
-                  <input type="checkbox" className="checkbox-input" />
-                  <span className="checkmark"></span>
-                  Remember Me
-                </label>
-                {/* <NavLink to="/forgot-password" className="forgot-password">
-                  Lost your password?
-                </NavLink> */}
-              </div>
-
-              <button
-                type="submit"
-                className="signin-button"
-                disabled={loading}
-              >
-                {loading ? (
-                  <ButtonLoader isloading={true} />
-                ) : loginMode === "username" ? (
-                  "SEND OTP"
-                ) : (
-                  "Send OTP"
+                {/* Password */}
+                <div className="mb-3">
+                  <label className="form-label">Password</label>
+                  <div className="input-group">
+                    <span className="input-group-text">
+                      <IconRegistry name="lock" />
+                    </span>
+                    <input
+                      type={isPasswordVisible ? "text" : "password"}
+                      className="form-control"
+                      placeholder="Enter password"
+                      name="Password"
+                      value={formData?.Password}
+                      onChange={handleChange}
+                    />
+                    <button
+                      type="button"
+                      className="btn btn-outline-secondary"
+                      onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                    >
+                      <IconRegistry
+                        name={isPasswordVisible ? "eye" : "eye-low-vision"}
+                      />
+                    </button>
+                  </div>
+                  {formErrors?.Password && (
+                    <div className="text-danger small">
+                      {formErrors?.Password}
+                    </div>
+                  )}
+                </div>
+              </>
+            ) : (
+              <div className="mb-3 d-none">
+                <label className="form-label">Mobile Number</label>
+                <div className="input-group">
+                  <span className="input-group-text">
+                    <IconRegistry name="user" />
+                  </span>
+                  <input
+                    type="tel"
+                    className="form-control"
+                    placeholder="Enter 10-digit mobile number"
+                    name="MobileNo"
+                    value={formData?.MobileNo}
+                    onChange={handleChange}
+                    maxLength="10"
+                  />
+                </div>
+                {formErrors?.MobileNo && (
+                  <div className="text-danger small">
+                    {formErrors?.MobileNo}
+                  </div>
                 )}
-              </button>
-            </form>
+              </div>
+            )}
 
-            <div className="form-footer">
-              <p className="terms-text">
-                By clicking on "
-                <span style={{ color: "#2C6DEE" }}>SEND OTP</span>" you agree to{" "}
-                <a
-                  href="https://github.com/QuickAlgoPlus/quickalgoplus_agreements/blob/main/TermsOfService.md"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="terms-link"
-                >
-                  Terms of Service
-                </a>
-              </p>
-
-              <p className="register-text">
-                Don't have an account?{" "}
-                <NavLink to="/signup" className="register-link">
-                  Register Now
-                </NavLink>
-              </p>
+            {/* Remember */}
+            <div className="form-check mb-3">
+              <input className="form-check-input" type="checkbox" id="remember" />
+              <label className="form-check-label" htmlFor="remember">
+                Remember Me
+              </label>
             </div>
+
+            {/* Submit */}
+            <button
+              type="submit"
+              className="btn btn-primary w-100"
+              disabled={loading}
+            >
+              {loading ? (
+                <ButtonLoader isloading />
+              ) : loginMode === "username" ? (
+                "SEND OTP"
+              ) : (
+                "Send OTP"
+              )}
+            </button>
+          </form>
+
+          {/* Footer */}
+          <div className="text-center mt-3 small">
+            <p className="text-muted mb-2">
+              By clicking <strong>SEND OTP</strong> you agree to{" "}
+              <a
+                href="https://github.com/QuickAlgoPlus/quickalgoplus_agreements/blob/main/TermsOfService.md"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Terms of Service
+              </a>
+            </p>
+
+            <p>
+              Don't have an account?{" "}
+              <NavLink to="/signup">Register Now</NavLink>
+            </p>
           </div>
+
         </div>
       </div>
-
-      {/* Cookie Consent */}
-      <CookieConsent />
     </div>
+
+  </div>
+
+  <CookieConsent />
+</div>
   );
 };
 

@@ -729,12 +729,12 @@
   .text-input {
     padding: 12px 16px; // Increased padding for larger input boxes
     font-size: 16px; // Larger font size for better readability
-    border-radius: 8px; // Rounded corners
+    border-radius: 5px; // Rounded corners
     border: 2px solid transparent; // Invisible border - maintains spacing but not visible
     min-height: 50px; // Minimum height for better touch targets
     transition: border-color 0.3s ease;
-    border-radius: 100px !important;
-    border: 1px solid #2C6DEE !important;
+    border-radius: 5px !important;
+    border: 1px solid #B8CAC6  !important;
     background: #fff !important;
 
       @include media_1536 {

@@ -142,47 +142,10 @@ $text-muted: #868270;
   .left-sidebar {
     background: $card-bg;
     border-right: none;
-    padding: 20px 0 20px 20px;
+    padding: 10px 0 10px 10px;
     border-radius: 20px;
 
-    .welcome-card {
-      background: var(--card_box_bg);
-      border: 1px solid $border;
-      border-radius: 10px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 2px 8px rgba($primary-dark, .08);
-      position: relative;
-
-      .welcome-content {
-        display: flex;
-        align-items: center;
-        gap: .75rem;
-
-        .welcome-icon .rotating-icon {
-          font-size: 2rem;
-          display: inline-block;
-          animation: bounce 2s ease-in-out infinite;
-          color: $accent;
-        }
-
-        .welcome-text {
-          h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin: 0 0 .25rem;
-            color: var(--text-color-primary);
-          }
-
-          p {
-            font-size: .8rem;
-            margin: 0;
-            color: var(--text-color-secondary);
-          }
-        }
-      }
-    }
-
+    
     .welcome-card-desktop-only {
       @media (max-width: 768px) {
         display: none !important;
@@ -192,10 +155,10 @@ $text-muted: #868270;
     .session-info-card-left {
       background: var(--card_box_bg);
       border: none;
-      border-radius: 8px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 2px 4px rgba($primary-dark, .06);
+   /*    border-radius: 8px; */
+      padding: 0.05rem;
+     /*  margin-bottom: 1rem;
+      box-shadow: 0 2px 4px rgba($primary-dark, .06); */
 
       .card-header {
         margin-bottom: .75rem;
@@ -281,7 +244,7 @@ $text-muted: #868270;
   // ── Dashboard Layout ───────────────────────────────────────
   .dashboard-layout {
     display: flex;
-    height: calc(100vh - 60px);
+   /*  height: calc(100vh - 60px); */
     gap: 1rem;
     padding: 1rem;
     background: $soft-bg;
@@ -321,8 +284,8 @@ $text-muted: #868270;
 
       .sidebar-content {
         flex: 1;
-        overflow-y: auto;
-        padding-right: .5rem;
+      /*   overflow-y: auto; */
+        padding-right: .7rem;
 
         @media (max-width: 1024px) {
           overflow-y: visible;
@@ -388,25 +351,6 @@ $text-muted: #868270;
 
         @media (max-width: 768px) {
           overflow-y: visible;
-        }
-
-        &::-webkit-scrollbar {
-          width: 6px;
-        }
-
-        &::-webkit-scrollbar-track {
-          background: transparent;
-          border-radius: 3px;
-        }
-
-        &::-webkit-scrollbar-thumb {
-          background: $accent;
-          border-radius: 3px;
-          opacity: .6;
-
-          &:hover {
-            opacity: 1;
-          }
         }
       }
     }
@@ -2280,5 +2224,292 @@ $text-muted: #868270;
   }
 
 }
+ // ── Welcome Banner ─────────────────────────────────────────
+  .welcome-banner {
+    background: #f6f9fd;
+    border-radius: 16px;
+    padding: 15px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    position: relative;
+    overflow: hidden;
+    
 
+ 
+    // ── Top row: avatar + name ──
+    &__body { z-index: 1; }
+ 
+    &__top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+ 
+    &__avatar {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #159043;
+      border: 1.5px solid #159043;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #fff;
+      flex-shrink: 0;
+      letter-spacing: 0;
+    }
+ 
+    &__text { display: flex; flex-direction: column; gap: 2px; }
+ 
+    &__eyebrow {
+      font-size: .7rem;
+    color:#000000;
+      font-weight: 400;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+      margin: 0;
+    }
+ 
+    &__name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color:#000000;
+      margin: 0;
+      letter-spacing: -.2px;
+    }
+ 
+    // ── Session active pill ──
+    &__pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid #159043;
+      border-radius: 20px;
+      padding: 5px 13px;
+      font-size: .72rem;
+      color:#000000;
+      font-weight: 500;
+      width: fit-content;
+    }
+ 
+
+    // ── Bottom stat strip ──
+    &__stats {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: #fff;
+      border-radius: 10px;
+      padding:5px;
+      z-index: 1;
+    }
+ 
+    &__stat {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+ 
+    &__stat-label {
+      font-size: .63rem;
+      color:#000000;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      font-weight: 400;
+    }
+ 
+    &__stat-val {
+      font-size: .82rem;
+      font-weight: 600;
+     color:#000000;
+ 
+      &--mono {
+        font-family: 'Courier New', monospace;
+        font-size: .75rem;
+        letter-spacing: -.2px;
+      }
+    }
+ 
+    &__divider {
+      width: 2px;
+      height: 28px;
+      background:#000;
+      flex-shrink: 0;
+    }
+ 
+    @media (max-width: 600px) {
+      &__stats { flex-wrap: wrap; gap: 8px; }
+      &__divider { display: none; }
+      &__stat { align-items: flex-start; min-width: 45%; }
+    }
+  }
+ 
+  // ── Session Info Card ──────────────────────────────────────
+  .session-info-card-left {
+    flex: 1;                        // ← fills remaining sidebar height
+    display: flex;
+    flex-direction: column;
+    background: var(--card_box_bg);
+    border: 1px solid #000;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba($primary-dark, .05);
+ 
+    // ── Header ──
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border-bottom: 1px solid $border;
+      flex-shrink: 0;
+ 
+      &__left {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+ 
+      h3 {
+        font-size: .9rem;
+        font-weight: 600;
+        margin: 0;
+        color: var(--text-color-primary);
+      }
+ 
+      p {
+        font-size: .72rem;
+        margin: 0;
+        color: var(--text-color-secondary);
+      }
+    }
+ 
+    // ── Live badge ──
+    .session-live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: .7rem;
+      font-weight: 600;
+      color: $accent;
+      background: rgba($accent, .08);
+      border: 1px solid rgba($accent, .2);
+      border-radius: 20px;
+      padding: 3px 10px;
+      flex-shrink: 0;
+ 
+
+    }
+ 
+    // ── Content stretches ──
+    .session-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+ 
+    .session-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+ 
+    // ── Info grid ──
+    .info-grid {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+ 
+      .info-item {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 18px;
+        border-bottom: 1px solid $border;
+        min-height: 52px;
+        transition: background .15s ease;
+ 
+        &:last-child   { border-bottom: none; }
+        &--last        { border-bottom: none; }
+        &:hover        { background: rgba($accent, .025); }
+      }
+ 
+      // ── Label with icon chip ──
+      .info-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: .82rem;
+        color: var(--text-color-secondary);
+        font-weight: 500;
+      }
+ 
+      .info-label__icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+ 
+        svg { flex-shrink: 0; }
+ 
+        &--green { background: rgba($accent, .1);  color: $accent; }
+        &--blue  { background: #e6f1fb;             color: #185fa5; }
+        &--amber { background: #faeeda;             color: #ba7517; }
+        &--gray  { background: #f1efe8;             color: #5f5e5a; }
+      }
+ 
+      // ── Value ──
+      .info-value {
+        font-size: .82rem;
+        font-weight: 600;
+        color: $accent;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+ 
+        &--mono    { font-family: 'Courier New', monospace; font-size: .76rem; letter-spacing: -.2px; }
+        &--neutral { color: var(--text-color-primary); }
+ 
+        // stacked time + date
+        &--stack {
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 2px;
+        }
+ 
+        &__time {
+          font-size: .82rem;
+          font-weight: 600;
+          color: $accent;
+          font-family: 'Courier New', monospace;
+        }
+ 
+        &__date {
+          font-size: .68rem;
+          font-weight: 400;
+          color: var(--text-color-secondary);
+          font-family: inherit;
+        }
+ 
+        .live-indicator {
+          font-size: .5rem;
+          color: $accent;
+          animation: blink 2s infinite;
+          line-height: 1;
+        }
+      }
+    }
+  }
+ 
 // end .dashboard_page

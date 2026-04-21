@@ -4,12 +4,24 @@
   position: relative;
   margin: 0 auto;
   padding: 25px;
+  background: #F0F5F5;
 
   @include media_1024 {
     padding: 20px 10px;
     margin-bottom: 50px;
   }
+.spin {
+  animation: spin 0.8s linear;
+}
 
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
   .card-height {
     height: 100vh;
     max-height: 81vh;
@@ -51,7 +63,7 @@
     .demo-btn {
       padding: 7px 10px;
       border: 1px solid #28b4ca;
-      border-radius: 10px;
+      border-radius: 5px;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -106,11 +118,12 @@
         }
 
         .gen_button {
-        color: #28b4ca;
+        color: #ffffff;
+        background-color: #2C6DEE;
         padding: 0px;
         top: 45px;
         right: 10px;
-        border-radius: 100px;
+        border-radius: 5px;
         font-size: 13px;
         font-weight: 600;
         }
@@ -122,7 +135,7 @@
       height: calc(100vh - 190px); 
        overflow: scroll; 
       scroll-behavior: smooth;
-      background: #e8fafd;
+      background: #f6f9fd;
       padding: 20px;
 
       @include media_1024 {
@@ -216,8 +229,8 @@
           input {
             width: 100%;
             padding: 13px;
-            border: 1px solid #28b4ca !important;
-            border-radius: 100px;
+            border: 1px solid #B8CAC6 !important;
+            border-radius: 5px;
             font-size: 1rem;
             transition: all 0.3s ease;
             background: #fff;
@@ -258,10 +271,10 @@
         // background-color: var(--btn-success);
         // border-color: var(--btn-success);
 
-        border-color: var(--btn-success);
-        background: linear-gradient(180deg, #e8f6ef 0%, #dff2ea 100%);
-        color: #0f6b4f;
-        border: 1px solid #bfe6d6;
+        border-color: #159043;
+        background: #159043;
+        color: #ffffff;
+        border: 1px solid #159043;
       }
 
       .btn-warning {
@@ -269,8 +282,8 @@
         // border-color: var(--btn-warning);
         // color: white !important;
 
-        background: linear-gradient(180deg, #fdf4e3 0%, #f7ecd2 100%);
-        color: #8a5a10;
+        background: #cc1729;
+        color: #ffffff;
         border: 1px solid #ead7a6;
       }
 
@@ -279,9 +292,9 @@
         // border-color: var(--btn-info);
         // color: white !important;
 
-        background: linear-gradient(180deg, #eef4ff 0%, #e3edff 100%);
-        color: #1e3a8a;
-        border: 1px solid #c7d7ff;
+        background: #7A6500;
+        color: #ffffff;
+        border: 1px solid #7A6500;
       }
 
       button,
@@ -289,7 +302,7 @@
         font-size: 14px;
         font-weight: 500;
         width: 100%;
-        border-radius: 100px;
+        border-radius: 5px;
         padding: 14px;
       }
     }

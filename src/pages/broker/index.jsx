@@ -31,7 +31,7 @@ const Broker = () => {
   const [subscriptionUpgradeOpen, setSubscriptionUpgradeOpen] = useState(false);
   const [subscriptionUpgradeMessage, setSubscriptionUpgradeMessage] = useState("");
 
-  const handleSetupBroker = (brokerId) => {
+  const handleSetupBroker1 = (brokerId) => {
     const maxBrokerLimit = activeSubscriptionFeatures?.maxBrokerAddLimitCount ?? 0;
     const currentBrokerCount = customerBrokerList?.length || 0;
 
@@ -57,240 +57,134 @@ const Broker = () => {
     Storage.saveBrokerSetupData(brokerId);
     navigate("/setup");
   };
+const handleSetupBroker = (brokerId) => {
+  // ✅ Save data to storage
+  Storage.saveBrokerSetupData(brokerId);
+  
+  // ✅ Update this line to include the ID in the URL
+  // This matches the "/setup/:id" route in your RouteArr
+  navigate(`/setup/${brokerId}`);
+};
+const mergedBrokers = brokerMasterList?.map((broker) => {
+  const active = customerBrokerList?.find(
+    (cb) => cb.brokerID === broker.brokerID
+  );
 
+  return {
+    ...broker,
+    isActive: !!active,
+    status: active?.status,
+    brokerconfigID: active?.brokerconfigID,
+  };
+});
   return (
-    <section className="content broker_page">
-      <div className="card-box">
-        {/* Compact Header Section */}
-        {/* <div className="page-header">
-          <div className="header-left">
-            <div className="header-icon">
-              <FiShield className="icon" />
-            </div>
-            <div className="header-text">
-              <h1 className="page-title">Broker Management</h1>
-              <p className="page-subtitle">
-                Connect and manage your trading brokers
-              </p>
-            </div>
-          </div>
-          <div className="header-stats">
-            <div className="stat-item">
-              <FiDatabase className="stat-icon" />
-              <span className="stat-number">
-                {brokerMasterList?.length || 0}
-              </span>
-              <span className="stat-label">Available</span>
-            </div>
-            <div className="stat-item">
-              <FiActivity className="stat-icon" />
-              <span className="stat-number">
-                {customerBrokerList?.length || 0}
-              </span>
-              <span className="stat-label">Active</span>
-            </div>
-          </div>
-        </div> */}
+   <section className="content broker_page">
+  <div className="card-box bg-white">
+    {/* Compact Header Section (Commented out as requested) */}
+    {/* <div className="page-header">...</div> */}
 
-        <div className="box-body">
-          <Tabs
-            defaultActiveKey={window.location.hash.slice(1) || "all-broker"}
-            id="broker-tabs"
-            className="broker-tabs"
-            onSelect={(key) => {
-              // Update URL hash when tab changes
-              window.location.hash = key;
-            }}
-          >
-            <Tab
-              eventKey="all-broker"
-              title={
-                <div className="tab-title">
-                  <FiStar className="tab-icon" />
-                  <span>Top SEBI Registered Brokers</span>
-                  <span className="tab-count">
-                    ({brokerMasterList?.length})
+    <div className="box-body">
+      <div className="alert alert-info small mb-1" role="alert">
+  All trademarks, logos, and brand names featured on this platform belong
+  to their respective owners and are used solely for informational reference.
+</div>
+     <div className="table-responsive mt-3">
+  <table className="table table-hover align-middle">
+    <thead className="table-light">
+      <tr>
+        <th>Broker</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {isLoading ? (
+        <tr>
+          <td colSpan="3" className="text-center">
+            Loading brokers...
+          </td>
+        </tr>
+      ) : (
+        mergedBrokers?.map((val, key) => (
+          <tr key={key}>
+            {/* Broker */}
+            <td>
+              <div className="d-flex align-items-center gap-3">
+                <img
+                  src={images[`broker/${val?.brokerName}.png`]}
+                  alt={val?.brokerName}
+                  style={{ width: 35, height: 35, objectFit: "contain" }}
+                />
+                <span className="fw-semibold">{val?.brokerName}</span>
+              </div>
+            </td>
+
+            {/* Status */}
+            <td>
+              {val.isActive ? (
+                <div
+                  className={`d-flex align-items-center gap-2 ${
+                    val?.status ? "text-success" : "text-danger"
+                  }`}
+                >
+                  <FiActivity size={14} />
+                  <span className="fw-medium">
+                    {val?.status ? "Active" : "Disconnected"}
                   </span>
                 </div>
-              }
-            >
-              <div className="broker-grid">
-                {isLoading
-                  ? Array.from({ length: 6 }, (_, index) => (
-                      <div key={index} className="broker-card-skeleton">
-                        <ShimmerThumbnail width={280} height={200} rounded />
-                      </div>
-                    ))
-                  : brokerMasterList?.map((val, key) => (
-                      <div key={key} className="broker-card">
-                        <div className="card-header">
-                          <div className="broker-logo">
-                            <img
-                              src={images[`broker/${val?.brokerName}.png`]}
-                              alt={val?.brokerName}
-                              className="logo-image"
-                            />
-                          </div>
-                          <div className="broker-info">
-                            <h3 className="broker-name">{val?.brokerName}</h3>
-                            <div className="broker-badge">
-                              <FiAward className="badge-icon" />
-                              <span>SEBI Registered</span>
-                            </div>
-                          </div>
-                        </div>
+              ) : (
+                <span className="badge bg-soft-secondary text-muted border px-3">
+                  Not Connected
+                </span>
+              )}
+            </td>
 
-                        <div className="card-body">
-                          <div className="broker-details">
-                            <div className="detail-item">
-                              <FiZap className="detail-icon" />
-                              <span className="detail-label">Status</span>
-                              <span className="detail-value status-available">
-                                Available
-                              </span>
-                            </div>
-                          </div>
-
-                          <div className="market-support">
-                            <div className="market-support-label">
-                              <FiTrendingUp className="label-icon" />
-                              <span className="label-text">Market Support</span>
-                            </div>
-                            <div className="exchange-buttons">
-                              <span className="exchange-btn nse">NSE</span>
-                              <span className="exchange-btn bse">BSE</span>
-                              <span className="exchange-btn mcx">MCX</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="card-footer">
-                          <button
-                            type="button"
-                            className="btn btn-primary btn-setup"
-                            onClick={() => handleSetupBroker(val?.brokerID)}
-                          >
-                            <FiSettings className="btn-icon" />
-                            Setup Broker
-                          </button>
-                        </div>
-                      </div>
-                    ))}
-              </div>
-            </Tab>
-
-            <Tab
-              eventKey="active-broker"
-              title={
-                <div className="tab-title">
-                  <FiCheckCircle className="tab-icon" />
-                  <span>My Active Brokers</span>
-                  <span className="tab-count">
-                    ({customerBrokerList?.length})
-                  </span>
-                </div>
-              }
-            >
-              <div className="broker-grid">
-                {isLoading ? (
-                  <div className="loading-state">
-                    <div className="loading-spinner"></div>
-                    <p>Loading your brokers...</p>
-                  </div>
-                ) : customerBrokerList?.length > 0 ? (
-                  customerBrokerList?.map((val, key) => (
-                    <div key={key} className="broker-card active-broker">
-                      <div className="card-header">
-                        <div className="broker-logo">
-                          <img
-                            src={images[`broker/${val?.brokerName}.png`]}
-                            alt={val?.brokerName}
-                            className="logo-image"
-                          />
-                        </div>
-                        <div className="broker-info">
-                          <h3 className="broker-name">{val?.brokerName}</h3>
-                          <div
-                            className={`status-indicator ${
-                              val?.status ? "active" : "inactive"
-                            }`}
-                          >
-                            <FiCheckCircle className="status-icon" />
-                            <span>{val?.status ? "Active" : "Inactive"}</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="card-body">
-                        <div className="broker-details">
-                          <div className="detail-item">
-                            <FiActivity className="detail-icon" />
-                            <span className="detail-label">Status</span>
-                            <span
-                              className={`detail-value status-${
-                                val?.status ? "active" : "inactive"
-                              }`}
-                            >
-                              {val?.status ? "Connected" : "Disconnected"}
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="market-support">
-                          <div className="market-support-label">
-                            <FiTrendingUp className="label-icon" />
-                            <span className="label-text">Market Support</span>
-                          </div>
-                          <div className="exchange-buttons">
-                            <span className="exchange-btn nse">NSE</span>
-                            <span className="exchange-btn bse">BSE</span>
-                            <span className="exchange-btn mcx">MCX</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="card-footer">
-                        <button
-                          type="button"
-                          onClick={() =>
-                            deactivateBroker({
-                              brokerId: val?.brokerID,
-                              brokerconfigID: val?.brokerconfigID,
-                            })
-                          }
-                          className="btn btn-danger btn-deactivate"
-                        >
-                          <FiXCircle className="btn-icon" />
-                          Deactivate
-                        </button>
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <div className="empty-state">
-                    <div className="empty-icon">
-                      <FiShield className="icon" />
-                    </div>
-                    <h3>No Active Brokers</h3>
-                    <p>
-                      You haven't connected any brokers yet. Start by setting up
-                      your first broker from the available list above.
-                    </p>
-                  </div>
-                )}
-              </div>
-            </Tab>
-          </Tabs>
-        </div>
-      </div>
-      {subscriptionUpgradeOpen && (
-        <SubscriptionDialog
-          open={subscriptionUpgradeOpen}
-          handleClose={() => setSubscriptionUpgradeOpen(false)}
-          message={subscriptionUpgradeMessage}
-        />
+            {/* Action */}
+            <td>
+              {val.isActive ? (
+                <button
+                  type="button"
+                  onClick={() =>
+                    deactivateBroker({
+                      brokerId: val?.brokerID,
+                      brokerconfigID: val?.brokerconfigID,
+                    })
+                  }
+                  className="btn btn-outline-danger btn-sm d-flex align-items-center gap-2"
+                >
+                  <FiXCircle size={14} />
+                  Deactivate
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="btn btn-success btn-sm d-flex align-items-center gap-2"
+                  onClick={() => handleSetupBroker(val?.brokerID)}
+                >
+                  <FiSettings size={14} />
+                  Setup Broker
+                </button>
+              )}
+            </td>
+          </tr>
+        ))
       )}
-    </section>
+    </tbody>
+  </table>
+</div>
+    </div>
+  
+  </div>
+
+  {subscriptionUpgradeOpen && (
+    <SubscriptionDialog
+      open={subscriptionUpgradeOpen}
+      handleClose={() => setSubscriptionUpgradeOpen(false)}
+      message={subscriptionUpgradeMessage}
+    />
+  )}
+</section>
   );
 };
 

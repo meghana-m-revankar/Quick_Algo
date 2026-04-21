@@ -786,7 +786,8 @@
                 color: var(--color-success);
 
                 &:hover {
-                  background: var(--color-success-dark, var(--color-success));
+                  background: green; 
+                  color:white;
                 }
               }
 
@@ -796,7 +797,8 @@
                 color: var(--color-danger);
 
                 &:hover {
-                  background: var(--color-danger-dark, var(--color-danger));
+                  background: red;
+                  color:white;
                 }
               }
             }
@@ -913,7 +915,8 @@
                 color: var(--color-text);
 
                 &:hover {
-                  background: var(--color-success-dark, var(--color-success));
+                  background: green;
+                  color:#fff;
                 }
               }
 
@@ -923,7 +926,8 @@
                 color: var(--color-text);
 
                 &:hover {
-                  background: var(--color-danger-dark, var(--color-danger));
+ background: red;
+                  color:#fff;
                 }
               }
             }
@@ -1339,13 +1343,13 @@
             display: flex;
             align-items: center;
             background: var(--card_box_bg);
-            border: 2px solid #f8faff;
+            border: 2px solid #e2e8f0;
             border-radius: 8px;
             overflow: hidden; // Keep hidden for input field styling
             transition: all 0.2s ease;
             min-height: 36px;
              @include media_1536{
-               border: 1px solid #f8faff;
+               border: 1px solid #e2e8f0;
              }
 
             &:hover {
@@ -1573,7 +1577,7 @@
 
         select {
           background: transparent;
-          border: 2px solid #f8faff;
+          border: 2px solid #e2e8f0;
           color: var(--text-color-primary);
           font-size: 14px;
           min-width: 80px;
@@ -1581,7 +1585,7 @@
           border-radius: 8px;
 
            @include media_1536{
-              border: 1px solid #f8faff;
+              border: 1px solid #e2e8f0;
            }
 
           option {
@@ -1614,7 +1618,7 @@
         position: relative;
         min-width: 80px;
         justify-content: center;
-        border-radius: 100px;
+     /*    border-radius: 100px; */
         color: #2563eb;
         background: #fff;
         @include media_1536{
@@ -2211,9 +2215,10 @@
       text-align: center;
 
       &:hover {
-        background-color: var(--color-success-dark, var(--color-success));
+        background-color: green;
+        color:#ffffff !important;
         transform: translateY(-1px);
-        box-shadow: var(--card-shadow-dark, 0 2px 4px var(--option-overlay));
+        /* box-shadow: var(--card-shadow-dark, 0 2px 4px var(--option-overlay)); */
       }
     }
 
@@ -2231,8 +2236,10 @@
       text-align: center;
 
       &:hover {
-        background-color: var(--color-danger-dark, var(--color-danger));
-        transform: translateY(-1px);
+        background-color: red;
+        color:#ffffff !important;
+       /*  background-color: var(--color-danger-dark, var(--color-danger));
+        transform: translateY(-1px); */
         box-shadow: var(--card-shadow-dark, 0 2px 4px var(--option-overlay));
       }
     }
@@ -2325,7 +2332,7 @@
 
     .main-content {
       background: var(--option-strike-bg);
-      color: white;
+      color: #000000;
       font-weight: 700;
       position: relative;
     }
@@ -3739,7 +3746,7 @@
 
           .buy_sell_button {
             .btn {
-              padding: 8px 15px;
+              padding: 11px 15px;
               border: 1px solid transparent;
               border-radius: 4px;
               font-size: 11px;
@@ -3757,8 +3764,9 @@
                 border-color: #28a745;
 
                 &:hover {
-                  background: #218838;
-                  border-color: #218838;
+                  background: green; 
+                  border-color: green;
+                  color: white;
                 }
               }
 
@@ -3768,8 +3776,9 @@
                 border-color: var(--color-danger);
 
                 &:hover {
-                  background: #c82333;
-                  border-color: #c82333;
+                   background: red; 
+                  border-color: red;
+                  color: white;
                 }
               }
             }
@@ -3907,7 +3916,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 0;
+          /*   padding: 8px 0; */
             gap: 8px;
             width: 100%;
             max-width: 100%;
@@ -4103,11 +4112,11 @@
               background: #8b2e2e;
               color: #fff;
               border: 1px solid #e4b6b6;
-              border-radius: 10px;
+              border-radius: 5px;
               padding: 12px 28px;
               font-weight: 500;
               transition: all 0.25s ease;
-              border-radius: 100px;
+            /*   border-radius: 100px; */
                @include media_1536{
                  padding: 10px 28px;
                  font-weight: 500;
@@ -4124,15 +4133,15 @@
               // background: var(--color-success);
               // color: white;
 
-              background: linear-gradient(135deg, #2563eb 0%, #1fa2b8 100%);
+              background:#159043;
               color: #ffffff;
               border: none;
-              border-radius: 10px;
+              border-radius: 5px;
               padding: 12px 28px;
               font-weight: 5 00;
-              box-shadow: 0 8px 20px rgba(40, 180, 202, 0.35);
+              /* box-shadow: 0 8px 20px rgba(40, 180, 202, 0.35); */
               transition: all 0.25s ease;
-              border-radius: 100px;
+             /*  border-radius: 100px; */
               @include media_1536{
                  padding: 10px 28px;
                  font-weight: 500;
@@ -4241,20 +4250,20 @@
       cursor: pointer;
       transition: all 0.2s ease;
 
-      &:hover {
+   /*    &:hover {
         background: var(--box-hover);
-      }
+      } */
 
       &.active {
         &.buy {
-          background: var(--color-success);
-          border-color: var(--color-success);
+          background: greeb; 
+          border-color: green;
           color: white;
         }
 
         &.sell {
-          background: var(--color-danger);
-          border-color: var(--color-danger);
+           background: red; 
+          border-color:red;
           color: white;
         }
       }
@@ -4653,8 +4662,10 @@
           color: white;
 
           &:hover {
-            background: #218838;
-            transform: translateY(-1px);
+           /*  background: #218838;
+            transform: translateY(-1px); */
+             color: white;
+              background: #218838;
           }
         }
 
@@ -4663,8 +4674,9 @@
           color: white;
 
           &:hover {
-            background: #c82333;
-            transform: translateY(-1px);
+            /* background: #c82333;
+            transform: translateY(-1px); */
+            color: white;
           }
         }
 
@@ -4834,4 +4846,271 @@
 
 .mt-5 {
   margin-top: 5px;
+}
+// ── Overlay ───────────────────────────────────────────────────
+.order-overlay,
+.mobile-popup-overlay {
+  backdrop-filter: blur(3px);
+}
+
+// ── Panel ─────────────────────────────────────────────────────
+.order-panel,
+.mobile-popup {
+  border-radius: 16px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+  animation: popup-in 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  overflow: hidden;
+
+  &::-webkit-scrollbar { width: 4px; }
+  &::-webkit-scrollbar-thumb { background: #dee2e6; border-radius: 4px; }
+}
+
+@keyframes popup-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+// ── Header ────────────────────────────────────────────────────
+.order-popup-header,
+.popup-header {
+  border-bottom: 1px solid #f0f2f5;
+
+  h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1e2a35;
+    margin: 0;
+  }
+
+  .close-btn,
+  .popup-close {
+    background: none;
+    border: none;
+    padding: 4px;
+    border-radius: 6px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.15s;
+
+    &:hover { background: #fff0f0; }
+  }
+
+  .popup-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    color: #1e2a35;
+  }
+}
+
+// ── Analysis section ──────────────────────────────────────────
+.analysis-section {
+  h5 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #8a96a3;
+    margin-bottom: 10px;
+  }
+}
+
+.price_flex_box {
+  .price {
+    p:first-child {
+      font-size: 0.72rem;
+      color: #8a96a3;
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+
+    p:last-child {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// ── Order header (identifier + price) ────────────────────────
+.order_header {
+  span:first-child {
+    font-weight: 700;
+    color: #1e2a35;
+  }
+}
+
+// ── Radio pill icons ──────────────────────────────────────────
+.order_button {
+  label {
+    cursor: pointer;
+    margin: 0;
+
+    input.peer.radio {
+      display: none;
+
+      &:checked + .icon {
+        background: #0d6efd;
+        color: #fff;
+        border-color: #0d6efd;
+        box-shadow: 0 2px 6px rgba(13, 110, 253, 0.25);
+      }
+    }
+
+    .icon {
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid #dee2e6;
+      background: #f8f9fa;
+      color: #495057;
+      font-size: 0.78rem;
+      font-weight: 600;
+      transition: all 0.15s ease;
+      cursor: pointer;
+
+      &:hover {
+        border-color: #adb5bd;
+        background: #fff;
+      }
+    }
+  }
+}
+
+// ── Buy/Sell button ───────────────────────────────────────────
+.buy_sell_button {
+  .btn {
+    min-width: 36px;
+    height: 34px;
+    border-radius: 8px;
+    font-size: 1rem;
+    line-height: 1;
+  }
+}
+
+// ── Inputs ────────────────────────────────────────────────────
+.order_input {
+  .form-control.text-input {
+    border-radius: 8px;
+    border-color: #dee2e6;
+    font-size: 0.875rem;
+    transition: border-color 0.15s, box-shadow 0.15s;
+
+    &:focus {
+      border-color: #86b7fe;
+      box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+    }
+
+    &:disabled {
+      background: #f8f9fa;
+      color: #6c757d;
+    }
+  }
+
+  small { font-size: 0.7rem; }
+}
+
+// ── SL / TP section ───────────────────────────────────────────
+.sl-loss-container {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.sl-loss-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: #dc3545;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  flex-wrap: nowrap;
+
+  span {
+    white-space: nowrap;
+    display: inline;
+  }
+}
+
+// ── Toggle card visual polish ─────────────────────────────────
+.toogle {
+  background: #f8f9fa;
+  border: 1px solid #f0f2f5;
+  border-radius: 10px;
+  padding: 10px 12px;
+  transition: background 0.15s;
+
+  &:has(input[type="checkbox"]:checked) {
+    background: #fff;
+    border-color: #dee2e6;
+  }
+
+  .w-75pr p {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 4px;
+  }
+
+  .input-group-text {
+    font-size: 0.72rem;
+    border-radius: 8px 0 0 8px;
+    border-color: #dee2e6;
+  }
+
+  .form-control.text-input {
+    border-radius: 0 8px 8px 0;
+    font-size: 0.85rem;
+  }
+}
+
+// ── Broker select ─────────────────────────────────────────────
+.third_row {
+  .form-control.text-input {
+    border-radius: 8px;
+    font-size: 0.875rem;
+    border-color: #dee2e6;
+
+    &:focus {
+      border-color: #86b7fe;
+      box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+    }
+  }
+}
+
+// ── Error messages ────────────────────────────────────────────
+.error-message {
+  font-size: 0.75rem;
+  color: #dc3545;
+  font-weight: 500;
+  margin-top: 3px;
+}
+
+// ── Action buttons ────────────────────────────────────────────
+.four_row {
+  .btn {
+    border-radius: 8px;
+    font-size: 0.875rem;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// ── Mobile slide-up ───────────────────────────────────────────
+@media (max-width: 575px) {
+  .mobile-popup {
+    border-radius: 20px 20px 0 0;
+    animation: slide-up 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  @keyframes slide-up {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+  }
 }

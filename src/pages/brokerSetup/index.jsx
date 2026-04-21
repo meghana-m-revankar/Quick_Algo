@@ -1,5 +1,5 @@
 import { Icon } from "#components";
-import React from "react";
+import { useState,useEffect } from "react";
 import useBrokerSetup from "./brokerSetup";
 import "./brokerSetup.scss";
 import { NavLink } from "react-router-dom";
@@ -9,8 +9,9 @@ import { ButtonLoader, SubscriptionDialog } from "#components";
 import { ShimmerFeaturedGallery } from "react-shimmer-effects";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { brokerSetup as data } from "#jsonData";
-import { LuVideo } from "react-icons/lu";
+import { LuVideo,LuCopy,LuRefreshCw } from "react-icons/lu";
 
+import toast from "react-hot-toast";
 const BrokerSetup = () => {
   const {
     brokerDetail,
@@ -51,7 +52,27 @@ const BrokerSetup = () => {
     setSubscriptionUpgradeOpen,
     subscriptionUpgradeMessage,
   } = useBrokerSetup();
+     const [ip, setIp] = useState(localStorage.getItem("ipv4") || "49.43.0.14");
 
+   const [copied, setCopied] = useState(false);
+   const [refreshed, setRefreshed] = useState(false);
+ 
+ 
+ 
+ 
+   const handleCopy = () => {
+     navigator.clipboard.writeText(ip);
+     setCopied(true);
+     toast.success("IP Copied!");
+     setTimeout(() => setCopied(false), 2000);
+   };
+ 
+  const handleRefresh = () => {
+    setIp(localStorage.getItem("ipv4") || "49.43.0.14");
+     setRefreshed(true);
+     toast.success("IP Refreshed!");
+     setTimeout(() => setRefreshed(false), 2000);
+  };
   return (
     <div className="content broker_setup_page">
       <div className="card-box card-height broker-card">
@@ -59,16 +80,56 @@ const BrokerSetup = () => {
           <NavLink to={"/broker"}>
             <FaArrowLeftLong size={20} className="" />
           </NavLink>
-          <div className="demo-btn">
-            <LuVideo size={25} /> <span className="fw-500 fs-15"> Demo</span>
-          </div>
+         <div className="d-flex align-items-center gap-3">
+  {/* Demo Button */}
+  <div className="demo-btn d-flex align-items-center gap-2 cursor-pointer d-none">
+    <LuVideo size={20} />
+    <span className="fw-500 fs-15">Demo</span>
+  </div>
+
+  {/* IP Pill Container */}
+  <div 
+    className="d-flex align-items-center bg-light border px-2 py-1 rounded-pill"
+    style={{ minWidth: '180px' }}
+  >
+    <div className="flex-grow-1 px-2 border-end">
+      <div className="text-muted" style={{ fontSize: '9px', textTransform: 'uppercase' }}>Server IP</div>
+      <div className="fw-bold text-dark" style={{ fontSize: '13px', lineHeight: '1.2' }}>
+         {localStorage.getItem("ipv4") || "49.43.0.14"}
+      </div>
+    </div>
+
+    <div className="d-flex gap-2 px-2">
+      {/* Copy Button */}
+      <button 
+        className="btn btn-link p-0 text-primary border-0" 
+        onClick={handleCopy}
+        title="Copy IP"
+      >
+        <LuCopy size={16} />
+      </button>
+
+      {/* Refresh Button */}
+      <button
+  className="btn btn-link p-0 text-secondary border-0"
+  onClick={handleRefresh}
+  title="Refresh IP"
+>
+ <LuRefreshCw
+    size={16}
+    className={refreshed ? "spin" : ""}
+  />
+</button>
+    </div>
+  </div>
+</div>
         </div>
 
         {screenLoading ? (
           <ShimmerFeaturedGallery col={1} frameHeight={400} />
         ) : (
           <div className="setup_section">
-            <div className="details_section">
+            <div className="details_section d-none">
               <div className="heading">
                 <img
                   src={images[`broker/${brokerDetail?.brokerName}.png`]}

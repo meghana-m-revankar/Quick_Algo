@@ -25,7 +25,7 @@ const Profile = () => {
       <div className="profile-container">
         <div className="profile-content">
           {/* Active Sessions Section */}
-          <div className="profile-section">
+          <div className="profile-section d-none">
             <div className="section-header">
               <h2 className="section-title">
                 <MdSecurity />
@@ -87,23 +87,28 @@ const Profile = () => {
                   <span className="status-badge status-active">Active</span>
                 </div>
               </div>
-
-              <div className="profile-info">
-                <div className="info-grid">
-                  <div className="info-item">
-                    <label>Full Name</label>
-                    <p>{userDetail?.fullName}</p>
-                  </div>
-                  <div className="info-item">
-                    <label>Email Address</label>
-                    <p>{userDetail?.emailid}</p>
-                  </div>
-                  <div className="info-item">
-                    <label>Phone Number</label>
-                    <p>{userDetail?.mobileNo}</p>
-                  </div>
-                </div>
-              </div>
+<div className="profile-info">
+  <div className="info-grid">
+    <div className="info-item">
+      <label className="d-block">
+        <span className="text-danger">*</span> Full Name
+      </label>
+      <p>{userDetail?.fullName}</p>
+    </div>
+    <div className="info-item">
+      <label className="d-block">
+        <span className="text-danger">*</span> Email Address
+      </label>
+      <p>{userDetail?.emailid}</p>
+    </div>
+    <div className="info-item">
+      <label className="d-block">
+        <span className="text-danger">*</span> Phone Number
+      </label>
+      <p>{userDetail?.mobileNo}</p>
+    </div>
+  </div>
+</div>
             </div>
           </div>
 
@@ -198,7 +203,7 @@ const Profile = () => {
           </div> */}
 
           {/* Cache Management Section */}
-          <div className="profile-section">
+          <div className="profile-section d-none">
             <div className="section-header">
               <h2 className="section-title">
                 <i className="fas fa-broom"></i>

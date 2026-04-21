@@ -1,6 +1,8 @@
 @use "../../styles/scss/abstract/mixins" as *;
 
 .orders_page {
+  background: #F0F5F5;
+
  
   &.content {
     // padding: 0px 1.5rem 0px 1.5rem !important;
@@ -112,11 +114,11 @@
       font-size: 17px;
 
       svg {
-        stroke: #28B4CA;
+        stroke: #2C6DEE;
       }
       &.chart {
         path {
-          fill: #28B4CA;
+          fill: #2C6DEE;
         }
       }
     }
@@ -194,7 +196,7 @@
         text-align: center;
         border: none;
         border-radius: 100px;
-        background-color: #28B4CA;
+        background-color: #2C6DEE;
         color: #fff;
         margin: 10px 0 10px 0;
         font-weight: 500;
@@ -385,9 +387,9 @@
       .justify-center{
         
         .rounded {
-          border: 1px solid #28B4CA;
+          border: 1px solid #2C6DEE;
           background: #E8FAFD;
-          color: #28B4CA;
+          color: #2C6DEE;
 
           &.cursor-not-allowed{
           border: 1px solid #A9A9A9;
@@ -476,7 +478,7 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #28B4CA;
+    background: #2C6DEE;
     border-radius: 4px;
   }
 
@@ -518,7 +520,7 @@
     }
 
     .fs-16 {
-      color:#28B4CA;
+      color:#2C6DEE;
       // font-weight: 600 !important;
     }
   }
@@ -578,7 +580,7 @@
       position: sticky !important;
       top: 0 !important;
       z-index: 9999 !important;
-      background-color: #28B4CA !important;
+      background-color: #2C6DEE !important;
       font-size: 14px !important;
       border: 1px solid;
           color: #fff !important;
@@ -654,7 +656,7 @@
 
 .orders_page {
   .card-box {
-   background: #e8fafd;
+   background: #f8fafd;
     border-radius: 10px;
     padding: 10px;
     border: 1px solid var(--border-color);
@@ -682,12 +684,7 @@
           }
         }
         &.active {
-          background: linear-gradient(
-            180deg,
-            rgba(40, 180, 202, 0.15) 0%,
-            rgba(40, 180, 202, 0.08) 100%
-          );
-
+          background: #f8fafd;
           box-shadow: inset 0 0 0 1px rgba(40, 180, 202, 0.35);
           p {
             &.active {

@@ -2,134 +2,115 @@ import axios from "#axios";
 import { API_ENDPOINTS } from "#constant/endPoint";
 import Storage from "#services/storage";
 
+// Helper to get auth headers
+const getAuthHeaders = () => {
+  const token = Storage.decryptData(localStorage.getItem("tokenID"));
+  const customerID = Storage.decryptData(localStorage.getItem("customerID"));
+  return {
+    authorization: `${customerID}:${token}`,
+    "Content-Type": "application/json",
+  };
+};
 
 // Async action to Create Order
 export const asyncPostCreateOrder = async ({ formData }) => {
-  // Make the API call and directly return the response without error handling
-  const token = Storage.decryptData(localStorage.getItem("tokenID"));
-  const customerID = Storage.decryptData(localStorage.getItem("customerID"));
   const response = await axios.post(
     API_ENDPOINTS?.PostCreateOrder,
     { ...formData },
-    {
-      headers: {
-        authorization: `${customerID}:${token}`, // Add the Authorization header
-        "Content-Type": "application/json",
-      },
-    }
+    { headers: getAuthHeaders() }
   );
-
-  // Return the response data directly (success or failure response)
   return response;
 };
 
-// Async action to Create Order
+// Async action to Update Order
 export const asyncPostUpdateOrder = async ({ formData }) => {
-  // Make the API call and directly return the response without error handling
-  const token = Storage.decryptData(localStorage.getItem("tokenID"));
-  const customerID = Storage.decryptData(localStorage.getItem("customerID"));
   const response = await axios.post(
     API_ENDPOINTS?.PostUpdateOrder,
     { ...formData },
-    {
-      headers: {
-        authorization: `${customerID}:${token}`, // Add the Authorization header
-        "Content-Type": "application/json",
-      },
-    }
+    { headers: getAuthHeaders() }
   );
-
-  // Return the response data directly (success or failure response)
   return response;
 };
 
-
-
-// Unified async action to get order list by status
-// sendData should contain status field: 'active', 'closed', 'rejected', 'pending'
-export const asyncGetOrderList = async (sendData) => {
-  // Make the API call and directly return the response without error handling
-  const token = Storage.decryptData(localStorage.getItem("tokenID"));
-  const customerID = Storage.decryptData(localStorage.getItem("customerID"));
-  
-  const response = await axios.get(API_ENDPOINTS?.GetAllOrderList, {
-    params: sendData,
-    headers: {
-      authorization: `${customerID}:${token}`, // Add the Authorization header
-      "Content-Type": "application/json",
-    },
-  });
-  // Return the response data directly (success or failure response)
-  return response;
-};
-
-// Async action to get active order (backward compatibility)
+// ✅ Active Orders - uses GetOrderListActive
 export const asyncGetOrderListActive = async (sendData) => {
-  return await asyncGetOrderList({ ...sendData, orderType : 'active' });
-};
-
-// Async action to get day order clode
-export const asyncGetDayOrderProfitLoss = async () => {
-  // Make the API call and directly return the response without error handling
-  const token = Storage.decryptData(localStorage.getItem("tokenID"));
-  const customerID = Storage.decryptData(localStorage.getItem("customerID"));
-  const response = await axios.get(API_ENDPOINTS?.GetdayorderProfitLoss, {
-    headers: {
-      authorization: `${customerID}:${token}`, // Add the Authorization header
-      "Content-Type": "application/json",
+  const response = await axios.get(API_ENDPOINTS?.GetOrderListActive, {
+    params: {
+      AutoOrder: sendData?.AutoOrder ?? 0,
+      indentifier: sendData?.indentifier ?? "",
+      Pl: sendData?.Pl ?? 0,
+      CategoryId: sendData?.CategoryId ?? 0,
     },
+    headers: getAuthHeaders(),
   });
-  // Return the response data directly (success or failure response)
   return response;
 };
 
-// Async action to get Closed order (backward compatibility)
+// ✅ Closed Orders - uses GetOrderListClosed
 export const asyncGetOrderListClosed = async (sendData) => {
-  return await asyncGetOrderList({ ...sendData, orderType: 'closed' });
+  const response = await axios.get(API_ENDPOINTS?.GetOrderListClosed, {
+    params: {
+      AutoOrder: sendData?.AutoOrder ?? 0,
+      indentifier: sendData?.indentifier ?? "",
+      Pl: sendData?.Pl ?? 0,
+      CategoryId: sendData?.CategoryId ?? 0,
+    },
+    headers: getAuthHeaders(),
+  });
+  return response;
 };
 
-// Async action to get Rejected order (backward compatibility)
-export const asyncGetOrderListRejected = async (sendData) => {
-  return await asyncGetOrderList({ ...sendData, orderType: 'rejected' });
-};
-
-// Async action to get Pending order (backward compatibility)
+// ✅ Pending Orders - uses GetOrderListPending
 export const asyncGetOrderListPending = async (sendData) => {
-  return await asyncGetOrderList({ ...sendData, orderType: 'pending' });
+  const response = await axios.get(API_ENDPOINTS?.GetOrderListPending, {
+    params: {
+      AutoOrder: sendData?.AutoOrder ?? 0,
+      indentifier: sendData?.indentifier ?? "",
+      Pl: sendData?.Pl ?? 0,
+      CategoryId: sendData?.CategoryId ?? 0,
+    },
+    headers: getAuthHeaders(),
+  });
+  return response;
 };
 
+// ✅ Rejected Orders - uses GetOrderListRejected
+export const asyncGetOrderListRejected = async (sendData) => {
+  const response = await axios.get(API_ENDPOINTS?.GetOrderListRejected, {
+    params: {
+      AutoOrder: sendData?.AutoOrder ?? 0,
+      indentifier: sendData?.indentifier ?? "",
+      Pl: sendData?.Pl ?? 0,
+      CategoryId: sendData?.CategoryId ?? 0,
+    },
+    headers: getAuthHeaders(),
+  });
+  return response;
+};
 
-// Async action to get Rejected order
+// Day Order P&L
+export const asyncGetDayOrderProfitLoss = async () => {
+  const response = await axios.get(API_ENDPOINTS?.GetdayorderProfitLoss, {
+    headers: getAuthHeaders(),
+  });
+  return response;
+};
+
+// Order Exit
 export const asyncOrderExit = async (sendData) => {
-  // Make the API call and directly return the response without error handling
-  const token = Storage.decryptData(localStorage.getItem("tokenID"));
-  const customerID = Storage.decryptData(localStorage.getItem("customerID"));
   const response = await axios.get(API_ENDPOINTS?.RoundoffOrders, {
     params: sendData,
-    headers: {
-      authorization: `${customerID}:${token}`, // Add the Authorization header
-      "Content-Type": "application/json",
-    },
+    headers: getAuthHeaders(),
   });
-  // Return the response data directly (success or failure response)
   return response;
 };
 
-// Async action to get Broker Cash Available
+// Broker Cash Available
 export const asyncPostBrokerCashAvailable = async ({ formData }) => {
-  // Make the API call and directly return the response without error handling
-  const token = Storage.decryptData(localStorage.getItem("tokenID"));
-  const customerID = Storage.decryptData(localStorage.getItem("customerID"));
   const response = await axios.post(
     API_ENDPOINTS?.GetBrokerAvailableCash,
     { ...formData },
-    {
-      headers: {
-        authorization: `${customerID}:${token}`, // Add the Authorization header
-        "Content-Type": "application/json",
-      },
-    }
+    { headers: getAuthHeaders() }
   );
-  // Return the response data directly (success or failure response)
   return response;
 };

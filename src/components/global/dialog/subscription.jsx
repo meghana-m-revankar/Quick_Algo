@@ -13,6 +13,7 @@ import { images } from "#helpers";
 
 function PaperComponent(props) {
   const nodeRef = React.useRef(null);
+
   return (
     <Draggable
       nodeRef={nodeRef}
@@ -27,7 +28,8 @@ function PaperComponent(props) {
 const Subscription = (props) => {
   const { open, handleClose, message } = props;
   const navigate = useNavigate();
-
+  const subscriptionId = 2;
+    if (subscriptionId === 2) return null; 
   const defaultMessage =
     "You don't have the privilege to Re-Generate and View Script in this service if you need this feature please upgrade your service";
   const displayMessage = message || defaultMessage;

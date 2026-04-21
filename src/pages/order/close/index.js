@@ -64,7 +64,12 @@ const ClosedOrder = () => {
     setAnchorEl(null);
     setMenuRowIdentifier(null);
   };
-
+const formatPrice = (val) =>
+  Number(val ?? 0).toLocaleString("en-IN", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+  const Price = ({ value }) => <>₹{formatPrice(value)}</>;
   useEffect(() => {
     // Reset values before calculation
     let totalActiveprice = 0;
@@ -97,6 +102,7 @@ const ClosedOrder = () => {
 
     return totalPL;
   };
+  const cumulative = calculateCumulative();
 
   const totalTransaction = () => {
     const activeOrderCount = activeOrderList ? activeOrderList?.length : 0;
@@ -159,7 +165,7 @@ const ClosedOrder = () => {
               <span className="buy sym">B</span>
               <div className="details">
                 <span className="text-gray">Total BUY</span>
-                <span class="fw-500">₹{totalBuy}</span>
+                <span class="fw-500"><Price value={totalBuy} /></span>
                 <span className="text-gray">
                   {activeOrderList ? activeOrderList?.length : 0} Transactions
                 </span>
@@ -169,7 +175,7 @@ const ClosedOrder = () => {
               <span className="selling sym">S</span>
               <div className="details">
                 <span className="text-gray">Total SELL</span>
-                <span class="fw-500">₹{totalSell}</span>
+                <span class="fw-500"><Price value={totalSell} /></span>
                 <span className="text-gray">
                   {closedOrderList?.length} Transactions
                 </span>
@@ -179,16 +185,17 @@ const ClosedOrder = () => {
               <span className="sell sym">R</span>
               <div className="details">
                 <span className="text-gray">Realized P/L</span>
-                <span
-                  class={`fw-500 ${todayPL > 0
-                      ? "text-success"
-                      : todayPL < 0
-                        ? "text-danger"
-                        : ""
-                    }`}
-                >
-                  ₹{todayPL}
-                </span>
+              <span
+  className={`fw-500 ${
+    todayPL > 0
+      ? "text-success"
+      : todayPL < 0
+      ? "text-danger"
+      : ""
+  }`}
+>
+  <Price value={todayPL} />
+</span>
                 <span className="text-gray">
                   {closedOrderList?.length} Transactions
                 </span>
@@ -198,16 +205,17 @@ const ClosedOrder = () => {
               <span className="running sym">U</span>
               <div className="details">
                 <span className="text-gray">Unrealized P/L</span>
-                <span
-                  class={`fw-500 ${portfolio?.todaysPL > 0
-                      ? "text-success"
-                      : portfolio?.todaysPL < 0
-                        ? "text-danger"
-                        : ""
-                    }`}
-                >
-                  ₹{portfolio?.todaysPL}
-                </span>
+             <span
+  className={`fw-500 ${
+    portfolio?.todaysPL > 0
+      ? "text-success"
+      : portfolio?.todaysPL < 0
+      ? "text-danger"
+      : ""
+  }`}
+>
+  <Price value={portfolio?.todaysPL} />
+</span>
                 <span className="text-gray">
                   {activeOrderList ? activeOrderList?.length : 0} Transactions
                 </span>
@@ -229,16 +237,19 @@ const ClosedOrder = () => {
                     <IconRegistry name="exclamation-octagon" className="mb-1" />
                   </Tooltip>{" "}
                 </span>
-                <span
-                  class={`fw-500 ${calculateCumulative() > 0
-                      ? "text-success"
-                      : calculateCumulative() < 0
-                        ? "text-danger"
-                        : ""
-                    }`}
-                >
-                  ₹{calculateCumulative()}
-                </span>
+<span
+  className={`fw-500 ${
+    cumulative > 0
+      ? "text-success"
+      : cumulative < 0
+      ? "text-danger"
+      : ""
+  }`}
+>
+  <Price value={cumulative} />
+</span>
+
+<span className="text-gray"></span>
                 <span className="text-gray">
                   {totalTransaction()} Transactions
                 </span>
@@ -312,7 +323,7 @@ const ClosedOrder = () => {
                           >
                             <button
                               type="button"
-                              className="no-design p-0 chart"
+                              className="no-design p-0 chart d-none"
                               onClick={
                                 activeSubscriptionFeatures?.liveCharts?.enabled == false
                                   ? () => handleClickDialogOpen()
@@ -324,7 +335,7 @@ const ClosedOrder = () => {
                                       })
                               }
                             >
-                              <IconRegistry name="chart-area" size={20} />
+                              <IconRegistry name="chart-area d-none" size={20} />
                             </button>
                           </Tooltip>
                           <Menu

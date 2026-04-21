@@ -119,38 +119,30 @@ const Header = () => {
       path: "/dashboard",
       single: true,
     },
-    {
-      name: "Trading",
-      icon: <IconRegistry name="chart" />,
-      items: [
-        {
-          name: "Option Chain",
-          path: "/option-chain",
-          icon: <IconRegistry name="bar-chart" />,
-        },
-        {
-          name: "Trade Options",
-          path: "/trade-option",
-          icon: <IconRegistry name="swap-horiz" />,
-        },
-    /*     {
-          name: "Chart",
-          path: "/chart",
-          icon: <IconRegistry name="timeline" />,
-        }, */
-        {
-          name: "Gainer/Loser",
-          path: "/gainer-looser",
-          icon: <IconRegistry name="trending-up" />,
-        },
-      ],
+       {
+      name: "Option Chain",
+      icon: <IconRegistry name="add" />,
+      path: "/option-chain",
+      single: true,
     },
-      {
+     {
+       name: "Orders",
+     icon: <IconRegistry name="assignment" />,
+      path: "/order/active",
+      single: true,
+     }, 
+    {
+      name: "Broker",
+      icon: <IconRegistry name="account-balance" />,
+      path: "/broker",
+      single: true,
+    },
+       {
       name: "Algo-Setup",
       icon: <IconRegistry name="add" />,
       path: "/algo",
       single: true,
-    }, 
+    },
   /*   {
       name: "Learning",
       icon: <IconRegistry name="school" />,

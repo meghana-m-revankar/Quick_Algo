@@ -13,6 +13,7 @@ export const API_ENDPOINTS = {
     getoptionlistCE : 'getoptionlistCE',
     GetWatchListByUserId : 'GetWatchListByUserId',
     getoptionexpiryList : 'getoptionexpiryList',
+    CustGetProfile: 'CustGetProfile', // Add this line
     GetCustBrokerConfig : 'GetCustBrokerConfig',
     GetBokerMaster : 'GetBokerMaster',
     GetCustBrokerConfigByID : 'GetCustBrokerConfigByID',

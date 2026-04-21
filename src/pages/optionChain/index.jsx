@@ -433,14 +433,14 @@ const OptionChain = () => {
   const openOrderPopup = useCallback(
     (optionData, orderType) => {
       // Check subscription before opening popup
-      if (!checkSubscriptionFeature(orderType)) {
+     /*  if (!checkSubscriptionFeature(orderType)) {
         const featureName = orderType === "buy" ? "Buy" : "Sell";
         setSubscriptionUpgradeMessage(
           `Your current subscription does not include Option Chain ${featureName} feature. Please upgrade your subscription to use this feature.`,
         );
         setSubscriptionUpgradeOpen(true);
         return;
-      }
+      } */
 
       // Open popup immediately for instant response
       setOrderPopupOpen(true);
@@ -631,7 +631,7 @@ const OptionChain = () => {
                     </p>
                   </div>
                 )}
-                <div className="demo_video_div gap-3">
+                <div className="demo_video_div gap-3 d-none">
                   <span className="fw-500 fs-12">ATM IV:</span>
                   <span className="fw-500 fs-12 atm-ce-iv">
                     CE:{" "}
@@ -1686,578 +1686,402 @@ const OptionChain = () => {
       </div>
 
       {/* Order Panel - Desktop Slide-in / Mobile Bottom Popup */}
-      {orderPopupOpen && selectedOptionData && (
-        <div
-          className={
-            isMobile ? "mobile-popup-overlay" : "order-overlay desktop-overlay"
-          }
-          onClick={closeOrderPopup}
-        >
-          <div
-            className={isMobile ? "mobile-popup" : "order-panel desktop-panel"}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className={isMobile ? "popup-header" : "order-popup-header"}>
-              {isMobile ? (
-                <>
-                  <div className="popup-title">
-                    <span className="popup-icon">📋</span>
-                    <span>Place Order</span>
-                  </div>
-                  <button className="popup-close" onClick={closeOrderPopup}>
-                    <FiX size={20} color="#dc3545" />
-                  </button>
-                </>
-              ) : (
-                <>
-                  <h4>Place Order</h4>
-                  <button className="close-btn" onClick={closeOrderPopup}>
-                    <FiX size={20} color="#dc3545" />
-                  </button>
-                </>
-              )}
+    {orderPopupOpen && selectedOptionData && (
+  <div
+    className={
+      isMobile ? "mobile-popup-overlay" : "order-overlay desktop-overlay"
+    }
+    onClick={closeOrderPopup}
+  >
+    <div
+      className={isMobile ? "mobile-popup" : "order-panel desktop-panel"}
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* ── Header ── */}
+      <div className={isMobile ? "popup-header" : "order-popup-header"}>
+        {isMobile ? (
+          <>
+            <div className="popup-title">
+              <span className="popup-icon">📋</span>
+              <span>Place Order</span>
             </div>
+            <button className="popup-close" onClick={closeOrderPopup}>
+              <FiX size={20} className="text-danger" />
+            </button>
+          </>
+        ) : (
+          <>
+            <h4>Place Order</h4>
+            <button className="close-btn" onClick={closeOrderPopup}>
+              <FiX size={20} className="text-danger" />
+            </button>
+          </>
+        )}
+      </div>
 
-            <div className={"order-popup-content"}>
-              {/* Analysis Section */}
-              <div className="analysis-section">
-                <h5>Analysis</h5>
-                {isAnalysis != "" ? (
-                  <div className="price_flex_box">
-                    <div className="price">
-                      <p>
+      {/* ── Body ── */}
+      <div className="order-popup-content">
+
+        {/* Analysis Section */}
+        <div className="analysis-section">
+          <h5>Analysis</h5>
+          {isAnalysis !== "" ? (
+            <div className="price_flex_box">
+              <div className="price">
+                <p>
+                  <Tooltip
+                    arrow
+                    componentsProps={tooltipDesign}
+                    title={TextData?.mtm_text}
+                    enterTouchDelay={0}
+                    leaveTouchDelay={10000}
+                  >
+                    MTM <IconRegistry name="exclamation-octagon" />
+                  </Tooltip>
+                </p>
+                <p className={analysis?.mtm >= 0 ? "text-success fw-semibold" : "text-danger fw-semibold"}>
+                  ₹ {analysis?.mtm}
+                </p>
+              </div>
+              <div className="price">
+                <p>Maximum Profit</p>
+                <p className="text-success fw-semibold">
+                  {analysis?.maxProfit > 0 ? "₹ " : ""}
+                  {analysis?.maxProfit}
+                </p>
+              </div>
+              <div className="price">
+                <p>Maximum Loss</p>
+                <p className="text-danger fw-semibold">
+                  {analysis?.maxLoss > 0 ? "₹ " : ""}
+                  {analysis?.type === "buy" ? "-" : ""}
+                  {analysis?.maxLoss}
+                </p>
+              </div>
+              <div className="price">
+                <p>Breakeven</p>
+                <p className="text fw-semibold">{analysis?.breakEven}</p>
+              </div>
+            </div>
+          ) : (
+            <div className="img_section">
+              <img
+                src={images["other/analysis.png"]}
+                className="analysisImg"
+                alt="analysis"
+              />
+              <h5 className="mt-5">
+                View payoff charts, key statistics, and detailed trade analysis
+              </h5>
+              <p>
+                Choose trades directly from the Option Chain or apply a
+                ready-made strategy from the Positions tab to explore insights
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* Order Form Section */}
+        {isAnalysis !== "" && (
+          <div className="order-form-section">
+            <div className="place_order">
+              <div className="order_header">
+                <span>{analysis?.identifier}</span>
+                <span
+                  className={
+                    analysis?.data?.priceChangePercentage > 0
+                      ? "text-success fw-semibold"
+                      : "text-danger fw-semibold"
+                  }
+                >
+                  {analysis?.data?.priceChangePercentage > 0 ? (
+                    <IconRegistry name="caret-up" size={20} />
+                  ) : (
+                    <IconRegistry name="caret-down" />
+                  )}{" "}
+                  {analysis?.data?.priceChangePercentage}
+                </span>
+                <span>{analysis?.data?.lastTradePrice}</span>
+              </div>
+
+              <div className="order_body">
+                <form onSubmit={handleOrderSubmit}>
+
+                  {/* first_row */}
+                  <div className="first_row">
+
+                    <div className="buy_sell_button">
+                      {analysis?.type === "buy" ? (
+                        <button
+                          className="btn btn-success btn-sm fw-bold px-3"
+                          type="button"
+                          onClick={() => updateAnalysis(isAnalysis, "sell", analysis?.data)}
+                        >
+                          B
+                        </button>
+                      ) : (
+                        <button
+                          className="btn btn-danger btn-sm fw-bold px-3"
+                          type="button"
+                          onClick={() => updateAnalysis(isAnalysis, "buy", analysis?.data)}
+                        >
+                          S
+                        </button>
+                      )}
+                    </div>
+
+                    <div className="order_button">
+                      <label>
+                        <input
+                          type="radio"
+                          name="ProductType"
+                          value="1"
+                          className="peer radio"
+                          checked={orderData?.ProductType == 1 ?? false}
+                          onChange={handleOrderChange}
+                        />
+                        <div className="icon">CNC</div>
+                      </label>
+                      <label className="ml-5">
+                        <input
+                          type="radio"
+                          name="ProductType"
+                          value="2"
+                          className="peer radio"
+                          checked={orderData?.ProductType == 2 ?? false}
+                          onChange={handleOrderChange}
+                        />
+                        <div className="icon">MIS</div>
+                      </label>
+                    </div>
+
+                    <div className="order_button">
+                      <label>
+                        <input
+                          type="radio"
+                          value="CE"
+                          className="peer radio"
+                          checked={isAnalysis === "CE" ?? false}
+                          onChange={() => updatePriceType("CE", analysis?.data?.strikePrice)}
+                        />
+                        <div className="icon">CE</div>
+                      </label>
+                      <label className="ml-5">
+                        <input
+                          type="radio"
+                          value="PE"
+                          className="peer radio"
+                          checked={isAnalysis === "PE" ?? false}
+                          onChange={() => updatePriceType("PE", analysis?.data?.strikePrice)}
+                        />
+                        <div className="icon">PE</div>
+                      </label>
+                    </div>
+
+                    <div className="order_input">
+                      <input
+                        type="number"
+                        className={`form-control text-input${formErrors?.Quantity ? " is-invalid" : ""}`}
+                        placeholder="Enter Quantity"
+                        name="Quantity"
+                        min="1"
+                        value={orderData?.Quantity}
+                        onChange={handleOrderChange}
+                      />
+                      <small className="text-muted">Lot Size: {analysis?.lotSize}</small>
+                      {formErrors?.Quantity && (
+                        <div className="invalid-feedback d-block">{formErrors?.Quantity}</div>
+                      )}
+                    </div>
+
+                    <div className="order_input">
+                      <input
+                        type="text"
+                        className="form-control text-input final_price bg-light"
+                        placeholder="Enter Price"
+                        name="EntryPrice"
+                        value={orderData?.EntryPrice}
+                        disabled
+                      />
+                    </div>
+                  </div>
+
+                  {/* second_row */}
+                  <div className="second_row data-vn">
+
+                    <div className="toogle toggle-flex-data data-wd-new">
+                      <div className="w-75pr">
+                        <p>
+                          <Tooltip
+                            arrow
+                            componentsProps={tooltipDesign}
+                            title={TextData?.stop_loss}
+                            enterTouchDelay={0}
+                            leaveTouchDelay={10000}
+                          >
+                            Stop Loss <IconRegistry name="exclamation-octagon" />
+                          </Tooltip>
+                        </p>
+                        <label className="toggle-switch blue">
+                          <input type="checkbox" name="isStopLoss" checked readOnly />
+                          <span className="slider" />
+                        </label>
+                      </div>
+
+                      {orderData?.isStopLoss && (
+                        <div className="sl-loss-container">
+                          {orderData?.StopLossEstPrice && analysis?.lotSize && orderData?.Quantity ? (
+                            <div className="sl-loss-text">
+                              <span>SL Est: {orderData?.StopLossEstPrice}</span>
+                              <span>|</span>
+                              <span>
+                                Loss: ₹{(
+                                  -Math.abs(
+                                    (parseFloat(orderData?.EntryPrice) || 0) -
+                                    (parseFloat(orderData?.StopLossEstPrice) || 0)
+                                  ) *
+                                  (analysis?.lotSize || 50) *
+                                  (orderData?.Quantity || 1)
+                                ).toFixed(2)}
+                              </span>
+                            </div>
+                          ) : (
+                            <div className="sl-loss-text">
+                              <span>SL Est: {orderData?.StopLossEstPrice || "-"}</span>
+                            </div>
+                          )}
+                          {formErrors?.StopLossEstPrice && (
+                            <div className="error-message">{formErrors?.StopLossEstPrice}</div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="toogle toggle-flex-data data-wd-sml">
+                      <div className="w-75pr">
+                        <p>Take-profit</p>
+                        <label className="toggle-switch blue">
+                          <input type="checkbox" name="isTakeProfit" onChange={handleOrderChange} />
+                          <span className="slider" />
+                        </label>
+                      </div>
+                      {orderData?.isTakeProfit && (
+                        <div className="input-group input-group-sm mt-1">
+                          <span className="input-group-text bg-white text-muted small">TGT Est.</span>
+                          <input
+                            type="text"
+                            id="TakeProfitEstPrice"
+                            name="TakeProfitEstPrice"
+                            className="form-control text-input"
+                            value={orderData?.TakeProfitEstPrice || "0"}
+                            onChange={handleOrderChange}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* third_row */}
+                  <div className="third_row">
+                    <select
+                      name="BrokerConfigID"
+                      id="BrokerConfigID"
+                      className={`form-control text-input${formErrors?.BrokerConfigID ? " is-invalid" : ""}`}
+                      value={orderData?.BrokerConfigID || ""}
+                      onChange={handleOrderChange}
+                    >
+                      {brokerConfigList?.map((val) => (
+                        <option key={val?.brokerconfigID} value={val?.brokerconfigID}>
+                          {val?.brokerName}
+                        </option>
+                      ))}
+                    </select>
+                    {formErrors?.BrokerConfigID && (
+                      <div className="invalid-feedback d-block">{formErrors?.BrokerConfigID}</div>
+                    )}
+
+                    <div className="mt-2 d-flex justify-content-between align-items-center">
+                      <p className="mb-0">
                         <Tooltip
                           arrow
                           componentsProps={tooltipDesign}
-                          title={TextData?.mtm_text}
                           enterTouchDelay={0}
-                          leaveTouchDelay={10000}
+                          title={
+                            <div>
+                              <div className="fw-bold fs-6 mb-2 pb-2 border-bottom border-light border-opacity-25">
+                                Market Price Protection for Your Safety
+                              </div>
+                              <p className="mb-0 mt-1">
+                                Market orders placed through Quick Algoplus come with
+                                built-in price protection. Following exchange rules, your
+                                broker may automatically convert market orders to limit
+                                orders within a safe price range (usually ±2.5% of current
+                                market price). This protects you from extreme, unexpected
+                                price movements.
+                              </p>
+                            </div>
+                          }
+                          slotProps={{
+                            popper: {
+                              sx: {
+                                zIndex: 10001,
+                                "& .MuiTooltip-tooltip": {
+                                  backgroundColor: "#1e3a5f",
+                                  color: "#e8f4fc",
+                                  maxWidth: 380,
+                                  padding: "12px 14px",
+                                  fontSize: "0.95rem",
+                                  lineHeight: 1.5,
+                                  borderRadius: 0,
+                                },
+                              },
+                            },
+                          }}
                         >
-                          MTM <IconRegistry name="exclamation-octagon" />
+                          <span className="fw-semibold text-primary cursor-pointer small">
+                            MPP <IconRegistry name="exclamation-octagon" />
+                          </span>
                         </Tooltip>
                       </p>
-                      <p
-                        className={
-                          analysis?.mtm >= 0 ? "text-success" : "text-danger"
-                        }
-                      >
-                        ₹ {analysis?.mtm}
-                      </p>
-                    </div>
-                    <div className="price">
-                      <p>Maximum Profit</p>
-                      <p className="text-success">
-                        {analysis?.maxProfit > 0 ? "₹ " : ""}
-                        {analysis?.maxProfit}
+                      <p className="mb-0 small text-muted">
+                        Required funds:{" "}
+                        <strong className="text-dark">{orderData?.TotalPurchaseAmt}</strong>
                       </p>
                     </div>
 
-                    <div className="price">
-                      <p>Maximum Loss</p>
-                      <p className="text-danger">
-                        {analysis?.maxLoss > 0 ? "₹ " : ""}
-                        {analysis?.type == "buy" ? "-" : ""}
-                        {analysis?.maxLoss}
-                      </p>
-                    </div>
+                    {formErrors?.InsufficientFunds && (
+                      <div className="alert alert-danger py-2 px-3 mt-2 small fw-semibold mb-0 rounded-3">
+                        {formErrors?.InsufficientFunds}
+                      </div>
+                    )}
+                  </div>
 
-                    <div className="price">
-                      <p>Breakeven</p>
-                      <p className="text">{analysis?.breakEven}</p>
-                    </div>
+                  {/* four_row */}
+                  <div className="four_row mt-3 d-flex">
+                    <button
+                      className="btn btn-danger btn-sm px-4 fw-semibold"
+                      type="button"
+                      onClick={CancelOrder}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="btn btn-success btn-sm px-4 fw-semibold ms-2"
+                    >
+                      {isOrderLoading ? <ButtonLoader isloading={true} /> : "Place Order"}
+                    </button>
                   </div>
-                ) : (
-                  <div className="img_section">
-                    <img
-                      src={images["other/analysis.png"]}
-                      className="analysisImg"
-                      alt="analysis"
-                    />
-                    <h5 className="mt-5">
-                      View payoff charts, key statistics, and detailed trade
-                      analysis
-                    </h5>
-                    <p>
-                      Choose trades directly from the Option Chain or apply a
-                      ready-made strategy from the Positions tab to explore
-                      insights
-                    </p>
-                  </div>
-                )}
+
+                </form>
               </div>
-
-              {/* Order Form Section */}
-              {isAnalysis != "" && (
-                <div className="order-form-section">
-                  <div className="place_order">
-                    <div className="order_header">
-                      <span>{analysis?.identifier}</span>
-
-                      <span
-                        className={
-                          analysis?.data?.priceChangePercentage > 0
-                            ? "text-success"
-                            : "text-danger"
-                        }
-                      >
-                        {analysis?.data?.priceChangePercentage > 0 ? (
-                          <IconRegistry name="caret-up" size={20} />
-                        ) : (
-                          <IconRegistry name="caret-down" />
-                        )}{" "}
-                        {analysis?.data?.priceChangePercentage}
-                      </span>
-                      <span>{analysis?.data?.lastTradePrice}</span>
-                    </div>
-                    <div className="order_body">
-                      <form
-                        onSubmit={
-                          activeSubscriptionFeatures?.manualTradeAllow == true
-                            ? handleOrderSubmit
-                            : ""
-                        }
-                      >
-                        <div className="first_row">
-                          <div className="buy_sell_button">
-                            {analysis?.type == "buy" ? (
-                              <button
-                                className="btn btn-success"
-                                type="button"
-                                onClick={() =>
-                                  updateAnalysis(
-                                    isAnalysis,
-                                    "sell",
-                                    analysis?.data,
-                                  )
-                                }
-                              >
-                                B
-                              </button>
-                            ) : (
-                              <button
-                                className="btn btn-danger"
-                                type="button"
-                                onClick={() =>
-                                  updateAnalysis(
-                                    isAnalysis,
-                                    "buy",
-                                    analysis?.data,
-                                  )
-                                }
-                              >
-                                S
-                              </button>
-                            )}
-                          </div>
-                          <div className="order_button">
-                            <label>
-                              <input
-                                type="radio"
-                                name="ProductType"
-                                value="1"
-                                className="peer radio "
-                                checked={orderData?.ProductType == 1 ?? false}
-                                onChange={handleOrderChange}
-                              />
-                              <div className="icon">CNC</div>
-                            </label>
-                            <label className="ml-5">
-                              <input
-                                type="radio"
-                                name="ProductType"
-                                value="2"
-                                className="peer radio"
-                                checked={orderData?.ProductType == 2 ?? false}
-                                onChange={handleOrderChange}
-                              />
-                              <div className="icon">MIS</div>
-                            </label>
-                          </div>
-                          <div className="order_button">
-                            <label>
-                              <input
-                                type="radio"
-                                value="CE"
-                                className="peer radio "
-                                checked={isAnalysis == "CE" ?? false}
-                                onChange={() =>
-                                  updatePriceType(
-                                    "CE",
-                                    analysis?.data?.strikePrice,
-                                  )
-                                }
-                              />
-                              <div className="icon">CE</div>
-                            </label>
-                            <label className="ml-5">
-                              <input
-                                type="radio"
-                                value="PE"
-                                className="peer radio"
-                                checked={isAnalysis == "PE" ?? false}
-                                onChange={() =>
-                                  updatePriceType(
-                                    "PE",
-                                    analysis?.data?.strikePrice,
-                                  )
-                                }
-                              />
-                              <div className="icon">PE</div>
-                            </label>
-                          </div>
-
-                          <div className="order_input">
-                            <input
-                              type="number"
-                              className="form-control text-input"
-                              placeholder="Enter Quantity"
-                              name="Quantity"
-                              min="1"
-                              value={orderData?.Quantity}
-                              onChange={handleOrderChange}
-                            />
-                            <small
-                              style={{ fontSize: "12px", fontWeight: "500" }}
-                            >
-                              Lot Size: {analysis?.lotSize}
-                            </small>
-                            {formErrors?.Quantity && (
-                              <div className="error-message">
-                                {formErrors?.Quantity}
-                              </div>
-                            )}
-                          </div>
-                          <div className="order_input">
-                            <input
-                              type="text"
-                              className="form-control text-input final_price"
-                              placeholder="Enter Price"
-                              name="EntryPrice"
-                              value={orderData?.EntryPrice}
-                              disabled
-                            />
-                          </div>
-                        </div>
-                        <div className="second_row data-vn">
-                          <div className="toogle toggle-flex-data data-wd-new">
-                            <div className="w-75pr">
-                              <p>
-                                {" "}
-                                <Tooltip
-                                  arrow
-                                  componentsProps={tooltipDesign}
-                                  title={TextData?.stop_loss}
-                                  enterTouchDelay={0}
-                                  leaveTouchDelay={10000}
-                                >
-                                  {" "}
-                                  Stop Loss{" "}
-                                  <IconRegistry name="exclamation-octagon" />
-                                </Tooltip>
-                              </p>
-                              <label className="toggle-switch blue">
-                                <input
-                                  type="checkbox"
-                                  name="isStopLoss"
-                                  checked
-                                />
-                                <span className="slider"></span>
-                              </label>
-                            </div>
-                            {orderData?.isStopLoss ? (
-                              <div
-                                className="sl-loss-container"
-                                style={{
-                                  width: "100%",
-                                  maxWidth: "100%",
-                                  overflow: "hidden",
-                                  boxSizing: "border-box",
-                                  whiteSpace: "nowrap",
-                                }}
-                              >
-                                {/* SL Est and Loss in one line */}
-                                {orderData?.StopLossEstPrice &&
-                                analysis?.lotSize &&
-                                orderData?.Quantity ? (
-                                  <div
-                                    className="sl-loss-text"
-                                    style={{
-                                      display: "inline-flex",
-                                      alignItems: "center",
-                                      gap: "4px",
-                                      fontSize: "12px",
-                                      color: "#dc3545",
-                                      fontWeight: "600",
-                                      whiteSpace: "nowrap",
-                                      overflow: "hidden",
-                                      width: "100%",
-                                      maxWidth: "100%",
-                                      flexWrap: "nowrap",
-                                    }}
-                                  >
-                                    <span
-                                      style={{
-                                        whiteSpace: "nowrap",
-                                        display: "inline",
-                                      }}
-                                    >
-                                      SL Est: {orderData?.StopLossEstPrice}
-                                    </span>
-                                    <span
-                                      style={{
-                                        whiteSpace: "nowrap",
-                                        display: "inline",
-                                      }}
-                                    >
-                                      |
-                                    </span>
-                                    <span
-                                      style={{
-                                        whiteSpace: "nowrap",
-                                        display: "inline",
-                                      }}
-                                    >
-                                      Loss: ₹
-                                      {(
-                                        -Math.abs(
-                                          (parseFloat(orderData?.EntryPrice) ||
-                                            0) -
-                                            (parseFloat(
-                                              orderData?.StopLossEstPrice,
-                                            ) || 0),
-                                        ) *
-                                        (analysis?.lotSize || 50) *
-                                        (orderData?.Quantity || 1)
-                                      ).toFixed(2)}
-                                    </span>
-                                  </div>
-                                ) : (
-                                  <div
-                                    className="sl-loss-text"
-                                    style={{
-                                      fontSize: "12px",
-                                      color: "#dc3545",
-                                      fontWeight: "600",
-                                      whiteSpace: "nowrap",
-                                      overflow: "hidden",
-                                      width: "100%",
-                                      maxWidth: "100%",
-                                    }}
-                                  >
-                                    <span style={{ whiteSpace: "nowrap" }}>
-                                      SL Est:{" "}
-                                      {orderData?.StopLossEstPrice || "-"}
-                                    </span>
-                                  </div>
-                                )}
-                                {formErrors?.StopLossEstPrice && (
-                                  <div className="error-message">
-                                    {formErrors?.StopLossEstPrice}
-                                  </div>
-                                )}
-                              </div>
-                            ) : (
-                              ""
-                            )}
-                          </div>
-                          <div className="toogle toggle-flex-data data-wd-sml">
-                            <div className="w-75pr">
-                              <p> Take-profit</p>
-                              <label className="toggle-switch blue">
-                                <input
-                                  type="checkbox"
-                                  name="isTakeProfit"
-                                  onChange={handleOrderChange}
-                                />
-                                <span className="slider"></span>
-                              </label>
-                            </div>
-                            {orderData?.isTakeProfit ? (
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  gap: "6px",
-                                  flexWrap: "nowrap",
-                                  whiteSpace: "nowrap",
-                                }}
-                              >
-                                <label
-                                  htmlFor="TakeProfitEstPrice"
-                                  style={{
-                                    margin: 0,
-                                    fontSize: "12px",
-                                    fontWeight: "600",
-                                    whiteSpace: "nowrap",
-                                  }}
-                                >
-                                  TGT Est.:
-                                </label>
-                                <input
-                                  type="text"
-                                  id="TakeProfitEstPrice"
-                                  name="TakeProfitEstPrice"
-                                  className="form-control text-input"
-                                  value={orderData?.TakeProfitEstPrice || "0"}
-                                  onChange={handleOrderChange}
-                                  style={{
-                                    flex: "1",
-                                    minWidth: "60px",
-                                    padding: "4px 8px",
-                                    fontSize: "14px",
-                                  }}
-                                />
-                              </div>
-                            ) : (
-                              ""
-                            )}
-                          </div>
-                        </div>
-                        <div className="third_row">
-                          <select
-                            name="BrokerConfigID"
-                            id="BrokerConfigID"
-                            className="form-control text-input"
-                            value={orderData?.BrokerConfigID || ""}
-                            onChange={handleOrderChange}
-                          >
-                            {brokerConfigList?.map((val, key) => {
-                              return (
-                                <option value={val?.brokerconfigID}>
-                                  {val?.brokerName}
-                                </option>
-                              );
-                            })}
-                          </select>
-                          {formErrors?.BrokerConfigID && (
-                            <div className="error-message">
-                              {formErrors?.BrokerConfigID}
-                            </div>
-                          )}
-                          <div className="mt-2 d-flex justify-content-between align-items-center">
-                            <p className="mb-0">
-                              <Tooltip
-                                arrow
-                                componentsProps={tooltipDesign}
-                                enterTouchDelay={0}
-                                title={
-                                  <div>
-                                    <div
-                                      style={{
-                                        fontWeight: 700,
-                                        fontSize: "1rem",
-                                        marginBottom: 8,
-                                        borderBottom:
-                                          "1px solid rgba(255,255,255,0.3)",
-                                        paddingBottom: 6,
-                                      }}
-                                    >
-                                      <strong>
-                                        Market Price Protection for Your Safety
-                                      </strong>
-                                    </div>
-                                    <p style={{ margin: 0, marginTop: 4 }}>
-                                      Market orders placed through Quick
-                                      Algoplus come with built-in price
-                                      protection. Following exchange rules, your
-                                      broker may automatically convert market
-                                      orders to limit orders within a safe price
-                                      range (usually ±2.5% of current market
-                                      price). This protects you from extreme,
-                                      unexpected price movements.
-                                    </p>
-                                  </div>
-                                }
-                                slotProps={{
-                                  popper: {
-                                    sx: {
-                                      zIndex: 10001,
-                                      "& .MuiTooltip-tooltip": {
-                                        backgroundColor: "#1e3a5f",
-                                        color: "#e8f4fc",
-                                        maxWidth: 380,
-                                        padding: "12px 14px",
-                                        fontSize: "0.95rem",
-                                        lineHeight: 1.5,
-                                        borderRadius: 0,
-                                      },
-                                    },
-                                  },
-                                }}
-                              >
-                                <span
-                                  style={{ cursor: "pointer", fontWeight: 600 }}
-                                >
-                                  MPP{" "}
-                                  <IconRegistry name="exclamation-octagon" />
-                                </span>
-                              </Tooltip>
-                            </p>
-                            <p className="mb-0">
-                              Required funds: {orderData?.TotalPurchaseAmt}
-                            </p>
-                          </div>
-                          {formErrors?.InsufficientFunds && (
-                            <div
-                              className="error-message"
-                              style={{
-                                marginTop: "10px",
-                                padding: "10px",
-                                backgroundColor: "#fee",
-                                border: "1px solid #fcc",
-                                borderRadius: "4px",
-                                color: "#c33",
-                                fontSize: "14px",
-                                fontWeight: "600",
-                              }}
-                            >
-                              {formErrors?.InsufficientFunds}
-                            </div>
-                          )}
-                        </div>
-                        <div className="four_row mt-3 d-flex">
-                          <button
-                            className="btn btn-danger"
-                            type="button"
-                            onClick={() => {
-                              CancelOrder();
-                            }}
-                          >
-                            Cancel
-                          </button>
-
-                          <button
-                            className="btn btn-success ml-5"
-                            disabled={isOrderLoading}
-                            type={
-                              activeSubscriptionFeatures?.manualTradeAllow ==
-                              true
-                                ? "submit"
-                                : "button"
-                            }
-                            onClick={
-                              activeSubscriptionFeatures?.manualTradeAllow ==
-                              false
-                                ? () => handleClickDialogOpen()
-                                : null
-                            }
-                          >
-                            {isOrderLoading ? (
-                              <ButtonLoader isloading={true} />
-                            ) : (
-                              "Place Order"
-                            )}
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
+    </div>
+  </div>
+)}
 
       {dialogOpen && (
         <SubscriptionDialog open={dialogOpen} handleClose={handleDialogClose} />

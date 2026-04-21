@@ -375,7 +375,7 @@ const Algo = () => {
                                                 >
                                                   <button
                                                     type="button"
-                                                    className={`list-btn btn btn-${
+                                                    className={`list-btn btn  btn-${
                                                       s?.addedinAlgoTrade
                                                         ? "danger"
                                                         : changeAlgoState ==
@@ -479,10 +479,10 @@ const Algo = () => {
                                               }
                                             >
                                               {" "}
-                                              <IconRegistry
+                                       {/*        <IconRegistry
                                                 name="chart-area"
                                                 size={20}
-                                              />
+                                              /> */}
                                             </span>
                                           </Tooltip>
                                         </>
@@ -773,7 +773,7 @@ const Algo = () => {
                                 to={`/strategy/${algoOptionData?.statergyID}`}
                                 className="strategy-icon-link"
                               >
-                                <FaChessKnight className="strategy-icon" />
+                              {/*   <FaChessKnight className="strategy-icon" /> */}
                               </NavLink>
                             ) : (
                               ""

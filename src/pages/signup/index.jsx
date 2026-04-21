@@ -31,208 +31,186 @@ const Signup = () => {
   }
 
   return (
-    <div className="h-100vh modern-signup-page">
-      <div className="signup-container">
-        {/* Left Section - Welcome Message */}
-        <div className="welcome-section">
-          <div className="welcome-content">
-            <h1 className="welcome-title">Join QuickAlgo+</h1>
-            <p className="welcome-description">
-              Start your trading journey with confidence. QuickAlgo+ provides
-              you with the tools, knowledge, and emotional discipline needed to
-              succeed in the markets. Join thousands of traders who have already
-              transformed their trading experience.
-            </p>
+   <div className="container-fluid min-vh-100 d-flex align-items-center">
+  <div className="row w-100">
 
-            {/* Copyright and TradingView attribution */}
-            <div className="copyright-section-left">
-              <p className="tradingview-text">
-                Charts powered by{" "}
+    {/* LEFT SIDE */}
+    <div className="col-md-6 d-none d-md-flex flex-column justify-content-center p-5">
+      <h2 className="fw-bold mb-3">Join QuickAlgo+</h2>
+      <p className="text-muted d-none">
+        Start your trading journey with confidence. QuickAlgo+ provides
+        you with the tools, knowledge, and emotional discipline needed to
+        succeed in the markets.
+      </p>
+
+      <div className="mt-4 small text-muted">
+        <p className="mb-1">
+          Copyright © 2021-{new Date().getFullYear()} QUICK ALGO+. All rights reserved.
+        </p>
+      </div>
+    </div>
+
+    {/* RIGHT SIDE */}
+    <div className="col-md-6 d-flex align-items-center justify-content-center">
+      <div className="card shadow-sm w-100">
+        <div className="card-body p-4">
+
+          <h4 className="mb-4 text-center">Create Account</h4>
+
+          <form onSubmit={handleSubmit}>
+
+            {/* Full Name */}
+            <div className="mb-3">
+              <label className="form-label">Full Name</label>
+              <div className="input-group">
+                <span className="input-group-text">
+                  <IconRegistry name="user" />
+                </span>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter Full Name"
+                  name="FullName"
+                  value={formData?.FullName}
+                  onChange={handleChange}
+                />
+              </div>
+              {formErrors?.FullName && (
+                <div className="text-danger small">{formErrors?.FullName}</div>
+              )}
+            </div>
+
+            {/* Mobile */}
+            <div className="mb-3">
+              <label className="form-label">Mobile Number</label>
+              <div className="input-group">
+                <span className="input-group-text">
+                  <IconRegistry name="phone" />
+                </span>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter Mobile Number"
+                  name="Mobile"
+                  value={formData?.Mobile}
+                  onChange={handleChange}
+                />
+              </div>
+              {formErrors?.Mobile && (
+                <div className="text-danger small">{formErrors?.Mobile}</div>
+              )}
+            </div>
+
+            {/* Email */}
+            <div className="mb-3">
+              <label className="form-label">Email ID</label>
+              <div className="input-group">
+                <span className="input-group-text">
+                  <IconRegistry name="mail" />
+                </span>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter Email"
+                  name="EmailId"
+                  value={formData?.EmailId}
+                  onChange={handleChange}
+                />
+              </div>
+              {formErrors?.EmailId && (
+                <div className="text-danger small">{formErrors?.EmailId}</div>
+              )}
+            </div>
+
+            {/* Password */}
+            <div className="mb-3">
+              <label className="form-label">Password</label>
+              <div className="input-group">
+                <span className="input-group-text">
+                  <IconRegistry name="lock" />
+                </span>
+                <input
+                  type={isPasswordVisible ? "text" : "password"}
+                  className="form-control"
+                  placeholder="Enter password"
+                  name="EncryptedPassword"
+                  value={formData?.EncryptedPassword}
+                  onChange={handleChange}
+                />
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary"
+                  onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                >
+                  <IconRegistry name={isPasswordVisible ? "eye" : "eye-low-vision"} />
+                </button>
+              </div>
+              {formErrors?.EncryptedPassword && (
+                <div className="text-danger small">
+                  {formErrors?.EncryptedPassword}
+                </div>
+              )}
+            </div>
+
+            {/* Terms */}
+            <div className="form-check mb-3">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                checked={isChecked}
+                onChange={handleCheckboxChange}
+                id="terms"
+              />
+              <label className="form-check-label small">
+                I accept the{" "}
                 <a
-                  href="https://in.tradingview.com/"
+                  href="https://github.com/QuickAlgoPlus/quickalgoplus_agreements/blob/main/TermsOfService.md"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="tradingview-link"
                 >
-                  TradingView
+                  Terms of Service
                 </a>
-              </p>
-              <p className="copyright-text">
-                Copyright © 2021-{new Date().getFullYear()} QUICK ALGO+. All
-                rights reserved.
-              </p>
+              </label>
+
+              {formErrors?.terms_checkbox && (
+                <div className="text-danger small">
+                  {formErrors?.terms_checkbox}
+                </div>
+              )}
             </div>
-          </div>
-        </div>
 
-        {/* Right Section - Sign Up Form */}
-        <div className="form-section">
-          <div className="form-container">
-            <form onSubmit={handleSubmit} className="signup-form">
-              <div className="form-group">
-                <label htmlFor="FullName" className="form-label">
-                  Full Name
-                </label>
-                <div className="input-group">
-                  <span className="input-icon">
-                    <IconRegistry name="user" />
-                  </span>
-                  <input
-                    type="text"
-                    className="form-input"
-                    placeholder="Enter Full Name"
-                    name="FullName"
-                    id="FullName"
-                    value={formData?.FullName}
-                    onChange={handleChange}
-                  />
-                </div>
-                {formErrors?.FullName && (
-                  <div className="error-message">{formErrors?.FullName}</div>
-                )}
-              </div>
+            {/* Submit */}
+            <button
+              type="submit"
+              className="btn btn-primary w-100"
+              disabled={loading}
+            >
+              {loading ? <ButtonLoader isloading /> : "Create Account"}
+            </button>
 
-              <div className="form-group">
-                <label htmlFor="Mobile" className="form-label">
-                  Mobile Number
-                </label>
-                <div className="input-group">
-                  <span className="input-icon">
-                    <IconRegistry name="phone" />
-                  </span>
-                  <input
-                    type="text"
-                    className="form-input"
-                    placeholder="Enter Mobile Number"
-                    name="Mobile"
-                    id="Mobile"
-                    value={formData?.Mobile}
-                    onChange={handleChange}
-                  />
-                </div>
-                {formErrors?.Mobile && (
-                  <div className="error-message">{formErrors?.Mobile}</div>
-                )}
-              </div>
+            {/* Login */}
+            <p className="text-center mt-3 small">
+              Already have an account?{" "}
+              <NavLink to="/">Sign In</NavLink>
+            </p>
 
-              <div className="form-group">
-                <label htmlFor="EmailId" className="form-label">
-                  Email ID
-                </label>
-                <div className="input-group">
-                  <span className="input-icon">
-                    <IconRegistry name="mail" />
-                  </span>
-                  <input
-                    type="text"
-                    className="form-input"
-                    placeholder="Enter Email ID"
-                    name="EmailId"
-                    id="EmailId"
-                    value={formData?.EmailId}
-                    onChange={handleChange}
-                  />
-                </div>
-                {formErrors?.EmailId && (
-                  <div className="error-message">{formErrors?.EmailId}</div>
-                )}
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="EncryptedPassword" className="form-label">
-                  Password
-                </label>
-                <div className="input-group">
-                  <span className="input-icon">
-                    <IconRegistry name="lock" />
-                  </span>
-                  <input
-                    type={isPasswordVisible ? "text" : "password"}
-                    className="form-input"
-                    placeholder="Enter password"
-                    name="EncryptedPassword"
-                    id="EncryptedPassword"
-                    value={formData?.EncryptedPassword}
-                    onChange={handleChange}
-                  />
-                  <button
-                    type="button"
-                    className="password-toggle"
-                    onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-                  >
-                    {!isPasswordVisible ? (
-                      <IconRegistry name="eye-low-vision" />
-                    ) : (
-                      <IconRegistry name="eye" />
-                    )}
-                  </button>
-                </div>
-                {formErrors?.EncryptedPassword && (
-                  <div className="error-message">
-                    {formErrors?.EncryptedPassword}
-                  </div>
-                )}
-              </div>
-
-              <div className="form-group">
-                <label className="checkbox-container">
-                  <input
-                    type="checkbox"
-                    id="remember"
-                    checked={isChecked}
-                    onChange={handleCheckboxChange}
-                    className="checkbox-input"
-                  />
-                  <span className="checkmark"></span>
-                  <span className="checkbox-text">
-                    I have read and accept the{" "}
-                    <a
-                      href="https://github.com/QuickAlgoPlus/quickalgoplus_agreements/blob/main/TermsOfService.md"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="term_condition"
-                    >
-                      Terms of Service
-                    </a>
-                  </span>
-                </label>
-                {formErrors?.terms_checkbox && (
-                  <div className="error-message">
-                    {formErrors?.terms_checkbox}
-                  </div>
-                )}
-              </div>
-
-              <button
-                type="submit"
-                className="signup-button"
-                disabled={loading}
-              >
-                {loading ? <ButtonLoader isloading={true} /> : "Create Account"}
-              </button>
-
-              <p className="login-text">
-                Already have an account?{" "}
-                <NavLink to="/" className="login-link">
-                  Sign In
-                </NavLink>
-              </p>
-            </form>
-          </div>
+          </form>
         </div>
       </div>
-
-      {showTermsModal && (
-        <TermsModal
-          showTermsModal={showTermsModal}
-          handleCloseTermsModal={handleCloseTermsModal}
-          termsAndConditions={companyDetails?.termsAndConditions}
-        />
-      )}
-
-      {/* Cookie Consent */}
-      <CookieConsent />
     </div>
+
+  </div>
+
+  {showTermsModal && (
+    <TermsModal
+      showTermsModal={showTermsModal}
+      handleCloseTermsModal={handleCloseTermsModal}
+      termsAndConditions={companyDetails?.termsAndConditions}
+    />
+  )}
+
+  <CookieConsent />
+</div>
   );
 };
 
